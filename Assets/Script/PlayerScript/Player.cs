@@ -1,6 +1,7 @@
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class Player : MonoBehaviour
 {
@@ -8,7 +9,10 @@ public class Player : MonoBehaviour
     private float _jumpSpeed;
     [SerializeField, Header("移動速度")]
     private float _moveSpeed;
-    
+    [SerializeField, Header("  リトライボタン")]
+    private GameObject _retry;
+
+
 
     private Vector2 _inputDirection;
     private Rigidbody2D _rigid;
@@ -42,6 +46,7 @@ public class Player : MonoBehaviour
         if (collision.gameObject.tag == "Enemy")
         {
             Destroy(gameObject);
+            
         }
     }
 
@@ -55,4 +60,5 @@ public class Player : MonoBehaviour
     }
 
     
-}
+
+    }
