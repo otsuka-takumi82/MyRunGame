@@ -14,10 +14,14 @@ public class PrefabSetting : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
+
         if (_player == null) return;
         if (transform.position.x < _player.position.x - 10f)
         {
             Destroy(gameObject);
         }
+
+        
     }
 }

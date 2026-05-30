@@ -15,7 +15,7 @@ public class Spowner : MonoBehaviour
     void Start()
     {
 
-        InvokeRepeating(nameof(SpawnEnemy), 1f, 2f);
+        InvokeRepeating(nameof(SpawnEnemy), 1f, 4f);
         InvokeRepeating(nameof(SpawnEnemy2), 1f, 4f);
     }
 
@@ -28,14 +28,14 @@ public class Spowner : MonoBehaviour
     private void Spawn(GameObject prefab)
     {
         if (_player == null) return;
-        Instantiate(prefab, new Vector3(_player.position.x + Random.Range(_Spacing,13f), transform.position.y, transform.position.z),Quaternion.identity);
+        Instantiate(prefab, new Vector3(_player.position.x + Random.Range(_Spacing,35f), transform.position.y, transform.position.z),Quaternion.identity);
         
     }
 
     private void Spawn2(GameObject prefab)
     {
         if (_player == null) return;
-        Instantiate(prefab, new Vector3(_player.position.x + 20f, transform.position.y, transform.position.z), Quaternion.identity);
+        Instantiate(prefab, new Vector3(_player.position.x + Random.Range(_Spacing, 45f), transform.position.y, transform.position.z), Quaternion.identity);
 
     }
 

@@ -6,15 +6,16 @@ TagManager:
   tags:
   - Floor
   - Enemy
+  - People
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Player
   - Water
   - UI
-  - 
-  - 
+  - Invisible
+  - Enemy
   - 
   - 
   - 

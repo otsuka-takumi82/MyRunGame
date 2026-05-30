@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 6166764346923888406}
   - component: {fileID: 724292773202303343}
   - component: {fileID: -6960854633606137250}
-  m_Layer: 0
-  m_Name: TriangleObject
-  m_TagString: Enemy
+  m_Layer: 7
+  m_Name: People
+  m_TagString: People
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -99,7 +99,7 @@ PolygonCollider2D:
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: f296cc224a6ea274fb785f3e351bbea8, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
