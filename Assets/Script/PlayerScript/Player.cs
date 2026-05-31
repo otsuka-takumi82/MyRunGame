@@ -21,6 +21,14 @@ public class Player : MonoBehaviour
     private float _superTime;
     [SerializeField, Header("点滅時間")]
     private float _flashTime;
+    [SerializeField, Header("ストッパー")]
+    private GameObject _stopper;
+    [SerializeField, Header("カメラストッパー")]
+    private GameObject _cameraStopper;
+    [SerializeField, Header("スポナー")]
+    private GameObject _spawner;
+    [SerializeField, Header("カメラフォロー")]
+    private CameraFollow _cameraFollow;
 
 
 
@@ -30,6 +38,7 @@ public class Player : MonoBehaviour
     private bool _isInvincible = false;
     private float _invincibleTimer;
     private SpriteRenderer _spriteRenderer;
+    
 
 
 
@@ -39,7 +48,7 @@ public class Player : MonoBehaviour
         _rigid = GetComponent<Rigidbody2D>();
         _bJump = false;
         _spriteRenderer = GetComponent<SpriteRenderer>();
-       
+
     }
 
     // Update is called once per frame
@@ -90,6 +99,17 @@ public class Player : MonoBehaviour
 
         if(collision.gameObject.tag == "People")
         {
+            Destroy(collision.gameObject);
+        }
+
+        if(collision.gameObject.tag == "Stopper")
+        {
+            _spawner.SetActive(false);
+            Destroy(collision.gameObject);
+        }
+        if (collision.gameObject.tag == "CameraStop")
+        {
+            _cameraFollow.enabled = false;
             Destroy(collision.gameObject);
         }
 

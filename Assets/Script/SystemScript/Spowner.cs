@@ -11,6 +11,8 @@ public class Spowner : MonoBehaviour
     private GameObject _Prefab2;
     [SerializeField,Header("元になる座標")]
     private Transform _player;
+    [SerializeField, Header("ストッパー")]
+    private GameObject _stopper;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -27,14 +29,14 @@ public class Spowner : MonoBehaviour
 
     private void Spawn(GameObject prefab)
     {
-        if (_player == null) return;
+        if (_player == null||_stopper == null) return;
         Instantiate(prefab, new Vector3(_player.position.x + Random.Range(_Spacing,35f), transform.position.y, transform.position.z),Quaternion.identity);
         
     }
 
     private void Spawn2(GameObject prefab)
     {
-        if (_player == null) return;
+        if (_player == null||_stopper ==null) return;
         Instantiate(prefab, new Vector3(_player.position.x + Random.Range(_Spacing, 45f), transform.position.y, transform.position.z), Quaternion.identity);
 
     }
