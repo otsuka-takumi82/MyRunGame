@@ -4,17 +4,30 @@ using UnityEngine.InputSystem;
 using static UnityEditor.Experimental.GraphView.GraphView;
 using UnityEngine.UI;
 using System.Collections;
+using TMPro;
 
 public class Player : MonoBehaviour
 {
     [SerializeField, Header("ジャンプ速度")]
     private float _jumpSpeed;
+    [SerializeField, Header("ステップ速度")]
+    private float _stepSpeed;
+    [SerializeField, Header("ステップクールタイム")]
+    private float _stepCoolTime;
     [SerializeField, Header("移動速度")]
     private float _moveSpeed;
+    [SerializeField, Header("移動速度倍率")]
+    private float _speedpiler;
+    [SerializeField, Header("最大HP")]
+    private float _maxHP = 100;
+    [SerializeField, Header("人ダメージ")]
+    private float _damagePeople = 10;
+    [SerializeField, Header("盗賊回復")]
+    private float _helthThief = 5;
     [SerializeField, Header("リトライボタン")]
     private GameObject _retry;
-    [SerializeField, Header("HP")]
-    private Image _hp;
+    [SerializeField, Header("HPImage")]
+    private Image _imageHP;
     [SerializeField, Header("衝突相手")]
     private GameObject _colitionEnemy;
     [SerializeField, Header("無敵時間")]
@@ -29,14 +42,21 @@ public class Player : MonoBehaviour
     private GameObject _spawner;
     [SerializeField, Header("カメラフォロー")]
     private CameraFollow _cameraFollow;
+    [SerializeField,Header("スコア表示")]
+    private TMP_Text _scoreText;
+
 
 
 
     private Vector2 _inputDirection;
     private Rigidbody2D _rigid;
     private bool _bJump;
+    private bool _bStep;
+    private bool _bStepCool;
     private bool _isInvincible = false;
     private float _invincibleTimer;
+    private float _stepTimer;
+    private float _hp = 100;
     private SpriteRenderer _spriteRenderer;
     
 
@@ -47,13 +67,38 @@ public class Player : MonoBehaviour
     {
         _rigid = GetComponent<Rigidbody2D>();
         _bJump = false;
-        _spriteRenderer = GetComponent<SpriteRenderer>();
+        _bStep = false;
+        _bStepCool = false;
+    _spriteRenderer = GetComponent<SpriteRenderer>();
+
+        _hp = _maxHP;
+        _scoreText.text = "Score:" + _maxHP;
 
     }
 
     // Update is called once per frame
     void Update()
     {
+
+
+        if(_bStepCool)
+        {
+            _stepTimer += Time.deltaTime;
+        }
+
+        if(_stepTimer >= _stepCoolTime)
+        {
+            _bStepCool = false;
+            _stepTimer = 0;
+        }
+        
+        if(_stepTimer > 0.5f&& _stepTimer < _stepCoolTime)
+        {
+            _bStep = false;
+        }
+
+        
+
         if( _isInvincible  == true)
         {
             _invincibleTimer += Time.deltaTime;
@@ -66,7 +111,7 @@ public class Player : MonoBehaviour
             }
             
         }
-        if (_hp.fillAmount <= 0f)
+        if (_imageHP.fillAmount <= 0f)
         {
             Destroy(gameObject);
         }
@@ -74,44 +119,73 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (_bStep) return;
         _rigid.linearVelocity = new Vector2(_moveSpeed, _rigid.linearVelocity.y);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        
-        if (collision.gameObject.tag == "Floor")
-        {
-            _bJump = false;
-        }
 
-        if (collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "People")
-        {
-            
-            _hp.fillAmount -= 0.25f;
-            _isInvincible = true;
-            _invincibleTimer = 0f;
-            StartCoroutine(Invisible());
-
-
-
-        }
-
-        if(collision.gameObject.tag == "People")
-        {
-            Destroy(collision.gameObject);
-        }
-
-        if(collision.gameObject.tag == "Stopper")
+        if (collision.gameObject.tag == "Stopper")
         {
             _spawner.SetActive(false);
             Destroy(collision.gameObject);
         }
+
         if (collision.gameObject.tag == "CameraStop")
         {
             _cameraFollow.enabled = false;
             Destroy(collision.gameObject);
         }
+
+        if(collision.gameObject.tag == "CameraStart")
+            {
+            _cameraFollow.enabled = true;
+            Destroy(collision.gameObject);
+            }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+
+        //if (collision.gameObject)
+        //{
+        //    Debug.Log(collision.gameObject.name);
+        //}
+
+            if (collision.gameObject.tag == "Floor" ||collision.gameObject.tag == "Enemy")
+        {
+            
+            _bJump = false;
+            _bStep = false;
+        }
+
+        if (collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "People")
+        {
+            
+            _hp -= _damagePeople;
+            _imageHP.fillAmount = (float)_hp / _maxHP;
+            _scoreText.text = "Score:" + _hp;
+            _isInvincible = true;
+            _invincibleTimer = 0f;
+            StartCoroutine(Invisible());
+        }
+
+        if (collision.gameObject.tag == "Thief")
+        {
+            _hp += _helthThief;
+            _imageHP.fillAmount = (float)_hp / _maxHP;
+            _scoreText.text = "Score:" + _hp;
+        }
+
+        if(collision.gameObject.tag == "People" || collision.gameObject.tag == "Thief")
+        {
+            
+            Destroy(collision.gameObject);
+        }
+
+        
+        
 
         IEnumerator Invisible()
         {
@@ -139,7 +213,23 @@ public class Player : MonoBehaviour
 
 
     }
+    public void OnStep(InputAction.CallbackContext context)
+    {
+        if (!context.performed || _bStepCool == true) return;
 
-    
+        
+        _rigid.AddForce(Vector2.right * _stepSpeed, ForceMode2D.Impulse);
+        _bStep = true;
+        _bStepCool = true;
+        _moveSpeed *= _speedpiler;
+
+
+
+
+
 
     }
+
+
+
+}

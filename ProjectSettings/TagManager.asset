@@ -9,6 +9,8 @@ TagManager:
   - People
   - Stopper
   - CameraStop
+  - CameraStart
+  - Thief
   layers:
   - Default
   - TransparentFX
@@ -18,7 +20,7 @@ TagManager:
   - UI
   - Invisible
   - Enemy
-  - 
+  - EnemyInvisible
   - 
   - 
   - 
