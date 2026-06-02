@@ -8,8 +8,14 @@ using TMPro;
 
 public class Player : MonoBehaviour
 {
+    [SerializeField, Header("プレイヤーコライダー")]
+    private CircleCollider2D _playerCollider;
+    [SerializeField, Header("プレイヤートランスフォーム")]
+    private Transform _transform ;
     [SerializeField, Header("ジャンプ速度")]
     private float _jumpSpeed;
+    [SerializeField]
+    private float _jumpPiler;
     [SerializeField, Header("ステップ速度")]
     private float _stepSpeed;
     [SerializeField, Header("ステップクールタイム")]
@@ -18,6 +24,10 @@ public class Player : MonoBehaviour
     private float _moveSpeed;
     [SerializeField, Header("移動速度倍率")]
     private float _speedpiler;
+    [SerializeField]
+    private float _maxSpeed;
+    [SerializeField, Header("しゃがみタメ")]
+    private float _maxSnike;
     [SerializeField, Header("最大HP")]
     private float _maxHP = 100;
     [SerializeField, Header("人ダメージ")]
@@ -53,8 +63,11 @@ public class Player : MonoBehaviour
     private bool _bJump;
     private bool _bStep;
     private bool _bStepCool;
+    private bool _hiJump = false;
     private bool _isInvincible = false;
+    private bool _bsnike = false;
     private float _invincibleTimer;
+    private float _snikeTimer;
     private float _stepTimer;
     private float _hp = 100;
     private SpriteRenderer _spriteRenderer;
@@ -62,14 +75,17 @@ public class Player : MonoBehaviour
 
 
 
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        _playerCollider = GetComponent<CircleCollider2D>();
         _rigid = GetComponent<Rigidbody2D>();
         _bJump = false;
         _bStep = false;
         _bStepCool = false;
     _spriteRenderer = GetComponent<SpriteRenderer>();
+        
 
         _hp = _maxHP;
         _scoreText.text = "Score:" + _maxHP;
@@ -80,26 +96,66 @@ public class Player : MonoBehaviour
     void Update()
     {
 
+        if (_bsnike && !_bJump)
+        {
 
-        if(_bStepCool)
+            _transform.localScale = new Vector2(3, 1.5f);
+            _playerCollider.radius = 0.25f;
+
+        }
+        else
+        {
+            _transform.localScale = new Vector2(3, 3);
+            _playerCollider.radius = 0.5f;
+        }
+
+        if (_hp > 100)
+        {
+            _scoreText.color = Color.yellow;
+        }
+        else if (_hp <= 30)
+        {
+            _scoreText.color = Color.red;
+        }
+        else
+        {
+            _scoreText.color = Color.black;
+        }
+
+        if (_moveSpeed > _maxSpeed)
+        {
+            _moveSpeed = _maxSpeed;
+        }
+
+
+        if (_bStepCool)
         {
             _stepTimer += Time.deltaTime;
         }
 
-        if(_stepTimer >= _stepCoolTime)
+        if (_stepTimer >= _stepCoolTime)
         {
             _bStepCool = false;
             _stepTimer = 0;
         }
-        
-        if(_stepTimer > 0.5f&& _stepTimer < _stepCoolTime)
+
+        if (_stepTimer > 0.5f && _stepTimer < _stepCoolTime)
         {
             _bStep = false;
         }
 
-        
+        if (_bsnike)
+        {
+            _snikeTimer += Time.deltaTime;
+        }
 
-        if( _isInvincible  == true)
+        if (_snikeTimer >= _maxSnike)
+        {
+            _hiJump = true;
+
+        }
+
+        if ( _isInvincible  == true)
         {
             _invincibleTimer += Time.deltaTime;
             
@@ -207,9 +263,17 @@ public class Player : MonoBehaviour
 
     public void OnJump(InputAction.CallbackContext context)
     {
-        if (!context.performed || _bJump) return;
-        _rigid.AddForce(Vector2.up * _jumpSpeed, ForceMode2D.Impulse);
-        _bJump = true;
+        if (context.performed && !_bJump && !_hiJump)
+        {
+            _rigid.AddForce(Vector2.up * _jumpSpeed, ForceMode2D.Impulse);
+            _bJump = true;
+        }
+
+        if (context.performed && _hiJump)
+        {
+            _rigid.AddForce(Vector2.up * _jumpSpeed * _jumpPiler, ForceMode2D.Impulse);
+            _bJump = true;
+        }
 
 
     }
@@ -230,6 +294,22 @@ public class Player : MonoBehaviour
 
     }
 
+    public void Onsnike(InputAction.CallbackContext context)
+    {
+        if(context.started)
+        {
+            _bsnike = true;
+            
+            
+        }
+
+        if (context.canceled)
+        {
+            _bsnike = false;
+            _hiJump = false;
+            _snikeTimer = 0;
+        }
+    }
 
 
 }

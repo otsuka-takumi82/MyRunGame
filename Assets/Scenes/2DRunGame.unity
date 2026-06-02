@@ -10769,6 +10769,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: f17e1a59-cb95-4c93-b12f-3df20f30bc39
     m_ActionName: 'Player/Step[/Keyboard/d]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1862319191}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: Onsnike
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: bdc22342-d18d-4d2a-b851-a1ca6ea6fc46
+    m_ActionName: 'Player/snike[/Keyboard/s]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -10786,11 +10802,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6122ba00e8d90984fb00639285fb17d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playerCollider: {fileID: 1862319192}
+  _transform: {fileID: 1862319189}
   _jumpSpeed: 20
+  _jumpPiler: 1.3
   _stepSpeed: 20
   _stepCoolTime: 2
   _moveSpeed: 5
   _speedpiler: 1.05
+  _maxSpeed: 10
+  _maxSnike: 1
   _maxHP: 100
   _damagePeople: 10
   _helthThief: 5
