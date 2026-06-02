@@ -11,6 +11,7 @@ TagManager:
   - CameraStop
   - CameraStart
   - Thief
+  - Clear
   layers:
   - Default
   - TransparentFX

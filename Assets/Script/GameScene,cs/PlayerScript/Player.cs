@@ -5,6 +5,7 @@ using static UnityEditor.Experimental.GraphView.GraphView;
 using UnityEngine.UI;
 using System.Collections;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -95,7 +96,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        
         if (_bsnike && !_bJump)
         {
 
@@ -199,6 +200,13 @@ public class Player : MonoBehaviour
             _cameraFollow.enabled = true;
             Destroy(collision.gameObject);
             }
+
+        if (collision.gameObject.tag == "Clear")
+        {
+            GameManager._score = _hp;
+            SceneManager.LoadScene("ClearScene");
+            Destroy(collision.gameObject);
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -269,7 +277,7 @@ public class Player : MonoBehaviour
             _bJump = true;
         }
 
-        if (context.performed && _hiJump)
+        if (context.performed && !_bJump &&_hiJump)
         {
             _rigid.AddForce(Vector2.up * _jumpSpeed * _jumpPiler, ForceMode2D.Impulse);
             _bJump = true;
@@ -287,11 +295,11 @@ public class Player : MonoBehaviour
         _bStepCool = true;
         _moveSpeed *= _speedpiler;
 
+    }
 
-
-
-
-
+    public static class GameManager
+    {
+        public static float _score;
     }
 
     public void Onsnike(InputAction.CallbackContext context)
