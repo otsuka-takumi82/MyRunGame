@@ -20,16 +20,19 @@ public class ClearMaeger : MonoBehaviour
         if(Player.GameManager._score > 100)
         {
             _ScoreText.color = Color.yellow;
+            _ScoreText.text = "A";
         }
 
         else if (Player.GameManager._score < 30)
         {
             _ScoreText.color = Color.red;
+            _ScoreText.text = "C";
         }
 
         else
         {
             _ScoreText.color = Color.black;
+            _ScoreText.text = "B";
         }
 
 
