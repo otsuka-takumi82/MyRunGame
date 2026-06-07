@@ -11,6 +11,9 @@ public class CarManager : MonoBehaviour
     private float _spacing = 10;
     [SerializeField, Header("プレイヤー")]
     private Transform _player;
+    [SerializeField, Header("効果音")]
+    private AudioSource _audio;
+
 
 
     private bool _chackbell;
@@ -38,10 +41,13 @@ public class CarManager : MonoBehaviour
                     transform.position.y,
                     transform.position.z),
                 Quaternion.identity);
+            _audio.Play();
+            Destroy(gameObject,0.5f);
 
-            
+
         }
     }
+    
 
    
 

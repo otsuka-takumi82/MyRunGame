@@ -270,7 +270,7 @@ private void FixedUpdate()
             _scoreText.text = "Score:" + _hp;
         }
 
-        if(collision.gameObject.tag == "People" || collision.gameObject.tag == "Thief" || collision.gameObject.tag == "Bird")
+        if(collision.gameObject.tag == "People" || collision.gameObject.tag == "Thief" || collision.gameObject.tag == "Bird" )
         {
             
             Destroy(collision.gameObject);
