@@ -33,6 +33,8 @@ public class Player : MonoBehaviour
     private float _maxHP = 100;
     [SerializeField, Header("人ダメージ")]
     private float _damagePeople = 10;
+    [SerializeField, Header("鳥ダメージ")]
+    private float _damageBird = 3;
     [SerializeField, Header("盗賊回復")]
     private float _helthThief = 5;
     [SerializeField, Header("リトライボタン")]
@@ -67,6 +69,7 @@ public class Player : MonoBehaviour
     private bool _hiJump = false;
     private bool _isInvincible = false;
     private bool _bsnike = false;
+    private bool _onFloor = false;
     private float _invincibleTimer;
     private float _snikeTimer;
     private float _stepTimer;
@@ -80,12 +83,15 @@ public class Player : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        _cameraFollow = FindFirstObjectByType<CameraFollow>();
         _playerCollider = GetComponent<CircleCollider2D>();
         _rigid = GetComponent<Rigidbody2D>();
         _bJump = false;
         _bStep = false;
         _bStepCool = false;
     _spriteRenderer = GetComponent<SpriteRenderer>();
+        
+        
         
 
         _hp = _maxHP;
@@ -96,7 +102,11 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Debug.Log(_cameraFollow);
+
+
         
+
         if (_bsnike && !_bJump)
         {
 
@@ -145,7 +155,7 @@ public class Player : MonoBehaviour
             _bStep = false;
         }
 
-        if (_bsnike)
+        if (_bsnike && _onFloor)
         {
             _snikeTimer += Time.deltaTime;
         }
@@ -154,27 +164,33 @@ public class Player : MonoBehaviour
         {
             _hiJump = true;
 
+
+        }
+        else
+        {
+            _hiJump = false;
         }
 
-        if ( _isInvincible  == true)
+        if (_isInvincible == true)
         {
             _invincibleTimer += Time.deltaTime;
-            
+
             gameObject.layer = LayerMask.NameToLayer("Invisible");
-            if (_invincibleTimer  >=  _superTime)
+            if (_invincibleTimer >= _superTime)
             {
                 gameObject.layer = LayerMask.NameToLayer("Player");
                 _isInvincible = false;
             }
-            
+
         }
         if (_imageHP.fillAmount <= 0f)
         {
             Destroy(gameObject);
         }
+
     }
 
-    private void FixedUpdate()
+private void FixedUpdate()
     {
         if (_bStep) return;
         _rigid.linearVelocity = new Vector2(_moveSpeed, _rigid.linearVelocity.y);
@@ -222,12 +238,24 @@ public class Player : MonoBehaviour
             
             _bJump = false;
             _bStep = false;
+            _onFloor = true;
+
         }
 
         if (collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "People")
         {
             
             _hp -= _damagePeople;
+            _imageHP.fillAmount = (float)_hp / _maxHP;
+            _scoreText.text = "Score:" + _hp;
+            _isInvincible = true;
+            _invincibleTimer = 0f;
+            StartCoroutine(Invisible());
+        }
+
+        if(collision.gameObject.tag == "Bird")
+        {
+            _hp -= _damageBird;
             _imageHP.fillAmount = (float)_hp / _maxHP;
             _scoreText.text = "Score:" + _hp;
             _isInvincible = true;
@@ -242,10 +270,17 @@ public class Player : MonoBehaviour
             _scoreText.text = "Score:" + _hp;
         }
 
-        if(collision.gameObject.tag == "People" || collision.gameObject.tag == "Thief")
+        if(collision.gameObject.tag == "People" || collision.gameObject.tag == "Thief" || collision.gameObject.tag == "Bird")
         {
             
             Destroy(collision.gameObject);
+        }
+
+        if(collision.gameObject.tag == "Piero")
+        {
+            _hp += 25;
+            _imageHP.fillAmount = (float)_hp / _maxHP;
+            _scoreText.text = "Score:" + _hp;
         }
 
         
@@ -273,14 +308,21 @@ public class Player : MonoBehaviour
     {
         if (context.performed && !_bJump && !_hiJump)
         {
+
             _rigid.AddForce(Vector2.up * _jumpSpeed, ForceMode2D.Impulse);
             _bJump = true;
+            
+            _onFloor = false;
+            _snikeTimer = 0;
         }
 
         if (context.performed && !_bJump &&_hiJump)
         {
             _rigid.AddForce(Vector2.up * _jumpSpeed * _jumpPiler, ForceMode2D.Impulse);
             _bJump = true;
+            _onFloor = false;
+            _snikeTimer = 0;
+            
         }
 
 
@@ -304,20 +346,38 @@ public class Player : MonoBehaviour
 
     public void Onsnike(InputAction.CallbackContext context)
     {
-        if(context.started)
+        if(context.started && _onFloor == true)
         {
             _bsnike = true;
-            
-            
+
         }
 
         if (context.canceled)
         {
             _bsnike = false;
-            _hiJump = false;
+            
             _snikeTimer = 0;
+            
+        }
+
+
+       
+
+    }
+
+    public void OnScope(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            _cameraFollow._cameraScale = 20;
+        }
+
+        if (context.canceled)
+        {
+            _cameraFollow._cameraScale = 10;
         }
     }
+
 
 
 }

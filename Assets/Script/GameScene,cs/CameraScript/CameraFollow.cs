@@ -7,6 +7,8 @@ public class CameraFollow : MonoBehaviour
 
     [SerializeField, Header("プレイヤー情報")]
     private Transform _player;
+    [SerializeField, Header("距離")]
+    public float _cameraScale;
 
 
 
@@ -20,6 +22,6 @@ public class CameraFollow : MonoBehaviour
     void Update()
     {
         if (_player == null) return;
-        transform.position = new Vector3(_player.position.x + 10, transform.position.y,transform.position.z);
+        transform.position = new Vector3(_player.position.x + _cameraScale, transform.position.y,transform.position.z);
     }
 }

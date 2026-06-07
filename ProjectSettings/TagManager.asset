@@ -12,6 +12,8 @@ TagManager:
   - CameraStart
   - Thief
   - Clear
+  - Piero
+  - Bird
   layers:
   - Default
   - TransparentFX

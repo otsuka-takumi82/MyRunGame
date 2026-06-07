@@ -28,6 +28,8 @@ public class Piero : MonoBehaviour
         {
             _collider.isTrigger = true;
             _audioSource.PlayOneShot(_Died);
+            
         }
+
     }
 }
