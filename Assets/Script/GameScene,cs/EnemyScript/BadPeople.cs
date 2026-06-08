@@ -22,17 +22,20 @@ public class BadPeople : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!_player) return;
         distance = Vector2.Distance(transform.position, _player.position);
-
+        
         if(distance <= _chaseDistance)
         {
             if (_player.position.x >= transform.position.x)
             {
                 _rigid.linearVelocityX = _moveSpeed;
+                transform.localScale = new Vector3(-1,transform.localScale.y,transform.localScale.z);
             }
             else
             {
                 _rigid.linearVelocityX = -_moveSpeed;
+                transform.localScale = new Vector3( 1, transform.localScale.y, transform.localScale.z);
             }
         }
     }

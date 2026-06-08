@@ -179,7 +179,7 @@ public class Player : MonoBehaviour
             if (_invincibleTimer >= _superTime)
             {
                 gameObject.layer = LayerMask.NameToLayer("Player");
-                _isInvincible = false;
+                //_isInvincible = false;
             }
 
         }
@@ -241,26 +241,30 @@ private void FixedUpdate()
             _onFloor = true;
 
         }
-
-        if (collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "People")
+        if (!_isInvincible)
         {
-            
-            _hp -= _damagePeople;
-            _imageHP.fillAmount = (float)_hp / _maxHP;
-            _scoreText.text = "Score:" + _hp;
-            _isInvincible = true;
-            _invincibleTimer = 0f;
-            StartCoroutine(Invisible());
-        }
+            if (collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "People")
+            {
 
-        if(collision.gameObject.tag == "Bird")
-        {
-            _hp -= _damageBird;
-            _imageHP.fillAmount = (float)_hp / _maxHP;
-            _scoreText.text = "Score:" + _hp;
-            _isInvincible = true;
-            _invincibleTimer = 0f;
-            StartCoroutine(Invisible());
+                _hp -= _damagePeople;
+                _imageHP.fillAmount = (float)_hp / _maxHP;
+                _scoreText.text = "Score:" + _hp;
+                _isInvincible = true;
+                _invincibleTimer = 0f;
+                StartCoroutine(Invisible());
+            }
+
+
+            if (collision.gameObject.tag == "Bird")
+            {
+                _hp -= _damageBird;
+                _imageHP.fillAmount = (float)_hp / _maxHP;
+                _scoreText.text = "Score:" + _hp;
+                _isInvincible = true;
+                _invincibleTimer = 0f;
+                StartCoroutine(Invisible());
+            }
+
         }
 
         if (collision.gameObject.tag == "Thief")
@@ -297,8 +301,10 @@ private void FixedUpdate()
                 _spriteRenderer.color = new Color(color.r, color.g, color.b,0.0f);
                 yield return (new WaitForSeconds(_flashTime));
                 _spriteRenderer.color = new Color(color.r, color.g, color.b);
+                
             }
             _spriteRenderer.color = color;
+            _isInvincible = false;
         }
         
         
