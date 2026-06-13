@@ -57,6 +57,9 @@ public class Player : MonoBehaviour
     private CameraFollow _cameraFollow;
     [SerializeField,Header("スコア表示")]
     private TMP_Text _scoreText;
+    [SerializeField, Header("全ステージ")]
+    private GameObject _allStage;
+
 
 
 
@@ -186,6 +189,8 @@ public class Player : MonoBehaviour
         if (_imageHP.fillAmount <= 0f)
         {
             Destroy(gameObject);
+            Destroy(_allStage);
+            
         }
 
     }

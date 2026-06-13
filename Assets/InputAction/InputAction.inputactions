@@ -305,7 +305,7 @@
                 {
                     "name": "",
                     "id": "180616c5-4fb5-49ab-8e0d-3d0a551c0b5f",
-                    "path": "<Keyboard>/d",
+                    "path": "<Mouse>/rightButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -316,7 +316,7 @@
                 {
                     "name": "",
                     "id": "a7e9bfc9-ee74-4d44-a161-fb64faeca052",
-                    "path": "<Keyboard>/s",
+                    "path": "<Keyboard>/shift",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

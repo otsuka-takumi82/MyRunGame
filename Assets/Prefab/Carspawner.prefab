@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7078717898021947833}
   - component: {fileID: 8420543833090211780}
-  - component: {fileID: 4094941079165667107}
   - component: {fileID: 698202309177106028}
+  - component: {fileID: 4160510365010685886}
   m_Layer: 7
   m_Name: AnimalBig
   m_TagString: People
@@ -89,8 +89,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &4094941079165667107
-BoxCollider2D:
+--- !u!114 &698202309177106028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1564872206328875113}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9851fd7f3a60ac64e937aef44c8ad941, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!70 &4160510365010685886
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -123,30 +135,9 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.02224499, y: -0.09702125}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.032258, y: 0.9354839}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Size: {x: 0.95551, y: 0.8059575}
-  m_EdgeRadius: 0
---- !u!114 &698202309177106028
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1564872206328875113}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9851fd7f3a60ac64e937aef44c8ad941, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 1.0322579, y: 0.9354839}
+  m_Direction: 1
 --- !u!1 &3393257266303118353
 GameObject:
   m_ObjectHideFlags: 0
@@ -308,8 +299,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2015861738507375593}
   - component: {fileID: 79356880080991425}
-  - component: {fileID: 3480365255870162399}
   - component: {fileID: 8073739688676367458}
+  - component: {fileID: 8458641846641042639}
   m_Layer: 0
   m_Name: Car
   m_TagString: Floor
@@ -387,8 +378,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &3480365255870162399
-BoxCollider2D:
+--- !u!114 &8073739688676367458
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4609030324200330616}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9851fd7f3a60ac64e937aef44c8ad941, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!70 &8458641846641042639
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -397,7 +400,7 @@ BoxCollider2D:
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: f296cc224a6ea274fb785f3e351bbea8, type: 2}
+  m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -421,30 +424,9 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.032258, y: 0.9677419}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
---- !u!114 &8073739688676367458
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4609030324200330616}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9851fd7f3a60ac64e937aef44c8ad941, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Offset: {x: 0, y: -0.00000011920929}
+  m_Size: {x: 1.032258, y: 0.9677419}
+  m_Direction: 1
 --- !u!1 &5117224860116302624
 GameObject:
   m_ObjectHideFlags: 0

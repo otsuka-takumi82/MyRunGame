@@ -42,6 +42,8 @@ public class CarManager : MonoBehaviour
                     transform.position.z),
                 Quaternion.identity);
             _audio.Play();
+            GetComponent<SpriteRenderer>().enabled = false;
+            GetComponent<Collider2D>().enabled = false;
             Destroy(gameObject,0.5f);
 
 
