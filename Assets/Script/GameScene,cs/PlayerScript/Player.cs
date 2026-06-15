@@ -381,11 +381,13 @@ private void FixedUpdate()
         if (context.started)
         {
             _cameraFollow._cameraScale = 20;
+            Time.timeScale = 0.3f;
         }
 
         if (context.canceled)
         {
             _cameraFollow._cameraScale = 10;
+            Time.timeScale = 1;
         }
     }
 

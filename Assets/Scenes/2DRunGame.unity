@@ -32719,7 +32719,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -130678843, guid: 705405398cf7ce44d9d8dbea0494e016, type: 3}
+  m_Sprite: {fileID: 1924184627, guid: 7c0ddb306ad9f6840a145e0d8d92bcb3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -32962,8 +32962,8 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_Radius: 0.5
+  m_Offset: {x: 0.041148543, y: 0.09601348}
+  m_Radius: 0.42684713
 --- !u!4 &1875680165 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3901100613910361338, guid: a80cedc09a4bf424e91931028706cd0c, type: 3}
