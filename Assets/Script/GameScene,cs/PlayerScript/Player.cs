@@ -41,6 +41,8 @@ public class Player : MonoBehaviour
     private GameObject _retry;
     [SerializeField, Header("HPImage")]
     private Image _imageHP;
+    [SerializeField, Header("SniceImage")]
+    private Image _sniceImage;
     [SerializeField, Header("衝突相手")]
     private GameObject _colitionEnemy;
     [SerializeField, Header("無敵時間")]
@@ -57,6 +59,8 @@ public class Player : MonoBehaviour
     private CameraFollow _cameraFollow;
     [SerializeField,Header("スコア表示")]
     private TMP_Text _scoreText;
+    [SerializeField, Header("スピード表示")]
+    private TMP_Text _speedText;
     [SerializeField, Header("全ステージ")]
     private GameObject _allStage;
 
@@ -78,6 +82,7 @@ public class Player : MonoBehaviour
     private float _stepTimer;
     private float _hp = 100;
     private SpriteRenderer _spriteRenderer;
+    private Color _defaultColor;
     
 
 
@@ -93,12 +98,14 @@ public class Player : MonoBehaviour
         _bStep = false;
         _bStepCool = false;
     _spriteRenderer = GetComponent<SpriteRenderer>();
+        _defaultColor = _spriteRenderer.color;
         
         
         
 
         _hp = _maxHP;
         _scoreText.text = "Score:" + _maxHP;
+        
 
     }
 
@@ -106,9 +113,9 @@ public class Player : MonoBehaviour
     void Update()
     {
         //Debug.Log(_cameraFollow);
+        _speedText.text = "Speed: " + _moveSpeed.ToString("0.00");
 
-
-        
+        _sniceImage.fillAmount = Mathf.Clamp01(_snikeTimer / _maxSnike);
 
         if (_bsnike && !_bJump)
         {
@@ -161,18 +168,27 @@ public class Player : MonoBehaviour
         if (_bsnike && _onFloor)
         {
             _snikeTimer += Time.deltaTime;
+            
         }
 
         if (_snikeTimer >= _maxSnike)
         {
             _hiJump = true;
-
-
+            
         }
         else
         {
             _hiJump = false;
         }
+
+        //if (_hiJump)
+        //{
+        //    _spriteRenderer.color = new Color(50, 0, 0);
+        //}
+        //else if (!_hiJump)
+        //{
+        //    _spriteRenderer.color = new Color(_defaultColor.r, _defaultColor.g, _defaultColor.b);
+        //}
 
         if (_isInvincible == true)
         {
@@ -316,7 +332,9 @@ private void FixedUpdate()
     }
 
     public void OnJump(InputAction.CallbackContext context)
+        
     {
+        
         if (context.performed && !_bJump && !_hiJump)
         {
 
@@ -327,13 +345,13 @@ private void FixedUpdate()
             _snikeTimer = 0;
         }
 
-        if (context.performed && !_bJump &&_hiJump)
+        if (context.performed && !_bJump && _hiJump)
         {
             _rigid.AddForce(Vector2.up * _jumpSpeed * _jumpPiler, ForceMode2D.Impulse);
             _bJump = true;
             _onFloor = false;
             _snikeTimer = 0;
-            
+
         }
 
 
@@ -357,7 +375,9 @@ private void FixedUpdate()
 
     public void Onsnike(InputAction.CallbackContext context)
     {
-        if(context.started && _onFloor == true)
+        
+
+        if (context.started && _onFloor == true)
         {
             _bsnike = true;
 
