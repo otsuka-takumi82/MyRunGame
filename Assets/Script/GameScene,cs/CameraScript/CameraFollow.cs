@@ -24,4 +24,10 @@ public class CameraFollow : MonoBehaviour
         if (_player == null) return;
         transform.position = new Vector3(_player.position.x + _cameraScale, transform.position.y,transform.position.z);
     }
+
+    public void SetScope(float Scale,float TimeScale)
+    {
+        _cameraScale = Scale;
+        Time.timeScale = TimeScale;
+    }
 }

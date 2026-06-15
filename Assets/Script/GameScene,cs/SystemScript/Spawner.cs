@@ -1,7 +1,7 @@
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Spowner : MonoBehaviour
+public class Spawner : MonoBehaviour
 {
     [SerializeField, Header("発生間隔")]
     private float _Spacing;

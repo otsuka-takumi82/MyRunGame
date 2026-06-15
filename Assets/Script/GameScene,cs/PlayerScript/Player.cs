@@ -6,6 +6,7 @@ using UnityEngine.UI;
 using System.Collections;
 using TMPro;
 using UnityEngine.SceneManagement;
+using UnityEditor.Experimental.GraphView;
 
 public class Player : MonoBehaviour
 {
@@ -37,8 +38,6 @@ public class Player : MonoBehaviour
     private float _damageBird = 3;
     [SerializeField, Header("盗賊回復")]
     private float _helthThief = 5;
-    [SerializeField, Header("リトライボタン")]
-    private GameObject _retry;
     [SerializeField, Header("HPImage")]
     private Image _imageHP;
     [SerializeField, Header("SniceImage")]
@@ -49,14 +48,6 @@ public class Player : MonoBehaviour
     private float _superTime;
     [SerializeField, Header("点滅時間")]
     private float _flashTime;
-    [SerializeField, Header("ストッパー")]
-    private GameObject _stopper;
-    [SerializeField, Header("カメラストッパー")]
-    private GameObject _cameraStopper;
-    [SerializeField, Header("スポナー")]
-    private GameObject _spawner;
-    [SerializeField, Header("カメラフォロー")]
-    private CameraFollow _cameraFollow;
     [SerializeField,Header("スコア表示")]
     private TMP_Text _scoreText;
     [SerializeField, Header("スピード表示")]
@@ -83,7 +74,9 @@ public class Player : MonoBehaviour
     private float _hp = 100;
     private SpriteRenderer _spriteRenderer;
     private Color _defaultColor;
-    
+    private CameraFollow _cameraFollow;
+    private GameObject _spawner;
+
 
 
 
@@ -91,6 +84,7 @@ public class Player : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        _spawner = FindFirstObjectByType<Spawner>().gameObject;
         _cameraFollow = FindFirstObjectByType<CameraFollow>();
         _playerCollider = GetComponent<CircleCollider2D>();
         _rigid = GetComponent<Rigidbody2D>();
@@ -202,7 +196,7 @@ public class Player : MonoBehaviour
             }
 
         }
-        if (_imageHP.fillAmount <= 0f)
+        if (_hp <= 0f)
         {
             Destroy(gameObject);
             Destroy(_allStage);
@@ -400,14 +394,13 @@ private void FixedUpdate()
     {
         if (context.started)
         {
-            _cameraFollow._cameraScale = 20;
-            Time.timeScale = 0.3f;
+            _cameraFollow.SetScope(20, 0.3f);
+            
         }
 
         if (context.canceled)
         {
-            _cameraFollow._cameraScale = 10;
-            Time.timeScale = 1;
+            _cameraFollow.SetScope(10, 1f);
         }
     }
 
