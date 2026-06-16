@@ -15,6 +15,7 @@ TagManager:
   - Piero
   - Bird
   - Bell
+  - Rest
   layers:
   - Default
   - TransparentFX

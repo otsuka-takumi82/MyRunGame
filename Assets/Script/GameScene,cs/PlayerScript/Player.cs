@@ -69,6 +69,7 @@ public class Player : MonoBehaviour
     private UIManager _uiManager;
     private GameObject _allStage;
     private GameManager _gameManager;
+   
 
 
     private void Awake()
@@ -93,14 +94,15 @@ public class Player : MonoBehaviour
         _bJump = false;
         _bStep = false;
         _bStepCool = false;
-    
-        
+        _uiManager.ScoreManage(_hp);
+        _uiManager.HPManage(_hp, _maxHP);
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        Debug.Log(_gameManager._boxStage);
         _uiManager.SpeedText(_moveSpeed);
 
         _uiManager.SniceManage(_snikeTimer,_maxSnike);
@@ -225,7 +227,14 @@ private void FixedUpdate()
             _cameraFollow.enabled = true;
             Destroy(collision.gameObject);
             }
-
+        if(collision.CompareTag("Rest"))
+        {
+            _gameManager._boxScore = _hp;
+            _gameManager._boxSpeed = _moveSpeed;
+            _gameManager._boxStage += 1;
+            SceneManager.LoadScene("RestScene");
+            Destroy(collision.gameObject);
+        }
         //if (collision.CompareTag("Clear"))
         //{
         //    GameManager._score = _hp;

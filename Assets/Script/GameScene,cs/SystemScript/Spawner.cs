@@ -13,9 +13,12 @@ public class Spawner : MonoBehaviour
     private GameObject _stopper;
 
     private GameObject _player;
+    private GameManager _gameManager;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        _gameManager = FindFirstObjectByType<GameManager>();
+        if (_gameManager._boxStage >= 2) return;
         _player = GameObject.FindWithTag("Player");
         InvokeRepeating(nameof(SpawnEnemy), 1f, 4f);
         InvokeRepeating(nameof(SpawnEnemy2), 1f, 4f);

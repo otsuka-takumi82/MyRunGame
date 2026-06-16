@@ -11,9 +11,10 @@ public class PlayerSpawner : MonoBehaviour
     private void Awake()
     {
         _gameManager = FindFirstObjectByType<GameManager>();
+        
         if (_stageNumber == _gameManager._boxStage)
         {
-            Instantiate(_playerPrefab);
+            Instantiate(_playerPrefab,transform.position,Quaternion.identity);
         }
     }
 
