@@ -5443,7 +5443,7 @@ PrefabInstance:
     - target: {fileID: 567129932249884068, guid: efd9892871f8b1349910777c70fb6d34, type: 3}
       propertyPath: _player
       value: 
-      objectReference: {fileID: 1862319189}
+      objectReference: {fileID: 0}
     - target: {fileID: 6554855580876980025, guid: efd9892871f8b1349910777c70fb6d34, type: 3}
       propertyPath: m_Name
       value: ChacePeople
@@ -5504,7 +5504,7 @@ PrefabInstance:
     - target: {fileID: 567129932249884068, guid: efd9892871f8b1349910777c70fb6d34, type: 3}
       propertyPath: _player
       value: 
-      objectReference: {fileID: 1862319189}
+      objectReference: {fileID: 0}
     - target: {fileID: 6554855580876980025, guid: efd9892871f8b1349910777c70fb6d34, type: 3}
       propertyPath: m_Name
       value: ChacePeople (2)
@@ -6666,7 +6666,7 @@ PrefabInstance:
     - target: {fileID: 129761386329107444, guid: b6ce1887362dc4846bbb9203200affce, type: 3}
       propertyPath: _player
       value: 
-      objectReference: {fileID: 1862319189}
+      objectReference: {fileID: 0}
     - target: {fileID: 3483563480948034299, guid: b6ce1887362dc4846bbb9203200affce, type: 3}
       propertyPath: m_Name
       value: Bell (2)
@@ -7745,7 +7745,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2653c4af44dc67c4283efa5235b214f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 1862319189}
+  _player: {fileID: 5208877246618115953, guid: f7a887d16e2a28d49b941b98c2fd090e, type: 3}
   _cameraScale: 10
 --- !u!1 &527129672
 GameObject:
@@ -12307,7 +12307,7 @@ PrefabInstance:
     - target: {fileID: 567129932249884068, guid: efd9892871f8b1349910777c70fb6d34, type: 3}
       propertyPath: _player
       value: 
-      objectReference: {fileID: 1862319189}
+      objectReference: {fileID: 0}
     - target: {fileID: 6554855580876980025, guid: efd9892871f8b1349910777c70fb6d34, type: 3}
       propertyPath: m_Name
       value: ChacePeople (5)
@@ -30564,7 +30564,7 @@ PrefabInstance:
     - target: {fileID: 567129932249884068, guid: efd9892871f8b1349910777c70fb6d34, type: 3}
       propertyPath: _player
       value: 
-      objectReference: {fileID: 1862319189}
+      objectReference: {fileID: 0}
     - target: {fileID: 6554855580876980025, guid: efd9892871f8b1349910777c70fb6d34, type: 3}
       propertyPath: m_Name
       value: ChacePeople (1)
@@ -30802,7 +30802,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _retry: {fileID: 94221682}
-  _player: {fileID: 1862319185}
+  _player: {fileID: 0}
   _scene: 2DRunGame
 --- !u!4 &1378063729
 Transform:
@@ -31541,7 +31541,7 @@ MonoBehaviour:
   _Spacing: 35
   _Prefab: {fileID: 1446596094660322684, guid: b75c1a52affa5944581eb4d509720c4e, type: 3}
   _Prefab2: {fileID: 7938654288089892265, guid: a80cedc09a4bf424e91931028706cd0c, type: 3}
-  _player: {fileID: 1862319189}
+  _player: {fileID: 0}
   _stopper: {fileID: 317038198}
 --- !u!4 &1534762063 stripped
 Transform:
@@ -32271,7 +32271,7 @@ PrefabInstance:
     - target: {fileID: 567129932249884068, guid: efd9892871f8b1349910777c70fb6d34, type: 3}
       propertyPath: _player
       value: 
-      objectReference: {fileID: 1862319189}
+      objectReference: {fileID: 0}
     - target: {fileID: 6554855580876980025, guid: efd9892871f8b1349910777c70fb6d34, type: 3}
       propertyPath: m_Name
       value: ChacePeople (3)
@@ -32786,7 +32786,7 @@ PrefabInstance:
     - target: {fileID: 567129932249884068, guid: efd9892871f8b1349910777c70fb6d34, type: 3}
       propertyPath: _player
       value: 
-      objectReference: {fileID: 1862319189}
+      objectReference: {fileID: 0}
     - target: {fileID: 6554855580876980025, guid: efd9892871f8b1349910777c70fb6d34, type: 3}
       propertyPath: m_Name
       value: ChacePeople (6)
@@ -32928,7 +32928,7 @@ PrefabInstance:
     - target: {fileID: 129761386329107444, guid: b6ce1887362dc4846bbb9203200affce, type: 3}
       propertyPath: _player
       value: 
-      objectReference: {fileID: 1862319189}
+      objectReference: {fileID: 0}
     - target: {fileID: 3483563480948034299, guid: b6ce1887362dc4846bbb9203200affce, type: 3}
       propertyPath: m_Name
       value: Bell (1)
@@ -33005,16 +33005,6 @@ Transform:
 Transform:
   m_CorrespondingSourceObject: {fileID: 3901100613910361338, guid: 49fa35495aab8dc4497f57ca70d1c422, type: 3}
   m_PrefabInstance: {fileID: 903035944}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1862319185 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1647406528571529986, guid: f7a887d16e2a28d49b941b98c2fd090e, type: 3}
-  m_PrefabInstance: {fileID: 4637586073706904393}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &1862319189 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5208877246618115953, guid: f7a887d16e2a28d49b941b98c2fd090e, type: 3}
-  m_PrefabInstance: {fileID: 4637586073706904393}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &1875680165 stripped
 Transform:
@@ -33317,6 +33307,52 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a80cedc09a4bf424e91931028706cd0c, type: 3}
+--- !u!1 &1936262147
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1936262149}
+  - component: {fileID: 1936262148}
+  m_Layer: 0
+  m_Name: PlayerSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1936262148
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1936262147}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f57cdaf7a6bf804681d259697a68d6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerPrefab: {fileID: 1647406528571529986, guid: f7a887d16e2a28d49b941b98c2fd090e, type: 3}
+  _stageNumber: 1
+--- !u!4 &1936262149
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1936262147}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.48, y: 0.02, z: 1.6610414}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1944688398
 GameObject:
   m_ObjectHideFlags: 0
@@ -33539,7 +33575,7 @@ PrefabInstance:
     - target: {fileID: 567129932249884068, guid: efd9892871f8b1349910777c70fb6d34, type: 3}
       propertyPath: _player
       value: 
-      objectReference: {fileID: 1862319189}
+      objectReference: {fileID: 0}
     - target: {fileID: 6554855580876980025, guid: efd9892871f8b1349910777c70fb6d34, type: 3}
       propertyPath: m_Name
       value: ChacePeople (4)
@@ -34373,7 +34409,7 @@ PrefabInstance:
     - target: {fileID: 129761386329107444, guid: b6ce1887362dc4846bbb9203200affce, type: 3}
       propertyPath: _player
       value: 
-      objectReference: {fileID: 1862319189}
+      objectReference: {fileID: 0}
     - target: {fileID: 3483563480948034299, guid: b6ce1887362dc4846bbb9203200affce, type: 3}
       propertyPath: m_Name
       value: Bell
@@ -34433,103 +34469,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6875214630463189347, guid: efd9892871f8b1349910777c70fb6d34, type: 3}
   m_PrefabInstance: {fileID: 6822593465259556742}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &4637586073706904393
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 1647406528571529986, guid: f7a887d16e2a28d49b941b98c2fd090e, type: 3}
-      propertyPath: m_Name
-      value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 5133428106069828300, guid: f7a887d16e2a28d49b941b98c2fd090e, type: 3}
-      propertyPath: _retry
-      value: 
-      objectReference: {fileID: 787070093}
-    - target: {fileID: 5133428106069828300, guid: f7a887d16e2a28d49b941b98c2fd090e, type: 3}
-      propertyPath: _imageHP
-      value: 
-      objectReference: {fileID: 1967683068}
-    - target: {fileID: 5133428106069828300, guid: f7a887d16e2a28d49b941b98c2fd090e, type: 3}
-      propertyPath: _spawner
-      value: 
-      objectReference: {fileID: 1520877094}
-    - target: {fileID: 5133428106069828300, guid: f7a887d16e2a28d49b941b98c2fd090e, type: 3}
-      propertyPath: _stopper
-      value: 
-      objectReference: {fileID: 539060334}
-    - target: {fileID: 5133428106069828300, guid: f7a887d16e2a28d49b941b98c2fd090e, type: 3}
-      propertyPath: _allStage
-      value: 
-      objectReference: {fileID: 1105570675}
-    - target: {fileID: 5133428106069828300, guid: f7a887d16e2a28d49b941b98c2fd090e, type: 3}
-      propertyPath: _scoreText
-      value: 
-      objectReference: {fileID: 676565087}
-    - target: {fileID: 5133428106069828300, guid: f7a887d16e2a28d49b941b98c2fd090e, type: 3}
-      propertyPath: _speedText
-      value: 
-      objectReference: {fileID: 106654667}
-    - target: {fileID: 5133428106069828300, guid: f7a887d16e2a28d49b941b98c2fd090e, type: 3}
-      propertyPath: _sniceImage
-      value: 
-      objectReference: {fileID: 901960898}
-    - target: {fileID: 5133428106069828300, guid: f7a887d16e2a28d49b941b98c2fd090e, type: 3}
-      propertyPath: _cameraFollow
-      value: 
-      objectReference: {fileID: 519420033}
-    - target: {fileID: 5133428106069828300, guid: f7a887d16e2a28d49b941b98c2fd090e, type: 3}
-      propertyPath: _cameraStopper
-      value: 
-      objectReference: {fileID: 317038198}
-    - target: {fileID: 5208877246618115953, guid: f7a887d16e2a28d49b941b98c2fd090e, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -2.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 5208877246618115953, guid: f7a887d16e2a28d49b941b98c2fd090e, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.078549385
-      objectReference: {fileID: 0}
-    - target: {fileID: 5208877246618115953, guid: f7a887d16e2a28d49b941b98c2fd090e, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5208877246618115953, guid: f7a887d16e2a28d49b941b98c2fd090e, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5208877246618115953, guid: f7a887d16e2a28d49b941b98c2fd090e, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5208877246618115953, guid: f7a887d16e2a28d49b941b98c2fd090e, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5208877246618115953, guid: f7a887d16e2a28d49b941b98c2fd090e, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5208877246618115953, guid: f7a887d16e2a28d49b941b98c2fd090e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5208877246618115953, guid: f7a887d16e2a28d49b941b98c2fd090e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5208877246618115953, guid: f7a887d16e2a28d49b941b98c2fd090e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: f7a887d16e2a28d49b941b98c2fd090e, type: 3}
 --- !u!1001 &6450272790100795098
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -34655,7 +34594,7 @@ PrefabInstance:
     - target: {fileID: 567129932249884068, guid: efd9892871f8b1349910777c70fb6d34, type: 3}
       propertyPath: _player
       value: 
-      objectReference: {fileID: 1862319189}
+      objectReference: {fileID: 0}
     - target: {fileID: 6554855580876980025, guid: efd9892871f8b1349910777c70fb6d34, type: 3}
       propertyPath: m_Name
       value: People
@@ -34921,9 +34860,9 @@ SceneRoots:
   - {fileID: 1980448253}
   - {fileID: 425727464}
   - {fileID: 278798200}
-  - {fileID: 4637586073706904393}
   - {fileID: 1378063729}
   - {fileID: 1520877095}
   - {fileID: 1105570676}
   - {fileID: 527129675}
   - {fileID: 1960649456}
+  - {fileID: 1936262149}

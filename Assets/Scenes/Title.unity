@@ -176,7 +176,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -130678843, guid: 705405398cf7ce44d9d8dbea0494e016, type: 3}
+  m_Sprite: {fileID: 1924184627, guid: 7c0ddb306ad9f6840a145e0d8d92bcb3, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -589,6 +589,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 548008368}
+  - component: {fileID: 548008369}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -611,6 +612,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &548008369
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 548008367}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10bfb59892365a64385efa8d8a6ca018, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _boxScore: 100
+  _boxSpeed: 5
 --- !u!1 &726012910
 GameObject:
   m_ObjectHideFlags: 0

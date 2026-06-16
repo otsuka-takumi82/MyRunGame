@@ -6,15 +6,15 @@ public class RetryManager : MonoBehaviour
 {
     [SerializeField, Header("リトライボタン")]
     private GameObject _retry;
-    [SerializeField, Header("プレイヤー")]
-    private GameObject _player;
+
     [SerializeField, Header("シーン")]
     private string _scene;
 
+    private GameObject _player;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        _player = FindAnyObjectByType<Player>().gameObject;
+        _player = GameObject.FindWithTag("Player");
     }
 
     // Update is called once per frame

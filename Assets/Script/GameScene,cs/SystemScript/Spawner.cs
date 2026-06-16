@@ -9,14 +9,14 @@ public class Spawner : MonoBehaviour
     private GameObject _Prefab;
     [SerializeField, Header("第二生成物")]
     private GameObject _Prefab2;
-    [SerializeField,Header("元になる座標")]
-    private Transform _player;
     [SerializeField, Header("ストッパー")]
     private GameObject _stopper;
+
+    private GameObject _player;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-
+        _player = GameObject.FindWithTag("Player");
         InvokeRepeating(nameof(SpawnEnemy), 1f, 4f);
         InvokeRepeating(nameof(SpawnEnemy2), 1f, 4f);
     }
@@ -30,14 +30,14 @@ public class Spawner : MonoBehaviour
     private void Spawn(GameObject prefab)
     {
         if (_player == null||_stopper == null) return;
-        Instantiate(prefab, new Vector3(_player.position.x + Random.Range(_Spacing,35f), transform.position.y, transform.position.z),Quaternion.identity);
+        Instantiate(prefab, new Vector3(_player.transform.position.x + Random.Range(_Spacing,35f), transform.position.y, transform.position.z),Quaternion.identity);
         
     }
 
     private void Spawn2(GameObject prefab)
     {
         if (_player == null||_stopper ==null) return;
-        Instantiate(prefab, new Vector3(_player.position.x + Random.Range(_Spacing, 45f), transform.position.y, transform.position.z), Quaternion.identity);
+        Instantiate(prefab, new Vector3(_player.transform.position.x + Random.Range(_Spacing, 45f), transform.position.y, transform.position.z), Quaternion.identity);
 
     }
 

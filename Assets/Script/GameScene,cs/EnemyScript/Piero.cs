@@ -24,7 +24,7 @@ public class Piero : MonoBehaviour
 
     public void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.tag == "Player")
+        if(collision.gameObject.CompareTag("Player"))
         {
             _collider.isTrigger = true;
             _audioSource.PlayOneShot(_Died);

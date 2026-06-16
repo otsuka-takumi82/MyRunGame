@@ -3,12 +3,16 @@ using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class PrefabSetting : MonoBehaviour
 {
-    private Transform _player;
+    private GameObject _player;
 
+    private void Awake()
+    {
+        
+    }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        _player = GameObject.Find("Player").transform;
+        _player = GameObject.FindWithTag("Player");
     }
 
     // Update is called once per frame
@@ -18,7 +22,7 @@ public class PrefabSetting : MonoBehaviour
 
         if (!_player) return;
         
-        if (transform.position.x < _player.position.x - 10f)
+        if (transform.position.x < _player.transform.position.x - 10f)
         {
             Destroy(gameObject);
         }

@@ -38,8 +38,7 @@ public class Player : MonoBehaviour
     private float _damageBird = 3;
     [SerializeField, Header("盗賊回復")]
     private float _helthThief = 5;
-    [SerializeField, Header("衝突相手")]
-    private GameObject _colitionEnemy;
+    
     [SerializeField, Header("無敵時間")]
     private float _superTime;
     [SerializeField, Header("点滅時間")]
@@ -69,36 +68,39 @@ public class Player : MonoBehaviour
     private GameObject _spawner;
     private UIManager _uiManager;
     private GameObject _allStage;
+    private GameManager _gameManager;
 
 
-
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private void Awake()
     {
+        _gameManager = FindFirstObjectByType<GameManager>();
         _uiManager = FindFirstObjectByType<UIManager>();
         _spawner = FindFirstObjectByType<Spawner>().gameObject;
         _allStage = GameObject.Find("AllStage");
         _cameraFollow = FindFirstObjectByType<CameraFollow>();
         _playerCollider = GetComponent<CircleCollider2D>();
         _rigid = GetComponent<Rigidbody2D>();
+        _spriteRenderer = GetComponent<SpriteRenderer>();
+        _defaultColor = _spriteRenderer.color;
+        //_uiManager.ScoreManage();
+    }
+
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Start()
+    {
+        _hp = _gameManager._boxScore;
+        _moveSpeed = _gameManager._boxSpeed;
         _bJump = false;
         _bStep = false;
         _bStepCool = false;
-    _spriteRenderer = GetComponent<SpriteRenderer>();
-        _defaultColor = _spriteRenderer.color;
+    
         
-        
-        _hp = _maxHP;
-        //_uiManager.ScoreManage();
-        
-
     }
 
     // Update is called once per frame
     void Update()
     {
-        //Debug.Log(_cameraFollow);
+        
         _uiManager.SpeedText(_moveSpeed);
 
         _uiManager.SniceManage(_snikeTimer,_maxSnike);
@@ -224,12 +226,12 @@ private void FixedUpdate()
             Destroy(collision.gameObject);
             }
 
-        if (collision.CompareTag("Clear"))
-        {
-            GameManager._score = _hp;
-            SceneManager.LoadScene("ClearScene");
-            Destroy(collision.gameObject);
-        }
+        //if (collision.CompareTag("Clear"))
+        //{
+        //    GameManager._score = _hp;
+        //    SceneManager.LoadScene("ClearScene");
+        //    Destroy(collision.gameObject);
+        //}
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -354,10 +356,10 @@ private void FixedUpdate()
 
     }
 
-    public static class GameManager
-    {
-        public static float _score;
-    }
+    //public static class GameManager
+    //{
+    //    public static float _score;
+    //}
 
     public void Onsnike(InputAction.CallbackContext context)
     {

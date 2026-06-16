@@ -23,7 +23,7 @@ public class JumpPeople : MonoBehaviour
 
     public void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.tag == "Floor")
+        if(collision.gameObject.CompareTag("Floor"))
         {
             _rigid.AddForce(Vector2.up * _jumpSpeed, ForceMode2D.Impulse);
             

@@ -2,12 +2,20 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public float _boxScore;
-    public float _boxSpeed;
+    
+    public float _boxScore = 100;
+    public float _boxSpeed = 5;
+    public float _boxStage = 1;
 
     private void Awake()
     {
-        
+        if (FindObjectsByType<GameManager>(
+    FindObjectsSortMode.None).Length > 1)
+        {
+            Destroy(gameObject);
+            return;
+        }
+            DontDestroyOnLoad(gameObject);
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
