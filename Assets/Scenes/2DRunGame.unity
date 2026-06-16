@@ -33364,6 +33364,7 @@ MonoBehaviour:
   _imageHP: {fileID: 1967683068}
   _sniceImage: {fileID: 901960898}
   _scoreText: {fileID: 676565087}
+  _speedText: {fileID: 106654667}
 --- !u!4 &1953060419 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3901100613910361338, guid: 49fa35495aab8dc4497f57ca70d1c422, type: 3}

@@ -10,8 +10,10 @@ public class UIManager : MonoBehaviour
     private Image _sniceImage;
     [SerializeField, Header("スコア表示")]
     private TMP_Text _scoreText;
+    [SerializeField, Header("スピード表示")]
+    private TMP_Text _speedText;
 
-    
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -42,5 +44,10 @@ public class UIManager : MonoBehaviour
     public void ScoreColor(Color color)
     {
         _scoreText.color = color;
+    }
+
+    public void SpeedText(float speed)
+    {
+        _speedText.text = "Speed: " + speed.ToString("0.00");
     }
 }

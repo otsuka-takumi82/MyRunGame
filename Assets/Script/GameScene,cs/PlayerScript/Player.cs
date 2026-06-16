@@ -44,10 +44,7 @@ public class Player : MonoBehaviour
     private float _superTime;
     [SerializeField, Header("点滅時間")]
     private float _flashTime;
-    [SerializeField, Header("スピード表示")]
-    private TMP_Text _speedText;
-    [SerializeField, Header("全ステージ")]
-    private GameObject _allStage;
+    
 
 
 
@@ -71,7 +68,7 @@ public class Player : MonoBehaviour
     private CameraFollow _cameraFollow;
     private GameObject _spawner;
     private UIManager _uiManager;
-
+    private GameObject _allStage;
 
 
 
@@ -81,6 +78,7 @@ public class Player : MonoBehaviour
     {
         _uiManager = FindFirstObjectByType<UIManager>();
         _spawner = FindFirstObjectByType<Spawner>().gameObject;
+        _allStage = GameObject.Find("AllStage");
         _cameraFollow = FindFirstObjectByType<CameraFollow>();
         _playerCollider = GetComponent<CircleCollider2D>();
         _rigid = GetComponent<Rigidbody2D>();
@@ -101,7 +99,7 @@ public class Player : MonoBehaviour
     void Update()
     {
         //Debug.Log(_cameraFollow);
-        _speedText.text = "Speed: " + _moveSpeed.ToString("0.00");
+        _uiManager.SpeedText(_moveSpeed);
 
         _uiManager.SniceManage(_snikeTimer,_maxSnike);
 
