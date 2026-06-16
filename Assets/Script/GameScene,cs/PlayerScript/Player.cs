@@ -23,33 +23,27 @@ public class Player : MonoBehaviour
     [SerializeField, Header("ステップクールタイム")]
     private float _stepCoolTime;
     [SerializeField, Header("移動速度")]
-    private float _moveSpeed;
+    public float _moveSpeed;
     [SerializeField, Header("移動速度倍率")]
     private float _speedpiler;
     [SerializeField]
     private float _maxSpeed;
     [SerializeField, Header("しゃがみタメ")]
-    private float _maxSnike;
+    public float _maxSnike;
     [SerializeField, Header("最大HP")]
-    private float _maxHP = 100;
+    public float _maxHP = 100;
     [SerializeField, Header("人ダメージ")]
     private float _damagePeople = 10;
     [SerializeField, Header("鳥ダメージ")]
     private float _damageBird = 3;
     [SerializeField, Header("盗賊回復")]
     private float _helthThief = 5;
-    [SerializeField, Header("HPImage")]
-    private Image _imageHP;
-    [SerializeField, Header("SniceImage")]
-    private Image _sniceImage;
     [SerializeField, Header("衝突相手")]
     private GameObject _colitionEnemy;
     [SerializeField, Header("無敵時間")]
     private float _superTime;
     [SerializeField, Header("点滅時間")]
     private float _flashTime;
-    [SerializeField,Header("スコア表示")]
-    private TMP_Text _scoreText;
     [SerializeField, Header("スピード表示")]
     private TMP_Text _speedText;
     [SerializeField, Header("全ステージ")]
@@ -69,13 +63,14 @@ public class Player : MonoBehaviour
     private bool _bsnike = false;
     private bool _onFloor = false;
     private float _invincibleTimer;
-    private float _snikeTimer;
+    public float _snikeTimer;
     private float _stepTimer;
-    private float _hp = 100;
+    public float _hp;
     private SpriteRenderer _spriteRenderer;
     private Color _defaultColor;
     private CameraFollow _cameraFollow;
     private GameObject _spawner;
+    private UIManager _uiManager;
 
 
 
@@ -84,6 +79,7 @@ public class Player : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        _uiManager = FindFirstObjectByType<UIManager>();
         _spawner = FindFirstObjectByType<Spawner>().gameObject;
         _cameraFollow = FindFirstObjectByType<CameraFollow>();
         _playerCollider = GetComponent<CircleCollider2D>();
@@ -95,10 +91,8 @@ public class Player : MonoBehaviour
         _defaultColor = _spriteRenderer.color;
         
         
-        
-
         _hp = _maxHP;
-        _scoreText.text = "Score:" + _maxHP;
+        //_uiManager.ScoreManage();
         
 
     }
@@ -109,7 +103,7 @@ public class Player : MonoBehaviour
         //Debug.Log(_cameraFollow);
         _speedText.text = "Speed: " + _moveSpeed.ToString("0.00");
 
-        _sniceImage.fillAmount = Mathf.Clamp01(_snikeTimer / _maxSnike);
+        _uiManager.SniceManage(_snikeTimer,_maxSnike);
 
         if (_bsnike && !_bJump)
         {
@@ -126,15 +120,15 @@ public class Player : MonoBehaviour
 
         if (_hp > 100)
         {
-            _scoreText.color = Color.yellow;
+            _uiManager.ScoreColor(Color.yellow);
         }
         else if (_hp <= 30)
         {
-            _scoreText.color = Color.red;
+            _uiManager.ScoreColor(Color.red);
         }
         else
         {
-            _scoreText.color = Color.black;
+            _uiManager.ScoreColor(Color.black);
         }
 
         if (_moveSpeed > _maxSpeed)
@@ -214,25 +208,25 @@ private void FixedUpdate()
     private void OnTriggerEnter2D(Collider2D collision)
     {
 
-        if (collision.gameObject.tag == "Stopper")
+        if (collision.CompareTag("Stopper"))
         {
             _spawner.SetActive(false);
             Destroy(collision.gameObject);
         }
 
-        if (collision.gameObject.tag == "CameraStop")
+        if (collision.CompareTag("CameraStop"))
         {
             _cameraFollow.enabled = false;
             Destroy(collision.gameObject);
         }
 
-        if(collision.gameObject.tag == "CameraStart")
+        if(collision.CompareTag("CameraStart"))
             {
             _cameraFollow.enabled = true;
             Destroy(collision.gameObject);
             }
 
-        if (collision.gameObject.tag == "Clear")
+        if (collision.CompareTag("Clear"))
         {
             GameManager._score = _hp;
             SceneManager.LoadScene("ClearScene");
@@ -262,8 +256,8 @@ private void FixedUpdate()
             {
 
                 _hp -= _damagePeople;
-                _imageHP.fillAmount = (float)_hp / _maxHP;
-                _scoreText.text = "Score:" + _hp;
+                _uiManager.HPManage(_hp,_maxHP);
+                _uiManager.ScoreManage(_hp);
                 _isInvincible = true;
                 _invincibleTimer = 0f;
                 StartCoroutine(Invisible());
@@ -273,8 +267,8 @@ private void FixedUpdate()
             if (collision.gameObject.tag == "Bird")
             {
                 _hp -= _damageBird;
-                _imageHP.fillAmount = (float)_hp / _maxHP;
-                _scoreText.text = "Score:" + _hp;
+                _uiManager.HPManage(_hp, _maxHP);
+                _uiManager.ScoreManage(_hp);
                 _isInvincible = true;
                 _invincibleTimer = 0f;
                 StartCoroutine(Invisible());
@@ -285,8 +279,8 @@ private void FixedUpdate()
         if (collision.gameObject.tag == "Thief")
         {
             _hp += _helthThief;
-            _imageHP.fillAmount = (float)_hp / _maxHP;
-            _scoreText.text = "Score:" + _hp;
+            _uiManager.HPManage(_hp, _maxHP);
+            _uiManager.ScoreManage(_hp);
         }
 
         if(collision.gameObject.tag == "People" || collision.gameObject.tag == "Thief" || collision.gameObject.tag == "Bird" )
@@ -298,8 +292,8 @@ private void FixedUpdate()
         if(collision.gameObject.tag == "Piero")
         {
             _hp += 25;
-            _imageHP.fillAmount = (float)_hp / _maxHP;
-            _scoreText.text = "Score:" + _hp;
+            _uiManager.HPManage(_hp, _maxHP);
+            _uiManager.ScoreManage(_hp);
         }
 
         
