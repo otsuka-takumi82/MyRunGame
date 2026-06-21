@@ -102,7 +102,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(_gameManager._boxStage);
+        //Debug.Log(_gameManager._boxStage);
         _uiManager.SpeedText(_moveSpeed);
 
         _uiManager.SniceManage(_snikeTimer,_maxSnike);
@@ -231,16 +231,15 @@ private void FixedUpdate()
         {
             _gameManager._boxScore = _hp;
             _gameManager._boxSpeed = _moveSpeed;
-            _gameManager._boxStage += 1;
             SceneManager.LoadScene("RestScene");
             Destroy(collision.gameObject);
         }
-        //if (collision.CompareTag("Clear"))
-        //{
-        //    GameManager._score = _hp;
-        //    SceneManager.LoadScene("ClearScene");
-        //    Destroy(collision.gameObject);
-        //}
+        if (collision.CompareTag("Clear"))
+        {
+            _gameManager._boxScore = _hp;
+            SceneManager.LoadScene("ClearScene");
+            Destroy(collision.gameObject);
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

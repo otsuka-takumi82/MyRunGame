@@ -10,6 +10,7 @@ public class CarSpeed : MonoBehaviour
     void Start()
     {
         _rigid = GetComponent<Rigidbody2D>();
+        Destroy(gameObject,5f);
     }
 
     // Update is called once per frame

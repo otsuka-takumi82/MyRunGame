@@ -5,7 +5,7 @@ public class GameManager : MonoBehaviour
     
     public float _boxScore;
     public float _boxSpeed = 5;
-    public float _boxStage = 1;
+    public int _boxStage = 1;
     
 
     private void Awake()
@@ -27,6 +27,6 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(_boxScore);
+        Debug.Log(_boxStage);
     }
 }
