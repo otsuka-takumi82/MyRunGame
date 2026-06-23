@@ -4664,6 +4664,7 @@ GameObject:
   - component: {fileID: 148741049}
   - component: {fileID: 148741052}
   - component: {fileID: 148741053}
+  - component: {fileID: 148741054}
   m_Layer: 0
   m_Name: Piero
   m_TagString: Piero
@@ -4925,6 +4926,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &148741054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 148741047}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9851fd7f3a60ac64e937aef44c8ad941, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &165591475
 PrefabInstance:
   m_ObjectHideFlags: 0
