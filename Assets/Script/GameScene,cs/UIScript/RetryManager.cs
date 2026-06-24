@@ -11,10 +11,12 @@ public class RetryManager : MonoBehaviour
     private string _scene;
 
     private GameObject _player;
+    private GameManager _gameManager;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         _player = GameObject.FindWithTag("Player");
+        _gameManager = FindFirstObjectByType<GameManager>();
     }
 
     // Update is called once per frame
@@ -33,7 +35,10 @@ public class RetryManager : MonoBehaviour
 
     public void Retry()
     {
-        SceneManager.LoadScene(_scene);
+        _gameManager._boxScore = 100;
+        _gameManager._boxSpeed = 5;
+        _gameManager._boxStage = 11;
+       SceneManager.LoadScene("2DActionGame");
     }
 
     

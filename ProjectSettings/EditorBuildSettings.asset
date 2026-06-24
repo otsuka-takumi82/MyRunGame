@@ -17,6 +17,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/RestScene.unity
     guid: 1713937c7dda8634f97937afee50fc20
+  - enabled: 1
+    path: Assets/Scenes/2DActionGame.unity
+    guid: 79b4e4c0c265a3d4a88080fa390de5c7
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 426cd2dc5d951d042b86d2e430ec9cac, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}

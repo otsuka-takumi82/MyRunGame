@@ -76,7 +76,10 @@ public class Player : MonoBehaviour
     {
         _gameManager = FindFirstObjectByType<GameManager>();
         _uiManager = FindFirstObjectByType<UIManager>();
-        _spawner = FindFirstObjectByType<Spawner>().gameObject;
+        if(_gameManager._boxStage < 10)
+        {
+            _spawner = FindFirstObjectByType<Spawner>().gameObject;
+        }
         _allStage = GameObject.Find("AllStage");
         _cameraFollow = FindFirstObjectByType<CameraFollow>();
         _playerCollider = GetComponent<CircleCollider2D>();
@@ -102,7 +105,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        DebugSpeed();
+        Debug();
         //Debug.Log(_gameManager._boxStage);
         _uiManager.SpeedText(_moveSpeed);
 
@@ -202,11 +205,16 @@ public class Player : MonoBehaviour
 
     }
 
-    public void DebugSpeed()
+    public void Debug()
     {
         if(Input.GetKeyDown(KeyCode.Z))
         {
             _moveSpeed *= 3f;
+        }
+
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            _hp = 0f;
         }
     }
 
