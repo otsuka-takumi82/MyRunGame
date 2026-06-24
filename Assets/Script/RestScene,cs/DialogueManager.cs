@@ -12,7 +12,10 @@ public class DialogueManager : MonoBehaviour
     private GameObject _button;
     [SerializeField, Header("選択肢")]
     private GameObject _ChoisesButton;
+    [SerializeField, Header("ピエロエフェクト")]
+    private GameObject _pieroEffect;
 
+    private bool _isText = true;
     private bool _isTolking;
     private int _YesNo = 0;
     private GameManager _gameManager;
@@ -34,7 +37,7 @@ public class DialogueManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(_isTolking);
+        //Debug.Log(_isTolking);
         Dialog();
     }
 
@@ -78,7 +81,7 @@ public class DialogueManager : MonoBehaviour
     {
         "こんばんは",
         "君気に入ったよ、ひひっ",
-        "君は王が正しいと思うかい？？",
+        "君は王が好きかい？？",
         "おっと失礼",
         "お嬢様を忘れてましたよ",
         "ヒヒッ"
@@ -93,9 +96,11 @@ public class DialogueManager : MonoBehaviour
         "何を大人ぶってるんだい坊や",
         "王様好きになるようなこと教えてアゲル！！",
         "王様は見栄っ張りなんだよね。HAHA",
-        "あんなの食えるわけないのにネ！",
+        "あんなバケモノ食えるわけないのにネ！",
         "内心なくならないかと思っているだろうさ！",
-        "みじめだね。ひひっ"
+        "みじめだね。ひひっ",
+        "覚えとくといいよ。ひひっ",
+        "Bye～"
     };
 
     public void NPC1()
@@ -246,8 +251,12 @@ public class DialogueManager : MonoBehaviour
                     }
                     else
                     {
-                        _textBox.gameObject.SetActive(false);
-                        
+                        EndDialog();
+                        if (_isText)
+                        {
+                            Instantiate(_pieroEffect, _npc[2].transform.position, Quaternion.identity);
+                            _isText = false;
+                        }
                     }
                 }
                 else if (_YesNo == 2)
@@ -259,8 +268,12 @@ public class DialogueManager : MonoBehaviour
                     }
                     else
                     {
-                        _textBox.gameObject.SetActive(false);
-                        
+                        EndDialog();
+                        if (_isText)
+                        {
+                            Instantiate(_pieroEffect, _npc[2].transform.position,Quaternion.identity);
+                            _isText = false;
+                        }
                     }
                 }
             }
@@ -274,4 +287,10 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
+    public void EndDialog()
+    {
+        _textBox.gameObject.SetActive(false);
+        _npc[_gameManager._boxStage - 1].SetActive(false);
+
+    }
 }
