@@ -28,7 +28,7 @@ public class DialogueManager : MonoBehaviour
 
     private void Start()
     {
-        if (_gameManager._boxStage > 5 || _gameManager._boxStage == 3) return;
+        if (_gameManager._boxStage > 4 || _gameManager._boxStage == 3) return;
         _npc[_gameManager._boxStage - 1].SetActive(true);
         _button.gameObject.SetActive(true);
         
@@ -101,6 +101,29 @@ public class DialogueManager : MonoBehaviour
         "みじめだね。ひひっ",
         "覚えとくといいよ。ひひっ",
         "Bye～"
+    };
+
+    private string[] _npc4Message =
+    {
+        "こんばんは!!",
+        "かっけーなーこの鎧！",
+        "王国の騎士のおっちゃんたちはだせーんだよな",
+        "なんでかしりたい？",
+        "あのおっちゃんたち、たまに落ちてくるう〇こに",
+        "当たってるんだぜーハハッ",
+        "あ、もしかしていっちゃまずかった？",
+        "じゃ、じゃあおれいくわ",
+        "う〇こには気をつけろよ～"
+    };
+
+    private string[] _npc4Message2 =
+    {
+        "",
+        "",
+        "",
+        "",
+        "あ、隣のねーちゃん王国の人？",
+        "じゃあなんでもない。じゃあな～"
     };
 
     public void NPC1()
@@ -282,6 +305,53 @@ public class DialogueManager : MonoBehaviour
                 _textBox.gameObject.SetActive(false);
                 _button.gameObject.SetActive(true);
                 
+
+            }
+        }
+
+        //ステージ4後
+        else if (_gameManager._boxStage == 4)
+        {
+            if (_isTolking == true)
+            {
+                _textBox.gameObject.SetActive(true);
+                if (num == 3)
+                {
+                    _ChoisesButton.gameObject.SetActive(true);
+
+                }
+                else
+                {
+                    _ChoisesButton.gameObject.SetActive(false);
+                }
+                if (_YesNo <= 1)
+                {
+                    if (num < _npc4Message.Length)
+                    {
+                        _textBox.text = _npc4Message[num];
+                    }
+                    else
+                    {
+                        _textBox.gameObject.SetActive(false);
+                    }
+                }
+                else if (_YesNo == 2)
+                {
+                    if (num < _npc4Message2.Length)
+                    {
+                        _textBox.text = _npc4Message2[num];
+
+                    }
+                    else
+                    {
+                        _textBox.gameObject.SetActive(false);
+                    }
+                }
+            }
+            else
+            {
+                _textBox.gameObject.SetActive(false);
+                _isTolking = false;
 
             }
         }

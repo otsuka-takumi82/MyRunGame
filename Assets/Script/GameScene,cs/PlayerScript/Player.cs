@@ -102,6 +102,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        DebugSpeed();
         //Debug.Log(_gameManager._boxStage);
         _uiManager.SpeedText(_moveSpeed);
 
@@ -199,6 +200,14 @@ public class Player : MonoBehaviour
             
         }
 
+    }
+
+    public void DebugSpeed()
+    {
+        if(Input.GetKeyDown(KeyCode.Z))
+        {
+            _moveSpeed *= 3f;
+        }
     }
 
 private void FixedUpdate()
@@ -299,7 +308,7 @@ private void FixedUpdate()
 
         if(collision.gameObject.tag == "Piero")
         {
-            _hp += 25;
+            _hp += 50;
             _uiManager.HPManage(_hp, _maxHP);
             _uiManager.ScoreManage(_hp);
         }

@@ -284,25 +284,16 @@ MonoBehaviour:
   _stepCoolTime: 2
   _moveSpeed: 5
   _speedpiler: 1.05
-  _maxSpeed: 10
+  _maxSpeed: 100
   _maxSnike: 1
   _maxHP: 100
   _damagePeople: 10
   _damageBird: 3
   _helthThief: 5
-  _retry: {fileID: 0}
-  _imageHP: {fileID: 0}
-  _sniceImage: {fileID: 0}
-  _colitionEnemy: {fileID: 7938654288089892265, guid: a80cedc09a4bf424e91931028706cd0c, type: 3}
   _superTime: 2
   _flashTime: 0.5
-  _stopper: {fileID: 0}
-  _cameraStopper: {fileID: 0}
-  _spawner: {fileID: 0}
-  _cameraFollow: {fileID: 0}
-  _scoreText: {fileID: 0}
-  _speedText: {fileID: 0}
-  _allStage: {fileID: 0}
+  _snikeTimer: 0
+  _hp: 0
 --- !u!58 &6214720032502374954
 CircleCollider2D:
   m_ObjectHideFlags: 0
