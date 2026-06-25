@@ -10,6 +10,8 @@ public class UIManager : MonoBehaviour
     private Image _sniceImage;
     [SerializeField, Header("スコア表示")]
     private TMP_Text _scoreText;
+    [SerializeField, Header("Underスコア表示")]
+    private TMP_Text _uScoreText;
     [SerializeField, Header("スピード表示")]
     private TMP_Text _speedText;
 
@@ -40,6 +42,11 @@ public class UIManager : MonoBehaviour
     public void ScoreManage(float HP)
     {
         _scoreText.text = "Score:" + HP;
+    }
+
+    public void UScoreManage(float HP)
+    {
+        _uScoreText.text = "UScore:" + HP;
     }
     public void ScoreColor(Color color)
     {

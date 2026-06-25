@@ -17,10 +17,10 @@ public class UnderSpawner : MonoBehaviour
     void Start()
     {
         _gameManager = FindFirstObjectByType<GameManager>();
-        if (_gameManager._boxStage >= 2) return;
         _player = GameObject.FindWithTag("Player");
-        InvokeRepeating(nameof(SpawnEnemy), 1f, 4f);
+        InvokeRepeating(nameof(SpawnUenemy), 1f, 4f);
         //InvokeRepeating(nameof(SpawnEnemy2), 1f, 4f);
+        //if (_gameManager._boxStage >= 2 && _gameManager._boxStage < 10) return;
     }
 
     // Update is called once per frame
@@ -29,10 +29,10 @@ public class UnderSpawner : MonoBehaviour
 
     }
 
-    private void Spawn(GameObject prefab)
+    private void Uspawn(GameObject prefab)
     {
-        if (_player == null || _stopper == null) return;
-        Instantiate(prefab, new Vector3(_player.transform.position.x + Random.Range(_Spacing, 35f), transform.position.y, transform.position.z), Quaternion.identity);
+        if (_player == null) return;
+        Instantiate(prefab, new Vector3(_player.transform.position.x + Random.Range(_Spacing, 35f), _player.transform.position.y, _player.transform.position.z), Quaternion.identity);
 
     }
 
@@ -43,9 +43,9 @@ public class UnderSpawner : MonoBehaviour
 
     //}
 
-    private void SpawnEnemy()
+    private void SpawnUenemy()
     {
-        Spawn(_Prefab[0]);
+        Uspawn(_Prefab[0]);
 
     }
     //private void SpawnEnemy2()

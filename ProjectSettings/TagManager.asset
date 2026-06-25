@@ -16,6 +16,7 @@ TagManager:
   - Bird
   - Bell
   - Rest
+  - UEnemy
   layers:
   - Default
   - TransparentFX
@@ -26,7 +27,7 @@ TagManager:
   - Invisible
   - Enemy
   - EnemyInvisible
-  - 
+  - UEnemy
   - 
   - 
   - 

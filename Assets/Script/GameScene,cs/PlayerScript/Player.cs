@@ -40,9 +40,9 @@ public class Player : MonoBehaviour
     private float _helthThief = 5;
     
     [SerializeField, Header("無敵時間")]
-    private float _superTime;
+    public float _superTime;
     [SerializeField, Header("点滅時間")]
-    private float _flashTime;
+    public float _flashTime;
     
 
 
@@ -55,25 +55,27 @@ public class Player : MonoBehaviour
     private bool _bStep;
     private bool _bStepCool;
     private bool _hiJump = false;
-    private bool _isInvincible = false;
+    public bool _isInvincible = false;
     private bool _bsnike = false;
     private bool _onFloor = false;
-    private float _invincibleTimer;
+    public float _invincibleTimer;
     public float _snikeTimer;
     private float _stepTimer;
     public float _hp;
-    private SpriteRenderer _spriteRenderer;
+    public SpriteRenderer _spriteRenderer;
     private Color _defaultColor;
     private CameraFollow _cameraFollow;
     private GameObject _spawner;
-    private UIManager _uiManager;
+    public UIManager _uiManager;
     private GameObject _allStage;
     private GameManager _gameManager;
-   
+    private ActionEnemy _actionEnemy;
+    public float _uScore = 0;
 
 
     private void Awake()
     {
+        _actionEnemy = FindFirstObjectByType<ActionEnemy>();
         _gameManager = FindFirstObjectByType<GameManager>();
         _uiManager = FindFirstObjectByType<UIManager>();
         if(_gameManager._boxStage < 10)
@@ -105,8 +107,10 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug();
-        //Debug.Log(_gameManager._boxStage);
+        //Debug.Log(_hp);
+
+        DebugKey();
+        
         _uiManager.SpeedText(_moveSpeed);
 
         _uiManager.SniceManage(_snikeTimer,_maxSnike);
@@ -205,7 +209,7 @@ public class Player : MonoBehaviour
 
     }
 
-    public void Debug()
+    public void DebugKey()
     {
         if(Input.GetKeyDown(KeyCode.Z))
         {
@@ -299,6 +303,16 @@ private void FixedUpdate()
                 StartCoroutine(Invisible());
             }
 
+            //if(collision.gameObject.tag == "UEnemy")
+            //{
+            //        _isInvincible = true;
+            //        _invincibleTimer = 0f;
+            //        StartCoroutine(Invisible());
+                
+                
+            //}
+
+            
         }
 
         if (collision.gameObject.tag == "Thief")
@@ -308,7 +322,7 @@ private void FixedUpdate()
             _uiManager.ScoreManage(_hp);
         }
 
-        if(collision.gameObject.tag == "People" || collision.gameObject.tag == "Thief" || collision.gameObject.tag == "Bird" )
+        if(collision.gameObject.tag == "People" || collision.gameObject.tag == "Thief" || collision.gameObject.tag == "Bird" || collision.gameObject.tag == "UEnemy")
         {
             
             Destroy(collision.gameObject);
@@ -321,8 +335,6 @@ private void FixedUpdate()
             _uiManager.ScoreManage(_hp);
         }
 
-        
-        
 
         IEnumerator Invisible()
         {
