@@ -322,7 +322,7 @@ private void FixedUpdate()
             _uiManager.ScoreManage(_hp);
         }
 
-        if(collision.gameObject.tag == "People" || collision.gameObject.tag == "Thief" || collision.gameObject.tag == "Bird" || collision.gameObject.tag == "UEnemy")
+        if(collision.gameObject.tag == "People" || collision.gameObject.tag == "Thief" || collision.gameObject.tag == "Bird") //|| collision.gameObject.tag == "UEnemy")
         {
             
             Destroy(collision.gameObject);

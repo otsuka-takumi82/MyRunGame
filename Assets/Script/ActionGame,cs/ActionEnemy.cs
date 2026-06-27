@@ -1,18 +1,28 @@
+using Microsoft.Unity.VisualStudio.Editor;
 using System.Collections;
 using UnityEngine;
 
 public class ActionEnemy : MonoBehaviour
 {
+    [SerializeField]
+    public float _enemyHP;
+    [SerializeField]
     public float _enemySpeed;
+    [SerializeField]
     public float _enemyJump;
+    [SerializeField]
     public float _enemyDamege;
+    [SerializeField]
     public float _uAddScore;
-
+    [SerializeField]
+    public Sprite[] _UEnemyArmored;
 
     public GameObject _playerRenderer;
     private Rigidbody2D _rigid;
     private Collider2D _collider;
     private Player _player;
+    private SpriteRenderer _uEnemyRenderer;
+    private int _armoredIndex = 0;
     
     //private UIManager _uUIManager;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -21,6 +31,7 @@ public class ActionEnemy : MonoBehaviour
         _playerRenderer = GameObject.FindWithTag("Player");
         _rigid = GetComponent<Rigidbody2D>();
         _collider = GetComponent<Collider2D>();
+        _uEnemyRenderer = GetComponent<SpriteRenderer>();
         _player = FindFirstObjectByType<Player>();
         //_uUIManager = FindFirstObjectByType<UIManager>();
         
@@ -31,6 +42,7 @@ public class ActionEnemy : MonoBehaviour
     {
         _rigid.linearVelocity = new Vector2(_enemySpeed * -1, _rigid.linearVelocity.y);
         
+
     }
 
     public void OnCollisionEnter2D(Collision2D collision)
@@ -42,15 +54,29 @@ public class ActionEnemy : MonoBehaviour
 
         if (collision.gameObject.tag == "Player")
         {
-            _player._uScore += _uAddScore;
-            _player._uiManager.UScoreManage(_player._uScore);
-            if (_enemyDamege > 0)
+            _enemyHP -= 1;
+            if (_enemyHP > 1)
             {
                 _player._hp -= _enemyDamege;
                 _player._uiManager.HPManage(_player._hp, _player._maxHP);
                 _player._uiManager.ScoreManage(_player._hp);
                 
             }
+            else
+            {
+                if(_enemyHP <= 0)
+                {
+                    Destroy(gameObject);
+                    _player._uScore += _uAddScore;
+                    _player._uiManager.UScoreManage(_player._uScore);
+                }
+                if (_armoredIndex < _UEnemyArmored.Length -1 || _UEnemyArmored == null)
+                {
+                    _uEnemyRenderer.sprite = _UEnemyArmored[_armoredIndex];
+                }
+                
+            }
+            
             
         }
 
