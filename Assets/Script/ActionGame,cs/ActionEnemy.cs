@@ -55,25 +55,28 @@ public class ActionEnemy : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             _enemyHP -= 1;
-            if (_enemyHP > 1)
+            if (_enemyHP >= 1)
             {
+                if (_armoredIndex < _UEnemyArmored.Length - 1 || _UEnemyArmored == null)
+                {
+                    _uEnemyRenderer.sprite = _UEnemyArmored[_armoredIndex];
+                }
                 _player._hp -= _enemyDamege;
                 _player._uiManager.HPManage(_player._hp, _player._maxHP);
                 _player._uiManager.ScoreManage(_player._hp);
-                
+                _player._isInvincible = true;
+                _player._invincibleTimer = 0f;
+                _player.StartInvisible();
             }
             else
             {
-                if(_enemyHP <= 0)
                 {
                     Destroy(gameObject);
                     _player._uScore += _uAddScore;
                     _player._uiManager.UScoreManage(_player._uScore);
+                    
                 }
-                if (_armoredIndex < _UEnemyArmored.Length -1 || _UEnemyArmored == null)
-                {
-                    _uEnemyRenderer.sprite = _UEnemyArmored[_armoredIndex];
-                }
+                
                 
             }
             

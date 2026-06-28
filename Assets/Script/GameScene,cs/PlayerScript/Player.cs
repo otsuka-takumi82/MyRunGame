@@ -336,24 +336,27 @@ private void FixedUpdate()
         }
 
 
-        IEnumerator Invisible()
+        
+        
+        
+    }
+
+    public IEnumerator Invisible()
+    {
+        Color color = _spriteRenderer.color;
+
+        for (var i = 0; i < _superTime; i++)
         {
+            yield return (new WaitForSecondsRealtime(_flashTime));
 
-            Color color = _spriteRenderer.color;
+            _spriteRenderer.color = new Color(color.r, color.g, color.b, 0.0f);
+            yield return (new WaitForSecondsRealtime(_flashTime));
 
-            for(var i = 0;i < _superTime; i++)
-            {
-                yield return (new WaitForSeconds(_flashTime));
-                _spriteRenderer.color = new Color(color.r, color.g, color.b,0.0f);
-                yield return (new WaitForSeconds(_flashTime));
-                _spriteRenderer.color = new Color(color.r, color.g, color.b);
-                
-            }
-            _spriteRenderer.color = color;
-            _isInvincible = false;
+            _spriteRenderer.color = new Color(color.r, color.g, color.b);
+
         }
-        
-        
+        _spriteRenderer.color = color;
+        _isInvincible = false;
     }
 
     public void OnJump(InputAction.CallbackContext context)
@@ -433,6 +436,11 @@ private void FixedUpdate()
         {
             _cameraFollow.SetScope(10, 1f);
         }
+    }
+
+    public void StartInvisible()
+    {
+        StartCoroutine(Invisible());
     }
 
 
