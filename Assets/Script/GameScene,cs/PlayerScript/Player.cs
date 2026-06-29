@@ -58,6 +58,7 @@ public class Player : MonoBehaviour
     public bool _isInvincible = false;
     private bool _bsnike = false;
     private bool _onFloor = false;
+    private bool _isAttackButton;
     public float _invincibleTimer;
     public float _snikeTimer;
     private float _stepTimer;
@@ -71,12 +72,14 @@ public class Player : MonoBehaviour
     private GameManager _gameManager;
     private ActionEnemy _actionEnemy;
     public float _uScore = 0;
+    private PlayerAttack _arm;
 
 
     private void Awake()
     {
         _actionEnemy = FindFirstObjectByType<ActionEnemy>();
         _gameManager = FindFirstObjectByType<GameManager>();
+        _arm = FindFirstObjectByType<PlayerAttack>();
         _uiManager = FindFirstObjectByType<UIManager>();
         if(_gameManager._boxStage < 10)
         {
@@ -179,6 +182,10 @@ public class Player : MonoBehaviour
             _hiJump = false;
         }
 
+        if(_isAttackButton)
+        {
+            _arm.Attack();
+        }
         //if (_hiJump)
         //{
         //    _spriteRenderer.color = new Color(50, 0, 0);
@@ -437,6 +444,20 @@ private void FixedUpdate()
         if (context.canceled)
         {
             _cameraFollow.SetScope(10, 1f);
+        }
+    }
+
+    public void OnArm(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            _isAttackButton = true;
+
+        }
+
+        if (context.canceled)
+        {
+            _isAttackButton = false;
         }
     }
 

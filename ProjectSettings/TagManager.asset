@@ -18,6 +18,7 @@ TagManager:
   - Rest
   - UEnemy
   - Bolt
+  - Arm
   layers:
   - Default
   - TransparentFX
@@ -29,7 +30,7 @@ TagManager:
   - Enemy
   - EnemyInvisible
   - UEnemy
-  - 
+  - PlayerAttack
   - 
   - 
   - 
