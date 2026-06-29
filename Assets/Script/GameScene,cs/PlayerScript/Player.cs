@@ -355,8 +355,10 @@ private void FixedUpdate()
             _spriteRenderer.color = new Color(color.r, color.g, color.b);
 
         }
+        //Debug.Log("a");
         _spriteRenderer.color = color;
         _isInvincible = false;
+        //Debug.Log("b");
     }
 
     public void OnJump(InputAction.CallbackContext context)

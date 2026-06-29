@@ -22,6 +22,8 @@ public class ActionEnemy : MonoBehaviour
     private EnemyType _enemyType;
     [SerializeField]
     private float _boltLate;
+    [SerializeField]
+    public float _boltDistans;
 
     public GameObject _playerRenderer;
     private Rigidbody2D _rigid;
@@ -63,7 +65,7 @@ public class ActionEnemy : MonoBehaviour
         if (_enemyType == EnemyType.Archer)
         {
             float distans = transform.position.x - _player.transform.position.x;
-            if (distans <= 10 && distans >= -10)
+            if (Mathf.Abs(distans) <= _boltDistans)
             {
                 if (_isBolt)
                 {

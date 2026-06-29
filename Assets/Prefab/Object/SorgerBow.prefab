@@ -151,6 +151,7 @@ MonoBehaviour:
   _bolt: {fileID: 3978077030480174564, guid: 4806d93533dfecd428bee7735c997cad, type: 3}
   _enemyType: 3
   _boltLate: 3
+  _boltDistans: 20
   _playerRenderer: {fileID: 0}
 --- !u!58 &6515775567819521197
 CircleCollider2D:
