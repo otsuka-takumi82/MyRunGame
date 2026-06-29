@@ -17,6 +17,7 @@ TagManager:
   - Bell
   - Rest
   - UEnemy
+  - Bolt
   layers:
   - Default
   - TransparentFX

@@ -31,7 +31,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 18.6, y: 0.5, z: 0}
-  m_LocalScale: {x: 2.9583561, y: 2.9583561, z: 2.9583561}
+  m_LocalScale: {x: 1.6195521, y: 1.6195521, z: 1.6195521}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -147,6 +147,7 @@ MonoBehaviour:
   _enemyJump: 10
   _enemyDamege: 0
   _uAddScore: 1
+  _UEnemyArmored: []
   _playerRenderer: {fileID: 0}
 --- !u!58 &8880208395562411168
 CircleCollider2D:

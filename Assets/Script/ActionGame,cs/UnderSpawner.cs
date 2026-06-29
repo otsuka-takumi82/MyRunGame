@@ -4,6 +4,8 @@ public class UnderSpawner : MonoBehaviour
 {
     [SerializeField, Header("発生間隔")]
     private float _Spacing;
+    [SerializeField, Header("発生時間隔")]
+    private float _spacingTime;
     [SerializeField, Header("生成物")]
     private GameObject[] _Prefab;
     //[SerializeField, Header("第二生成物")]
@@ -18,7 +20,7 @@ public class UnderSpawner : MonoBehaviour
     {
         _gameManager = FindFirstObjectByType<GameManager>();
         _player = GameObject.FindWithTag("Player");
-        InvokeRepeating(nameof(SpawnUenemy), 1f, 4f);
+        InvokeRepeating(nameof(SpawnUenemy), 0.5f, _spacingTime);
         //InvokeRepeating(nameof(SpawnEnemy2), 1f, 4f);
         //if (_gameManager._boxStage >= 2 && _gameManager._boxStage < 10) return;
     }

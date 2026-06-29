@@ -5,7 +5,7 @@ using UnityEngine;
 public class ActionEnemy : MonoBehaviour
 {
     [SerializeField]
-    public float _enemyHP;
+    public int _enemyHP;
     [SerializeField]
     public float _enemySpeed;
     [SerializeField]
@@ -16,33 +16,76 @@ public class ActionEnemy : MonoBehaviour
     public float _uAddScore;
     [SerializeField]
     public Sprite[] _UEnemyArmored;
+    [SerializeField]
+    public GameObject _bolt;
+    [SerializeField]
+    private EnemyType _enemyType;
+    [SerializeField]
+    private float _boltLate;
 
     public GameObject _playerRenderer;
     private Rigidbody2D _rigid;
     private Collider2D _collider;
     private Player _player;
     private SpriteRenderer _uEnemyRenderer;
-    private int _armoredIndex = 0;
+    private int _boltPile = 1;
+    bool _isBolt = true;
+    public enum EnemyType
+    {
+        Solder,
+        Knight,
+        HeviKnight,
+        Archer
+    }
+    //private int _armoredIndex = 0;
     
     //private UIManager _uUIManager;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+
         _playerRenderer = GameObject.FindWithTag("Player");
         _rigid = GetComponent<Rigidbody2D>();
         _collider = GetComponent<Collider2D>();
         _uEnemyRenderer = GetComponent<SpriteRenderer>();
         _player = FindFirstObjectByType<Player>();
+        //if (_enemyType == EnemyType.Archer)
+        //{
+        //    InvokeRepeating(nameof(SpawnBolt), 0.5f, _boltLate);
+        //}
         //_uUIManager = FindFirstObjectByType<UIManager>();
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        _rigid.linearVelocity = new Vector2(_enemySpeed * -1, _rigid.linearVelocity.y);
-        
-
+        if (_enemyType == EnemyType.Archer)
+        {
+            float distans = transform.position.x - _player.transform.position.x;
+            if (distans <= 10 && distans >= -10)
+            {
+                if (_isBolt)
+                {
+                    InvokeRepeating(nameof(SpawnBolt), 0.5f, _boltLate);
+                    _isBolt = false;
+                }
+                if (distans >= 0)
+                {
+                    this.transform.localScale = new Vector3(Mathf.Abs(this.transform.localScale.x), this.transform.localScale.y, this.transform.localScale.z);
+                }
+                else
+                {
+                    this.transform.localScale = new Vector3(-Mathf.Abs(this.transform.localScale.x), this.transform.localScale.y, this.transform.localScale.z);
+                    _boltPile = -1;
+                }
+            }
+        }
+        else
+        {
+            _rigid.linearVelocity = new Vector2(_enemySpeed * -1, _rigid.linearVelocity.y);
+        }
+       
     }
 
     public void OnCollisionEnter2D(Collision2D collision)
@@ -57,9 +100,9 @@ public class ActionEnemy : MonoBehaviour
             _enemyHP -= 1;
             if (_enemyHP >= 1)
             {
-                if (_armoredIndex < _UEnemyArmored.Length - 1 || _UEnemyArmored == null)
+                if (_enemyHP < _UEnemyArmored.Length - 1 || _UEnemyArmored == null)
                 {
-                    _uEnemyRenderer.sprite = _UEnemyArmored[_armoredIndex];
+                    _uEnemyRenderer.sprite = _UEnemyArmored[_enemyHP - 1];
                 }
                 _player._hp -= _enemyDamege;
                 _player._uiManager.HPManage(_player._hp, _player._maxHP);
@@ -102,6 +145,17 @@ public class ActionEnemy : MonoBehaviour
         //}
 
     }
-    
+
+    private void BoltSpawn(GameObject prefab)
+    {
+        Instantiate(prefab, new Vector3(gameObject.transform.position.x -0.5f * _boltPile, gameObject.transform.position.y, gameObject.transform.position.z), Quaternion.identity);
+
+    }
+
+    private void SpawnBolt()
+    {
+        BoltSpawn(_bolt);
+    }
+
 
 }
