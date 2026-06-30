@@ -145,6 +145,9 @@ MonoBehaviour:
   _enemyHP: 3
   _enemySpeed: 1
   _enemyJump: 0
+  _uBuckSpeed: 10
+  _uSuperTime: 1
+  _uFlashTime: 0.3
   _enemyDamege: 20
   _uAddScore: 1
   _UEnemyArmored:
@@ -158,6 +161,7 @@ MonoBehaviour:
   _boltLate: 0
   _boltDistans: 0
   _playerRenderer: {fileID: 0}
+  _speedPile: -1
 --- !u!58 &1240596474866445421
 CircleCollider2D:
   m_ObjectHideFlags: 0

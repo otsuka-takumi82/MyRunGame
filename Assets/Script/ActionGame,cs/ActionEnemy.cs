@@ -11,6 +11,13 @@ public class ActionEnemy : MonoBehaviour
     [SerializeField]
     public float _enemyJump;
     [SerializeField]
+    public float _uBuckSpeed;
+   
+    [SerializeField]
+    public float _uSuperTime;
+    [SerializeField]
+    public float _uFlashTime;
+    [SerializeField]
     public float _enemyDamege;
     [SerializeField]
     public float _uAddScore;
@@ -24,6 +31,7 @@ public class ActionEnemy : MonoBehaviour
     private float _boltLate;
     [SerializeField]
     public float _boltDistans;
+    
 
     public GameObject _playerRenderer;
     private Rigidbody2D _rigid;
@@ -32,6 +40,10 @@ public class ActionEnemy : MonoBehaviour
     private SpriteRenderer _uEnemyRenderer;
     private int _boltPile = 1;
     bool _isBolt = true;
+    private bool _uIsInvincible;
+    private float _uInvincibleTimer;
+    private bool _isNock = true;
+    public float _speedPile = -1;
     public enum EnemyType
     {
         Solder,
@@ -62,6 +74,7 @@ public class ActionEnemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         if (_enemyType == EnemyType.Archer)
         {
             float distans = transform.position.x - _player.transform.position.x;
@@ -85,9 +98,25 @@ public class ActionEnemy : MonoBehaviour
         }
         else
         {
-            _rigid.linearVelocity = new Vector2(_enemySpeed * -1, _rigid.linearVelocity.y);
+            if(_isNock)
+            {
+                _rigid.linearVelocity = new Vector2(_enemySpeed * _speedPile, _rigid.linearVelocity.y);
+            }
+            
         }
-       
+
+        if (_uIsInvincible == true)
+        {
+            _uInvincibleTimer += Time.deltaTime;
+
+            gameObject.layer = LayerMask.NameToLayer("EnemyInvisible");
+            if (_uInvincibleTimer >= _uSuperTime)
+            {
+                gameObject.layer = LayerMask.NameToLayer("UEnemy");
+                _uIsInvincible = false;
+                _isNock = true;
+            }
+        }
     }
 
     public void OnTriggerEnter2D(Collider2D collision)
@@ -101,6 +130,17 @@ public class ActionEnemy : MonoBehaviour
                 if (_enemyHP < _UEnemyArmored.Length - 1 || _UEnemyArmored == null)
                 {
                     _uEnemyRenderer.sprite = _UEnemyArmored[_enemyHP - 1];
+                    _isNock = false;
+                    _rigid.AddForce(Vector2.right * _uBuckSpeed, ForceMode2D.Impulse);
+                    
+                    StartUInvisible();
+
+                }
+                if(_enemyHP == 1)
+                {
+                    _enemyJump = 0;
+                    //_enemySpeed *= 2;
+                    //_speedPile *= -1;
                 }
 
                 
@@ -117,15 +157,25 @@ public class ActionEnemy : MonoBehaviour
 
             }
         }
-        
+
     }
 
     public void OnCollisionEnter2D(Collision2D collision)
     {
+        if(_enemyType == EnemyType.Archer)
+        {
+            if(collision.gameObject.tag == "Bolt")
+            {
+                Destroy(gameObject);
+                _player._uScore += _uAddScore;
+                _player._uiManager.UScoreManage(_player._uScore);
+            }
+        }
+
         if (collision.gameObject.tag == "Floor")
-       {
-           _rigid.AddForce(Vector2.up * _enemyJump, ForceMode2D.Impulse);
-       }
+        {
+            _rigid.AddForce(Vector2.up * _enemyJump, ForceMode2D.Impulse);
+        }
 
         if (collision.gameObject.tag == "Player" || collision.gameObject.tag == "Arm")
         {
@@ -136,8 +186,10 @@ public class ActionEnemy : MonoBehaviour
                 if (_enemyHP < _UEnemyArmored.Length - 1 || _UEnemyArmored == null)
                 {
                     _uEnemyRenderer.sprite = _UEnemyArmored[_enemyHP - 1];
+
                 }
-                if(collision.gameObject.tag == "Player")
+                
+                if (collision.gameObject.tag == "Player")
                 {
                     _player._hp -= _enemyDamege;
                     _player._uiManager.HPManage(_player._hp, _player._maxHP);
@@ -146,7 +198,7 @@ public class ActionEnemy : MonoBehaviour
                     _player._invincibleTimer = 0f;
                     _player.StartInvisible();
                 }
-                
+
             }
             else
             {
@@ -154,34 +206,37 @@ public class ActionEnemy : MonoBehaviour
                     Destroy(gameObject);
                     _player._uScore += _uAddScore;
                     _player._uiManager.UScoreManage(_player._uScore);
-                    
+
                 }
-                
-                
+
+
             }
-            
-            
+
+
         }
-
-        //IEnumerator Invisible()
-        //{
-
-        //    Color color = _player._spriteRenderer.color;
-
-        //    for (var i = 0; i < _player._superTime; i++)
-        //    {
-        //        yield return (new WaitForSeconds(_player._flashTime));
-        //        _player._spriteRenderer.color = new Color(color.r, color.g, color.b, 0.0f);
-        //        yield return (new WaitForSeconds(_player._flashTime));
-        //        _player._spriteRenderer.color = new Color(color.r, color.g, color.b);
-
-        //    }
-        //    _player._spriteRenderer.color = new Color(color.r, color.g, color.b);
-        //    _player._spriteRenderer.color = Color.yellow;
-        //    _player._isInvincible = false;
-        //}
-
     }
+
+
+    public IEnumerator UInvisible()
+    {
+        Color color = _uEnemyRenderer.color;
+
+        for (var i = 0; i < _uSuperTime; i++)
+        {
+            yield return (new WaitForSecondsRealtime(_uFlashTime));
+            _uEnemyRenderer.color = new Color(color.r, color.g, color.b, 0.0f);
+
+            yield return (new WaitForSecondsRealtime(_uFlashTime));
+            _uEnemyRenderer.color = new Color(color.r, color.g, color.b);
+
+        }
+        //Debug.Log("a");
+         _uEnemyRenderer.color = color;
+        
+        //Debug.Log("b");
+    }
+
+
 
     private void BoltSpawn(GameObject prefab)
     {
@@ -192,6 +247,13 @@ public class ActionEnemy : MonoBehaviour
     private void SpawnBolt()
     {
         BoltSpawn(_bolt);
+    }
+
+    public void StartUInvisible()
+    {
+        _uIsInvincible = true;
+        _uInvincibleTimer = 0f;
+        StartCoroutine(UInvisible());
     }
 
 

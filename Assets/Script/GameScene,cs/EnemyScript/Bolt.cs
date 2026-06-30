@@ -1,9 +1,12 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Bolt : MonoBehaviour
 {
     [SerializeField]
     private float _speed;
+    //[SerializeField]
+    //private float _directionPile;
     [SerializeField]
     private float _boltDamege;
     private Player _player;
@@ -28,8 +31,24 @@ public class Bolt : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-        
+
+       
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Arm")
+        {
+            Vector2 direction = (_player.transform.position - transform.position).normalized;
+            float angle;
+            angle = Mathf.Atan2(direction.y * 1, direction.x * 1) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.Euler(0, 0, angle);
+            Destroy(gameObject, 3f);
+
+
+
+            _rigid.linearVelocity = (direction * _speed * -1);
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -44,5 +63,11 @@ public class Bolt : MonoBehaviour
             _player._invincibleTimer = 0f;
             _player.StartInvisible();
         }
+        if(collision.gameObject.tag == "UEnemy" || collision.gameObject.tag =="Floor")
+        {
+            Destroy(gameObject);
+        }
+        
+
     }
 }
