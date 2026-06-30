@@ -124,7 +124,7 @@ public class ActionEnemy : MonoBehaviour
         if (collision.gameObject.tag == "Arm")
         {
             Debug.Log(collision.gameObject.tag);
-            _enemyHP -= 1;
+            _enemyHP -= _player._armDamage;
             if (_enemyHP >= 1)
             {
                 if (_enemyHP < _UEnemyArmored.Length - 1 || _UEnemyArmored == null)
@@ -177,10 +177,10 @@ public class ActionEnemy : MonoBehaviour
             _rigid.AddForce(Vector2.up * _enemyJump, ForceMode2D.Impulse);
         }
 
-        if (collision.gameObject.tag == "Player" || collision.gameObject.tag == "Arm")
+        if (collision.gameObject.tag == "Player")
         {
             Debug.Log(collision.gameObject.tag);
-            _enemyHP -= 1;
+            _enemyHP -= _player._playerDamage ;
             if (_enemyHP >= 1)
             {
                 if (_enemyHP < _UEnemyArmored.Length - 1 || _UEnemyArmored == null)

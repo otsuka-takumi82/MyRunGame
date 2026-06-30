@@ -21,6 +21,7 @@ public class PlayerAttack : MonoBehaviour
     {
         _transform = GetComponent<Transform>();
         _collider = GetComponentInChildren<Collider2D>();
+        _collider.enabled = false;
     }
 
     // Update is called once per frame
@@ -41,12 +42,12 @@ public class PlayerAttack : MonoBehaviour
         {
             _angle = 0;
             _attackTime += Time.deltaTime;
-            if(_attackTime >= _attackCoolTime)
+            _collider.enabled = false;
+            if (_attackTime >= _attackCoolTime)
             {
                 _angle = 90;
                 _attackTime = 0;
                 _isAttacking = false;
-                _collider.enabled = false;
 
             }
         }

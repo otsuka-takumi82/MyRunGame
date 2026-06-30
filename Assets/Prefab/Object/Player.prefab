@@ -426,7 +426,9 @@ MonoBehaviour:
   _stepCoolTime: 2
   _moveSpeed: 5
   _speedpiler: 1.05
-  _maxSpeed: 100
+  _maxSpeed: 10
+  _playerDamage: 1
+  _armDamage: 1
   _maxSnike: 1
   _maxHP: 100
   _damagePeople: 10
@@ -524,4 +526,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _attackSpeed: 300
-  _attackCoolTime: 0.2
+  _attackCoolTime: 0.5
+  _isAttacking: 0
+  _collider: {fileID: 0}
