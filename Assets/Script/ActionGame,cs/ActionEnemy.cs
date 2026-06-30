@@ -90,15 +90,11 @@ public class ActionEnemy : MonoBehaviour
        
     }
 
-    public void OnCollisionEnter2D(Collision2D collision)
+    public void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Floor")
-       {
-           _rigid.AddForce(Vector2.up * _enemyJump, ForceMode2D.Impulse);
-       }
-
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "Arm")
         {
+            Debug.Log(collision.gameObject.tag);
             _enemyHP -= 1;
             if (_enemyHP >= 1)
             {
@@ -106,12 +102,51 @@ public class ActionEnemy : MonoBehaviour
                 {
                     _uEnemyRenderer.sprite = _UEnemyArmored[_enemyHP - 1];
                 }
-                _player._hp -= _enemyDamege;
-                _player._uiManager.HPManage(_player._hp, _player._maxHP);
-                _player._uiManager.ScoreManage(_player._hp);
-                _player._isInvincible = true;
-                _player._invincibleTimer = 0f;
-                _player.StartInvisible();
+
+                
+            }
+            else
+            {
+                {
+                    Destroy(gameObject);
+                    _player._uScore += _uAddScore;
+                    _player._uiManager.UScoreManage(_player._uScore);
+
+                }
+
+
+            }
+        }
+        
+    }
+
+    public void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Floor")
+       {
+           _rigid.AddForce(Vector2.up * _enemyJump, ForceMode2D.Impulse);
+       }
+
+        if (collision.gameObject.tag == "Player" || collision.gameObject.tag == "Arm")
+        {
+            Debug.Log(collision.gameObject.tag);
+            _enemyHP -= 1;
+            if (_enemyHP >= 1)
+            {
+                if (_enemyHP < _UEnemyArmored.Length - 1 || _UEnemyArmored == null)
+                {
+                    _uEnemyRenderer.sprite = _UEnemyArmored[_enemyHP - 1];
+                }
+                if(collision.gameObject.tag == "Player")
+                {
+                    _player._hp -= _enemyDamege;
+                    _player._uiManager.HPManage(_player._hp, _player._maxHP);
+                    _player._uiManager.ScoreManage(_player._hp);
+                    _player._isInvincible = true;
+                    _player._invincibleTimer = 0f;
+                    _player.StartInvisible();
+                }
+                
             }
             else
             {

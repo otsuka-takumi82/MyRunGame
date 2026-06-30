@@ -73,10 +73,13 @@ public class Player : MonoBehaviour
     private ActionEnemy _actionEnemy;
     public float _uScore = 0;
     private PlayerAttack _arm;
+    public SpriteRenderer[] _renderers;
+
 
 
     private void Awake()
     {
+        _renderers = GetComponentsInChildren<SpriteRenderer>();
         _actionEnemy = FindFirstObjectByType<ActionEnemy>();
         _gameManager = FindFirstObjectByType<GameManager>();
         _arm = FindFirstObjectByType<PlayerAttack>();
@@ -182,10 +185,17 @@ public class Player : MonoBehaviour
             _hiJump = false;
         }
 
-        if(_isAttackButton)
+        if (_isAttackButton || _arm._isAttacking)
         {
             _arm.Attack();
         }
+
+
+        //else
+        //{
+        //    _arm.NonAttack();
+        //    Debug.Log("a");
+        //}
         //if (_hiJump)
         //{
         //    _spriteRenderer.color = new Color(50, 0, 0);
@@ -215,6 +225,7 @@ public class Player : MonoBehaviour
         }
 
     }
+
 
     public void DebugKey()
     {
@@ -357,7 +368,15 @@ private void FixedUpdate()
             yield return (new WaitForSecondsRealtime(_flashTime));
 
             _spriteRenderer.color = new Color(color.r, color.g, color.b, 0.0f);
+            foreach (var renderers in _renderers)
+            {
+                renderers.color = new Color(1,1,1,0);
+            }
             yield return (new WaitForSecondsRealtime(_flashTime));
+            foreach (var renderers in _renderers)
+            {
+                renderers.color = new Color(1, 1, 1);
+            }
 
             _spriteRenderer.color = new Color(color.r, color.g, color.b);
 
@@ -452,12 +471,14 @@ private void FixedUpdate()
         if (context.started)
         {
             _isAttackButton = true;
+            
 
         }
-
+       
         if (context.canceled)
         {
             _isAttackButton = false;
+
         }
     }
 

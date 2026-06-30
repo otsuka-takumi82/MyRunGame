@@ -68,6 +68,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "PlayerAttack",
+                    "type": "Button",
+                    "id": "0d4aab2f-cc7e-40f9-8dd3-092d93cbcf56",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -332,6 +341,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Scope",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "bb79f778-d536-4f73-a6c4-07824de00c05",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PlayerAttack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
