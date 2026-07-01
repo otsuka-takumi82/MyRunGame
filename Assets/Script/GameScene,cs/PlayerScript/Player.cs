@@ -131,6 +131,7 @@ public class Player : MonoBehaviour
             _playerCollider.radius = 0.25f;
 
         }
+
         else
         {
             _transform.localScale = new Vector2(3, 3);
@@ -185,7 +186,7 @@ public class Player : MonoBehaviour
             _snikeTimer += Time.deltaTime;
 
         }
-
+        
         if (_snikeTimer >= _maxSnike)
         {
             _hiJump = true;
@@ -443,24 +444,42 @@ public class Player : MonoBehaviour
     public void Onsnike(InputAction.CallbackContext context)
     {
 
-
-        if (context.started && _onFloor == true)
+        if (_onFloor)
         {
-            _bsnike = true;
+            if (context.started && _onFloor == true)
+            {
+                _bsnike = true;
+
+            }
+
+            if (context.canceled)
+            {
+                _bsnike = false;
+
+                _snikeTimer = 0;
+
+            }
 
         }
+        
 
-        if (context.canceled)
+        else 
         {
-            _bsnike = false;
+            if (context.canceled)
+            {
+                _bsnike = false;
 
-            _snikeTimer = 0;
+                _snikeTimer = 0;
 
+            }
+
+            if (context.performed)
+            {
+                _rigid.AddForce(Vector2.down * _jumpSpeed, ForceMode2D.Impulse);
+            }
+            
         }
-
-
-
-
+        
     }
 
     public void OnScope(InputAction.CallbackContext context)
