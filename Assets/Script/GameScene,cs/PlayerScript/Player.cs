@@ -7,6 +7,7 @@ using System.Collections;
 using TMPro;
 using UnityEngine.SceneManagement;
 using UnityEditor.Experimental.GraphView;
+using UnityEditor.Rendering;
 
 public class Player : MonoBehaviour
 {
@@ -65,6 +66,8 @@ public class Player : MonoBehaviour
     private bool _isAttackButton;
     private bool _isMax = true;
     private bool _isSAttack = false;
+    public bool _isBigSword;
+    public bool _isBA = true;
     public float _invincibleTimer;
     public float _snikeTimer;
     private float _stepTimer;
@@ -120,7 +123,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Debug.Log(_bStep);
+        //Debug.Log(_arm._isBigAttacking);
 
         DebugKey();
 
@@ -204,7 +207,25 @@ public class Player : MonoBehaviour
         if (_isAttackButton || _arm._isAttacking)
         {
             _arm.Attack();
+           
         }
+
+        if(_arm._isBigAttacking)
+        {
+            _arm.BigSword();
+            _isBA = true;
+
+        }
+        else if (!_arm._isBigAttacking)
+        {
+            if(_isBA)
+            {
+                _arm._bigSword.SetActive(false);
+                _isBA = false;
+            }
+            
+        }
+        
 
         if(_isSAttack)
         {
@@ -524,7 +545,7 @@ public class Player : MonoBehaviour
         if (context.performed && _bStep)
         {
             _isSAttack = true;
-            _rigid.AddForce(Vector2.up * 10, ForceMode2D.Impulse);
+            _rigid.AddForce(Vector2.up * 15, ForceMode2D.Impulse);
 
 
         }
@@ -533,6 +554,17 @@ public class Player : MonoBehaviour
 
         }
        
+    }
+
+    public void OnBigSword(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            _arm._isBigAttacking = true;
+
+
+        }
+        
     }
 
     public void StartInvisible()
@@ -545,14 +577,20 @@ public class Player : MonoBehaviour
         
         if (_angle > -360)
         {
+
             _arm._collider.enabled = true;
             gameObject.layer = LayerMask.NameToLayer("EnemyInvisible");
-            _angle -= 750 * Time.deltaTime;
+            _angle -= 1000 * Time.deltaTime;
             transform.localRotation = Quaternion.Euler(0, 0, _angle);
             _isSAttack = true;
-            if(_angle == -270)
+            if(_angle <= -300 && _angle >= -330)
             {
-                _arm.Attack();
+                
+                    Time.timeScale = 0.1f;
+            }
+            else
+            {
+                Time.timeScale = 1f;
             }
         }
         else

@@ -121,6 +121,12 @@ public class ActionEnemy : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
+        if(collision.gameObject.tag == "BigSword")
+        {
+            Destroy(gameObject);
+            _player._uScore += _uAddScore;
+            _player._uiManager.UScoreManage(_player._uScore);
+        }
         if (collision.gameObject.tag == "Arm")
         {
             Debug.Log(collision.gameObject.tag);

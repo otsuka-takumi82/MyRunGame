@@ -77,6 +77,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "BigSword",
+                    "type": "Button",
+                    "id": "44e2fac1-9a9d-4823-9c29-1c8838ba49dd",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -347,11 +356,22 @@
                 {
                     "name": "",
                     "id": "bb79f778-d536-4f73-a6c4-07824de00c05",
-                    "path": "<Keyboard>/a",
+                    "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "PlayerAttack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "498b7869-1172-42b9-b410-b063b7a1707d",
+                    "path": "<Keyboard>/1",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "BigSword",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
