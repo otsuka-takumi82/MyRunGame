@@ -64,10 +64,12 @@ public class Player : MonoBehaviour
     private bool _onFloor = false;
     private bool _isAttackButton;
     private bool _isMax = true;
+    private bool _isSAttack = false;
     public float _invincibleTimer;
     public float _snikeTimer;
     private float _stepTimer;
     public float _hp;
+    float _angle = 0;
     public SpriteRenderer _spriteRenderer;
     private Color _defaultColor;
     private CameraFollow _cameraFollow;
@@ -118,6 +120,8 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Debug.Log(_bStep);
+
         DebugKey();
 
         _uiManager.SpeedText(_moveSpeed);
@@ -200,6 +204,11 @@ public class Player : MonoBehaviour
         if (_isAttackButton || _arm._isAttacking)
         {
             _arm.Attack();
+        }
+
+        if(_isSAttack)
+        {
+            SAttack();
         }
 
 
@@ -500,16 +509,30 @@ public class Player : MonoBehaviour
     {
         if (context.started)
         {
+
             _isAttackButton = true;
+            
 
 
         }
-
         if (context.canceled)
         {
             _isAttackButton = false;
 
         }
+
+        if (context.performed && _bStep)
+        {
+            _isSAttack = true;
+            _rigid.AddForce(Vector2.up * 10, ForceMode2D.Impulse);
+
+
+        }
+        else
+        {
+
+        }
+       
     }
 
     public void StartInvisible()
@@ -517,6 +540,34 @@ public class Player : MonoBehaviour
         StartCoroutine(Invisible());
     }
 
+    public void SAttack()
+    {
+        
+        if (_angle > -360)
+        {
+            _arm._collider.enabled = true;
+            gameObject.layer = LayerMask.NameToLayer("EnemyInvisible");
+            _angle -= 750 * Time.deltaTime;
+            transform.localRotation = Quaternion.Euler(0, 0, _angle);
+            _isSAttack = true;
+            if(_angle == -270)
+            {
+                _arm.Attack();
+            }
+        }
+        else
+        {
+            if (_isSAttack)
+            {
+                _arm._collider.enabled = false;
+                gameObject.layer = LayerMask.NameToLayer("Player");
+                _angle = 0;
+                _rigid.AddForce(Vector2.down * _jumpSpeed, ForceMode2D.Impulse);
+                _isSAttack = false;
+            }
+                
+        }
 
+    }
 
 }

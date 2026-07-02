@@ -4,7 +4,7 @@ using UnityEngine;
 public class PlayerAttack : MonoBehaviour
 {
     [SerializeField]
-    private float _attackSpeed;
+    public float _attackSpeed;
     [SerializeField]
     private float _attackCoolTime;
 
@@ -27,7 +27,7 @@ public class PlayerAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        //Debug.Log(_collider.enabled);
     }
 
     public void Attack()
@@ -51,6 +51,11 @@ public class PlayerAttack : MonoBehaviour
 
             }
         }
+    }
+
+    public void StepAttack()
+    {
+
     }
 
     //public void NonAttack()
