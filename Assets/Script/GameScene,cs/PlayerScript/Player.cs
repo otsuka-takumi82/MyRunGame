@@ -68,9 +68,12 @@ public class Player : MonoBehaviour
     private bool _isSAttack = false;
     public bool _isBigSword;
     public bool _isBA = true;
+    public bool _isCanon = false;
+    private bool _isBuck;
     public float _invincibleTimer;
     public float _snikeTimer;
     private float _stepTimer;
+    private float[] _canonTimer;
     public float _hp;
     float _angle = 0;
     public SpriteRenderer _spriteRenderer;
@@ -83,7 +86,10 @@ public class Player : MonoBehaviour
     private ActionEnemy _actionEnemy;
     public float _uScore = 0;
     private PlayerAttack _arm;
+    private BigSword _bigSword;
+    private Canon _canon;
     public SpriteRenderer[] _renderers;
+    public int _exprotionScale = 0;
 
 
 
@@ -93,6 +99,8 @@ public class Player : MonoBehaviour
         _actionEnemy = FindFirstObjectByType<ActionEnemy>();
         _gameManager = FindFirstObjectByType<GameManager>();
         _arm = FindFirstObjectByType<PlayerAttack>();
+        _bigSword = FindFirstObjectByType<BigSword>();
+        _canon = FindFirstObjectByType<Canon>();
         _uiManager = FindFirstObjectByType<UIManager>();
         if (_gameManager._boxStage < 10)
         {
@@ -130,6 +138,11 @@ public class Player : MonoBehaviour
         _uiManager.SpeedText(_moveSpeed);
 
         _uiManager.SniceManage(_snikeTimer, _maxSnike);
+
+        
+        _uiManager.CanonImage(0, _canonTimer[0], 2);
+        _uiManager.CanonImage(1, _canonTimer[0], 6);
+        _uiManager.CanonImage(2, _canonTimer[0], 20);
 
         if (_bsnike && !_bJump)
         {
@@ -210,23 +223,41 @@ public class Player : MonoBehaviour
            
         }
 
-        if(_arm._isBigAttacking)
+        if(_bigSword._isBigAttacking)
         {
             if (_isAttackButton == true) return;
-            _arm.BigSword();
+            _bigSword.BigSwordAttack();
             _isBA = true;
 
         }
-        else if (!_arm._isBigAttacking)
+        else if (!_bigSword._isBigAttacking)
         {
             if(_isBA)
             {
-                _arm._bigSword.SetActive(false);
+                _bigSword._bigSword.SetActive(false);
                 _isBA = false;
             }
             
         }
+
+        if(_isCanon)
+        {
+            _canonTimer[1] += Time.deltaTime;
+        }
         
+        if(_canonTimer[1] < 0.5 && _canonTimer[1] > 0)
+        {
+            _rigid.linearVelocity = new Vector2(0, 0);
+        }
+        else
+        {
+            if(_isBuck)
+            {
+                _rigid.AddForce(Vector2.left * 40, ForceMode2D.Impulse);
+                _canonTimer[1] = 0;
+                _isBuck = false;
+            }
+        }
 
         if(_isSAttack)
         {
@@ -533,7 +564,7 @@ public class Player : MonoBehaviour
         
         if (context.started)
         {
-            if (_arm._isBigAttacking == true) return;
+            if (_bigSword._isBigAttacking == true) return;
             _isAttackButton = true;
             
 
@@ -541,14 +572,14 @@ public class Player : MonoBehaviour
         }
         if (context.canceled)
         {
-            if (_arm._isBigAttacking == true) return;
+            if (_bigSword._isBigAttacking == true) return;
             _isAttackButton = false;
 
         }
 
         if (context.performed && _bStep)
         {
-            if (_arm._isBigAttacking == true) return;
+            if (_bigSword._isBigAttacking == true) return;
             _isSAttack = true;
             _rigid.AddForce(Vector2.up * 15, ForceMode2D.Impulse);
             _rigid.AddForce(Vector2.right * _stepSpeed, ForceMode2D.Impulse);
@@ -567,11 +598,43 @@ public class Player : MonoBehaviour
         if (context.performed)
         {
             if (_isAttackButton == true) return;
-            _arm._isBigAttacking = true;
+            _bigSword._isBigAttacking = true;
 
 
         }
         
+    }
+
+    public void OnCanon(InputAction.CallbackContext context)
+    {
+        if(context.started)
+        {
+            _canonTimer[0] += Time.deltaTime;
+            
+        }
+        if(context.canceled)
+        {
+            _isBuck = true;
+            _isCanon = true;
+            if (_canonTimer[0] >= 2)
+            {
+                _canon.Exprotion(0);
+                _exprotionScale = 1;
+                _canonTimer[0] = 0;
+            }
+            else if (_canonTimer[0] >= 6)
+            {
+                _canon.Exprotion(1);
+                _exprotionScale = 2;
+                _canonTimer[0] = 0;
+            }
+            else if (_canonTimer[0] >= 20)
+            {
+                _canon.Exprotion(2);
+                _exprotionScale = 3;
+                _canonTimer[0] = 0;
+            }
+        }
     }
 
     public void StartInvisible()

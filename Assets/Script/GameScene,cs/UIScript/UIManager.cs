@@ -8,6 +8,8 @@ public class UIManager : MonoBehaviour
     private Image _imageHP;
     [SerializeField, Header("SniceImage")]
     private Image _sniceImage;
+    [SerializeField, Header("CanonImage")]
+    private Image[] _canonImage;
     [SerializeField, Header("スコア表示")]
     private TMP_Text _scoreText;
     [SerializeField, Header("Underスコア表示")]
@@ -37,6 +39,11 @@ public class UIManager : MonoBehaviour
     {
         
         _sniceImage.fillAmount = Mathf.Clamp01(Snice / MaxSnice);
+    }
+
+    public void CanonImage(int ImageType, float Gage, float MaxGage)
+    {
+        _canonImage[ImageType].fillAmount = Mathf.Clamp01(Gage / MaxGage);
     }
 
     public void ScoreManage(float HP)
