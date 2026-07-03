@@ -197,11 +197,14 @@ public class ActionEnemy : MonoBehaviour
                 
                 if (collision.gameObject.tag == "Player")
                 {
+                    _isNock = false;
+                    _rigid.AddForce(Vector2.right * _uBuckSpeed, ForceMode2D.Impulse);
                     _player._hp -= _enemyDamege;
                     _player._uiManager.HPManage(_player._hp, _player._maxHP);
                     _player._uiManager.ScoreManage(_player._hp);
                     _player._isInvincible = true;
                     _player._invincibleTimer = 0f;
+                    StartUInvisible();
                     _player.StartInvisible();
                 }
 
@@ -259,7 +262,7 @@ public class ActionEnemy : MonoBehaviour
     {
         _uIsInvincible = true;
         _uInvincibleTimer = 0f;
-        StartCoroutine(UInvisible());
+        //StartCoroutine(UInvisible());
     }
 
 

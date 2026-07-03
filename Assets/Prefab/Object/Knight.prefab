@@ -145,8 +145,8 @@ MonoBehaviour:
   _enemyHP: 2
   _enemySpeed: 3
   _enemyJump: 3
-  _uBuckSpeed: 5
-  _uSuperTime: 1
+  _uBuckSpeed: 10
+  _uSuperTime: 0.3
   _uFlashTime: 0.3
   _enemyDamege: 10
   _uAddScore: 1
@@ -161,6 +161,7 @@ MonoBehaviour:
   _boltLate: 0
   _boltDistans: 0
   _playerRenderer: {fileID: 0}
+  _speedPile: -1
 --- !u!58 &3453760595466726944
 CircleCollider2D:
   m_ObjectHideFlags: 0

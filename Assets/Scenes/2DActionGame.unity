@@ -240,6 +240,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8175718777185943927, guid: f7a887d16e2a28d49b941b98c2fd090e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6438,6 +6442,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1037147391982626820, guid: 4fb5d3aa126190d488b75ecf56bce121, type: 3}
+      propertyPath: _uBuckSpeed
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 1037147391982626820, guid: 4fb5d3aa126190d488b75ecf56bce121, type: 3}
+      propertyPath: _uFlashTime
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1037147391982626820, guid: 4fb5d3aa126190d488b75ecf56bce121, type: 3}
+      propertyPath: _uSuperTime
+      value: 0.3
+      objectReference: {fileID: 0}
     - target: {fileID: 7813351258376410056, guid: 4fb5d3aa126190d488b75ecf56bce121, type: 3}
       propertyPath: m_LocalPosition.x
       value: 32.3

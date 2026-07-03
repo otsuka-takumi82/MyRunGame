@@ -212,6 +212,7 @@ public class Player : MonoBehaviour
 
         if(_arm._isBigAttacking)
         {
+            if (_isAttackButton == true) return;
             _arm.BigSword();
             _isBA = true;
 
@@ -460,6 +461,7 @@ public class Player : MonoBehaviour
 
 
         _rigid.AddForce(Vector2.right * _stepSpeed, ForceMode2D.Impulse);
+        _rigid.AddForce(Vector2.up * 8, ForceMode2D.Impulse);
         _bStep = true;
         _bStepCool = true;
         _moveSpeed *= _speedpiler;
@@ -549,7 +551,7 @@ public class Player : MonoBehaviour
             if (_arm._isBigAttacking == true) return;
             _isSAttack = true;
             _rigid.AddForce(Vector2.up * 15, ForceMode2D.Impulse);
-
+            _rigid.AddForce(Vector2.right * _stepSpeed, ForceMode2D.Impulse);
 
         }
         else
