@@ -528,9 +528,10 @@ public class Player : MonoBehaviour
 
     public void OnArm(InputAction.CallbackContext context)
     {
+        
         if (context.started)
         {
-
+            if (_arm._isBigAttacking == true) return;
             _isAttackButton = true;
             
 
@@ -538,12 +539,14 @@ public class Player : MonoBehaviour
         }
         if (context.canceled)
         {
+            if (_arm._isBigAttacking == true) return;
             _isAttackButton = false;
 
         }
 
         if (context.performed && _bStep)
         {
+            if (_arm._isBigAttacking == true) return;
             _isSAttack = true;
             _rigid.AddForce(Vector2.up * 15, ForceMode2D.Impulse);
 
@@ -558,8 +561,10 @@ public class Player : MonoBehaviour
 
     public void OnBigSword(InputAction.CallbackContext context)
     {
+        
         if (context.performed)
         {
+            if (_isAttackButton == true) return;
             _arm._isBigAttacking = true;
 
 
@@ -577,16 +582,16 @@ public class Player : MonoBehaviour
         
         if (_angle > -360)
         {
-
             _arm._collider.enabled = true;
             gameObject.layer = LayerMask.NameToLayer("EnemyInvisible");
             _angle -= 1000 * Time.deltaTime;
             transform.localRotation = Quaternion.Euler(0, 0, _angle);
             _isSAttack = true;
+            
             if(_angle <= -300 && _angle >= -330)
             {
                 
-                    Time.timeScale = 0.1f;
+                    Time.timeScale = 0.5f;
             }
             else
             {

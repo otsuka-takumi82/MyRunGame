@@ -34,7 +34,7 @@ public class PlayerAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Debug.Log(_isBigAttacking);
+        //Debug.Log(_angle);
     }
 
     public void Attack()
@@ -55,7 +55,7 @@ public class PlayerAttack : MonoBehaviour
                 _angle = 90;
                 _attackTime = 0;
                 _isAttacking = false;
-
+                
             }
         }
     }
@@ -65,16 +65,25 @@ public class PlayerAttack : MonoBehaviour
         
         if (_isBigAttacking)
         {
-            
+            if(_angle == 90)
+            {
+                _angle = 0;
+            }
             if(_angle < 40 && _bigDir)
             {
-                if(_angle >= 35)
+                
+                _bigSword.SetActive(true);
+                _arm.SetActive(false);
+                
+                if (_angle >= 35)
                 {
+                    //Debug.Log("a");
                     _angle += _attackSpeed * 0.01f * Time.deltaTime;
                     _transform.localRotation = Quaternion.Euler(0, 0, _angle);
                 }
                 if (_angle >= 25)
                 {
+                    
                     _angle += _attackSpeed * 0.02f * Time.deltaTime;
                     _transform.localRotation = Quaternion.Euler(0, 0, _angle);
                 }
@@ -85,8 +94,8 @@ public class PlayerAttack : MonoBehaviour
                 }
                 else
                 {
-                    _bigSword.SetActive(true);
-                    _arm.SetActive(false);
+                    //_bigSword.SetActive(true);
+                    //_arm.SetActive(false);
                     _angle += _attackSpeed * 0.5f * Time.deltaTime;
                     _transform.localRotation = Quaternion.Euler(0, 0, _angle);
                 }
@@ -99,18 +108,19 @@ public class PlayerAttack : MonoBehaviour
             }
             if (_angle <= 40 && _angle >= -90 && !_bigDir)
             {
-                _angle -= _attackSpeed * 3f * Time.deltaTime;
+                _angle -= _attackSpeed * 5f * Time.deltaTime;
                 _transform.localRotation = Quaternion.Euler(0, 0, _angle);
                 //Debug.Log(_angle);
             }
             if (_angle <= -90)
             {
                 _attackTime += Time.deltaTime;
-                
+                Time.timeScale = 0.1f;
 
             }
-            if (_attackTime >= _attackCoolTime)
+            if (_attackTime >= 0.1f)
             {
+                Time.timeScale = 1;
                 _bigDir = true;
                 _angle = 0;
                 _transform.localRotation = Quaternion.Euler(0, 0, _angle);

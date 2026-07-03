@@ -123,7 +123,7 @@ public class ActionEnemy : MonoBehaviour
     {
         if(collision.gameObject.tag == "BigSword")
         {
-            Destroy(gameObject);
+            Destroy(gameObject,0.15f);
             _player._uScore += _uAddScore;
             _player._uiManager.UScoreManage(_player._uScore);
         }
