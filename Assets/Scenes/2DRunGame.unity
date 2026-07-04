@@ -34323,6 +34323,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _imageHP: {fileID: 1967683068}
   _sniceImage: {fileID: 901960898}
+  _canonImage: []
   _scoreText: {fileID: 676565087}
   _uScoreText: {fileID: 0}
   _speedText: {fileID: 106654667}

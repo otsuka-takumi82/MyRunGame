@@ -21,7 +21,7 @@ public class Canon : MonoBehaviour
 
     public void Exprotion(int ExprotionNum)
     {
-            Instantiate(_exprotion[ExprotionNum], new Vector2(transform.position.x + 8, transform.position.y - 2), Quaternion.identity);
+            Instantiate(_exprotion[ExprotionNum], new Vector2(transform.position.x + 3, transform.position.y * 1), Quaternion.identity);
            
         
     }

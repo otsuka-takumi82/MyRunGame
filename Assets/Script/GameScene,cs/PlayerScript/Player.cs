@@ -70,10 +70,14 @@ public class Player : MonoBehaviour
     public bool _isBA = true;
     public bool _isCanon = false;
     private bool _isBuck;
+    private bool m_canon = false;
+    private bool _isKnockBacking;
+    private float _knockBackTimer = 1f;
     public float _invincibleTimer;
     public float _snikeTimer;
     private float _stepTimer;
-    private float[] _canonTimer;
+    public float _canonTimer1;
+    public float _canonTimer2;
     public float _hp;
     float _angle = 0;
     public SpriteRenderer _spriteRenderer;
@@ -125,13 +129,14 @@ public class Player : MonoBehaviour
         _bStepCool = false;
         _uiManager.ScoreManage(_hp);
         _uiManager.HPManage(_hp, _maxHP);
+        
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        //Debug.Log(_arm._isBigAttacking);
+        //Debug.Log();
 
         DebugKey();
 
@@ -139,10 +144,14 @@ public class Player : MonoBehaviour
 
         _uiManager.SniceManage(_snikeTimer, _maxSnike);
 
+        if(_gameManager._boxStage > 10)
+        {
+            _uiManager.CanonImage(0, _canonTimer1, 2);
+            _uiManager.CanonImage(1, _canonTimer1, 6);
+            _uiManager.CanonImage(2, _canonTimer1, 10);
+        }
         
-        _uiManager.CanonImage(0, _canonTimer[0], 2);
-        _uiManager.CanonImage(1, _canonTimer[0], 6);
-        _uiManager.CanonImage(2, _canonTimer[0], 20);
+        
 
         if (_bsnike && !_bJump)
         {
@@ -240,22 +249,56 @@ public class Player : MonoBehaviour
             
         }
 
+        if(m_canon)
+        {
+            _canonTimer1 += Time.deltaTime;
+        }
         if(_isCanon)
         {
-            _canonTimer[1] += Time.deltaTime;
+            _canonTimer2 += Time.deltaTime;
         }
         
-        if(_canonTimer[1] < 0.5 && _canonTimer[1] > 0)
+        if(_canonTimer2 < 0.1 && _canonTimer2 > 0 && _exprotionScale == 3)
         {
-            _rigid.linearVelocity = new Vector2(0, 0);
+            //_rigid.linearVelocity = new Vector2(0, 0);
+            Time.timeScale = 0.1f;
         }
         else
         {
-            if(_isBuck)
+            Time.timeScale = 1;
+            if (_isBuck && _exprotionScale == 3)
             {
-                _rigid.AddForce(Vector2.left * 40, ForceMode2D.Impulse);
-                _canonTimer[1] = 0;
+                _isKnockBacking = true;
+                _rigid.AddForce(Vector2.left * 60, ForceMode2D.Impulse);
+                _canonTimer2 = 0;
                 _isBuck = false;
+                _isCanon = false;
+            }
+            else if(_isBuck && _exprotionScale == 2)
+            {
+                _isKnockBacking = true;
+                _rigid.AddForce(Vector2.left * 20, ForceMode2D.Impulse);
+                _canonTimer2 = 0;
+                _isBuck = false;
+                _isCanon = false;
+            }
+            else if (_isBuck && _exprotionScale == 1)
+            {
+                _isKnockBacking = true;
+                _rigid.AddForce(Vector2.left * 10, ForceMode2D.Impulse);
+                _canonTimer2 = 0;
+                _isBuck = false;
+                _isCanon = false;
+            }
+        }
+
+        if(_isKnockBacking)
+        {
+            _knockBackTimer -= Time.deltaTime;
+            if( _knockBackTimer <= 0 )
+            {
+                _knockBackTimer = 0.5f;
+                _isKnockBacking = false;
             }
         }
 
@@ -317,6 +360,7 @@ public class Player : MonoBehaviour
     private void FixedUpdate()
     {
         if (_bStep) return;
+        if (_isKnockBacking) return;
         _rigid.linearVelocity = new Vector2(_moveSpeed, _rigid.linearVelocity.y);
     }
 
@@ -609,31 +653,37 @@ public class Player : MonoBehaviour
     {
         if(context.started)
         {
-            _canonTimer[0] += Time.deltaTime;
+            m_canon = true;
+            
             
         }
         if(context.canceled)
         {
-            _isBuck = true;
+            _exprotionScale = 0;
+            m_canon = false;
             _isCanon = true;
-            if (_canonTimer[0] >= 2)
+            if (_canonTimer1 >= 10)
             {
-                _canon.Exprotion(0);
-                _exprotionScale = 1;
-                _canonTimer[0] = 0;
-            }
-            else if (_canonTimer[0] >= 6)
-            {
-                _canon.Exprotion(1);
-                _exprotionScale = 2;
-                _canonTimer[0] = 0;
-            }
-            else if (_canonTimer[0] >= 20)
-            {
+                _isBuck = true;
                 _canon.Exprotion(2);
                 _exprotionScale = 3;
-                _canonTimer[0] = 0;
+                _canonTimer1 = 0;
             }
+            else if (_canonTimer1 >= 6)
+            {
+                _isBuck = true;
+                _canon.Exprotion(1);
+                _exprotionScale = 2;
+                _canonTimer1 = 0;
+            }
+            else if (_canonTimer1 >= 2)
+            {
+                _isBuck = true;
+                _canon.Exprotion(0);
+                _exprotionScale = 1;
+                _canonTimer1 = 0;
+            }
+            _canonTimer1 = 0;
         }
     }
 
