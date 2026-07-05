@@ -463,6 +463,7 @@ MonoBehaviour:
   _maxSpeed: 10
   _playerDamage: 1
   _armDamage: 1
+  _canonDamage: 000000000100000002000000
   _maxSnike: 1
   _maxHP: 100
   _damagePeople: 10
@@ -660,7 +661,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &666825480414259739
 Transform:

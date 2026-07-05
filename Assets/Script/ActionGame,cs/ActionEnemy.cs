@@ -121,6 +121,42 @@ public class ActionEnemy : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
+        if(collision.gameObject.tag == "Exprotion")
+        {
+            Debug.Log(collision.gameObject.tag);
+            _enemyHP -= _player._canonDamage;
+            if (_enemyHP >= 1)
+            {
+                if (_enemyHP < _UEnemyArmored.Length - 1 || _UEnemyArmored == null)
+                {
+                    _uEnemyRenderer.sprite = _UEnemyArmored[_enemyHP - 1];
+                    _isNock = false;
+                    _rigid.AddForce(Vector2.right * _uBuckSpeed, ForceMode2D.Impulse);
+
+                    StartUInvisible();
+
+                }
+                if (_enemyHP == 1)
+                {
+                    _enemyJump = 0;
+                    //_enemySpeed *= 2;
+                    //_speedPile *= -1;
+                }
+
+
+            }
+            else
+            {
+                {
+                    Destroy(gameObject);
+                    _player._uScore += _uAddScore;
+                    _player._uiManager.UScoreManage(_player._uScore);
+
+                }
+
+
+            }
+        }
         if(collision.gameObject.tag == "BigSword")
         {
             Destroy(gameObject,0.15f);

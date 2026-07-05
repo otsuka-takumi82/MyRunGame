@@ -33,6 +33,8 @@ public class Player : MonoBehaviour
     public int _playerDamage;
     [SerializeField, Header("腕ダメージ")]
     public int _armDamage;
+    [SerializeField, Header("大砲ダメージ")]
+    public int _canonDamage;
     [SerializeField, Header("しゃがみタメ")]
     public float _maxSnike;
     [SerializeField, Header("最大HP")]
@@ -147,8 +149,8 @@ public class Player : MonoBehaviour
         if(_gameManager._boxStage > 10)
         {
             _uiManager.CanonImage(0, _canonTimer1, 2);
-            _uiManager.CanonImage(1, _canonTimer1, 6);
-            _uiManager.CanonImage(2, _canonTimer1, 10);
+            _uiManager.CanonImage(1, _canonTimer1 - 2, 6 - 2);
+            _uiManager.CanonImage(2, _canonTimer1 - 6, 10 - 6);
         }
         
         
@@ -265,9 +267,9 @@ public class Player : MonoBehaviour
         }
         else
         {
-            Time.timeScale = 1;
             if (_isBuck && _exprotionScale == 3)
             {
+                Time.timeScale = 1;
                 _isKnockBacking = true;
                 _rigid.AddForce(Vector2.left * 60, ForceMode2D.Impulse);
                 _canonTimer2 = 0;
@@ -651,40 +653,47 @@ public class Player : MonoBehaviour
 
     public void OnCanon(InputAction.CallbackContext context)
     {
-        if(context.started)
+        if(_gameManager._boxStage > 10)
         {
-            m_canon = true;
-            
-            
+            if (context.started)
+            {
+                m_canon = true;
+
+
+            }
+            if (context.canceled)
+            {
+                _exprotionScale = 0;
+                m_canon = false;
+                _isCanon = true;
+                if (_canonTimer1 >= 10)
+                {
+                    _isBuck = true;
+                    _canon.Exprotion(2);
+                    _exprotionScale = 3;
+                    _canonDamage = 2;
+                    _canonTimer1 = 0;
+                }
+                else if (_canonTimer1 >= 6)
+                {
+                    _isBuck = true;
+                    _canon.Exprotion(1);
+                    _exprotionScale = 2;
+                    _canonDamage = 1;
+                    _canonTimer1 = 0;
+                }
+                else if (_canonTimer1 >= 2)
+                {
+                    _isBuck = true;
+                    _canon.Exprotion(0);
+                    _exprotionScale = 1;
+                    _canonDamage = 0;
+                    _canonTimer1 = 0;
+                }
+                _canonTimer1 = 0;
+            }
         }
-        if(context.canceled)
-        {
-            _exprotionScale = 0;
-            m_canon = false;
-            _isCanon = true;
-            if (_canonTimer1 >= 10)
-            {
-                _isBuck = true;
-                _canon.Exprotion(2);
-                _exprotionScale = 3;
-                _canonTimer1 = 0;
-            }
-            else if (_canonTimer1 >= 6)
-            {
-                _isBuck = true;
-                _canon.Exprotion(1);
-                _exprotionScale = 2;
-                _canonTimer1 = 0;
-            }
-            else if (_canonTimer1 >= 2)
-            {
-                _isBuck = true;
-                _canon.Exprotion(0);
-                _exprotionScale = 1;
-                _canonTimer1 = 0;
-            }
-            _canonTimer1 = 0;
-        }
+        
     }
 
     public void StartInvisible()

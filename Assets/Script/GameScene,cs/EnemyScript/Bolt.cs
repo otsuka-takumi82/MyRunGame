@@ -50,6 +50,11 @@ public class Bolt : MonoBehaviour
 
             _rigid.linearVelocity = (direction * _speed * -1);
         }
+
+        if(collision.gameObject.tag == "Exprotion")
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

@@ -200,18 +200,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4494403287003742614, guid: f7a887d16e2a28d49b941b98c2fd090e, type: 3}
-      propertyPath: '_exprotion.Array.data[0]'
-      value: 
-      objectReference: {fileID: 7312714641660564117, guid: ba56ff5e60b049f47b03b4766fe53756, type: 3}
-    - target: {fileID: 4494403287003742614, guid: f7a887d16e2a28d49b941b98c2fd090e, type: 3}
-      propertyPath: '_exprotion.Array.data[1]'
-      value: 
-      objectReference: {fileID: 3006459706852374151, guid: 6468fd23d63e01f428967824cab7c554, type: 3}
-    - target: {fileID: 4494403287003742614, guid: f7a887d16e2a28d49b941b98c2fd090e, type: 3}
-      propertyPath: '_exprotion.Array.data[2]'
-      value: 
-      objectReference: {fileID: 2578813279458663145, guid: 526ece41b90c2a84ab8472ff3e1349fe, type: 3}
     - target: {fileID: 5208877246618115953, guid: f7a887d16e2a28d49b941b98c2fd090e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 6.21
@@ -251,10 +239,6 @@ PrefabInstance:
     - target: {fileID: 5208877246618115953, guid: f7a887d16e2a28d49b941b98c2fd090e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6860631235220793152, guid: f7a887d16e2a28d49b941b98c2fd090e, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
