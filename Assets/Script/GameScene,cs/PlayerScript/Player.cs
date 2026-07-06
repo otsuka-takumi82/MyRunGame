@@ -53,9 +53,6 @@ public class Player : MonoBehaviour
 
 
 
-
-
-
     private Vector2 _inputDirection;
     private Rigidbody2D _rigid;
     private bool _bJump;
@@ -74,6 +71,8 @@ public class Player : MonoBehaviour
     private bool _isBuck;
     private bool m_canon = false;
     private bool _isKnockBacking;
+    private bool _isCrossDirection;
+    private bool _isCrossShooting;
     private float _knockBackTimer = 1f;
     public float _invincibleTimer;
     public float _snikeTimer;
@@ -94,6 +93,7 @@ public class Player : MonoBehaviour
     private PlayerAttack _arm;
     private BigSword _bigSword;
     private Canon _canon;
+    private CrossBow _crossBow;
     public SpriteRenderer[] _renderers;
     public int _exprotionScale = 0;
 
@@ -107,6 +107,7 @@ public class Player : MonoBehaviour
         _arm = FindFirstObjectByType<PlayerAttack>();
         _bigSword = FindFirstObjectByType<BigSword>();
         _canon = FindFirstObjectByType<Canon>();
+        _crossBow = FindFirstObjectByType<CrossBow>();
         _uiManager = FindFirstObjectByType<UIManager>();
         if (_gameManager._boxStage < 10)
         {
@@ -313,6 +314,17 @@ public class Player : MonoBehaviour
         if(_isSAttack)
         {
             SAttack();
+        }
+
+        if(_isCrossDirection)
+        {
+            _crossBow.BoltDir();
+            if(_isCrossShooting)
+            {
+                _crossBow._isShot = true;
+                _crossBow.ReLoad();
+                _crossBow.SpawnBolt();
+            }
         }
 
 
@@ -613,34 +625,55 @@ public class Player : MonoBehaviour
 
     public void OnArm(InputAction.CallbackContext context)
     {
-        
-        if (context.started)
+        if(!_isCrossDirection)
         {
-            if (_bigSword._isBigAttacking == true) return;
-            _isAttackButton = true;
-            
+            if (context.started)
+            {
+                if (_bigSword._isBigAttacking == true) return;
+                _isAttackButton = true;
 
 
-        }
-        if (context.canceled)
-        {
-            if (_bigSword._isBigAttacking == true) return;
-            _isAttackButton = false;
 
-        }
+            }
+            if (context.canceled)
+            {
+                if (_bigSword._isBigAttacking == true) return;
+                _isAttackButton = false;
 
-        if (context.performed && _bStep)
-        {
-            if (_bigSword._isBigAttacking == true) return;
-            _isSAttack = true;
-            _rigid.AddForce(Vector2.up * 15, ForceMode2D.Impulse);
-            _rigid.AddForce(Vector2.right * _stepSpeed, ForceMode2D.Impulse);
+            }
 
+            if (context.performed && _bStep)
+            {
+                if (_bigSword._isBigAttacking == true) return;
+                _isSAttack = true;
+                _rigid.AddForce(Vector2.up * 15, ForceMode2D.Impulse);
+                _rigid.AddForce(Vector2.right * _stepSpeed, ForceMode2D.Impulse);
+
+            }
+            else
+            {
+
+            }
         }
         else
         {
+            if (context.started)
+            {
+              _isCrossShooting = true;
 
+            }
+            if (context.canceled)
+            {
+                _isCrossShooting = false;
+
+            }
+
+            if (context.performed)
+            {
+                _isCrossShooting = true;
+            }
         }
+        
        
     }
 
@@ -700,6 +733,22 @@ public class Player : MonoBehaviour
             }
         }
         
+    }
+
+    public void OnCrossBow(InputAction.CallbackContext context)
+    {
+        if(context.performed)
+        {
+            if (!_isCrossDirection)
+            {
+                _isCrossDirection = true;
+            }
+            if (_isCrossDirection)
+            {
+                _isCrossDirection = false;
+            }
+            
+        }
     }
 
     public void StartInvisible()
