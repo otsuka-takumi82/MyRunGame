@@ -30,7 +30,7 @@ public class CrossBow : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void BoltDir()
@@ -74,8 +74,10 @@ public class CrossBow : MonoBehaviour
         if( _isShot )
         {
             BoltSpawn(_bolt);
-            _player.UseBolt();
             _isShot = false;
+            if (_angle == 90 || _angle == 0)return;
+                _player.UseBolt();
+            
         }   
     }
 
