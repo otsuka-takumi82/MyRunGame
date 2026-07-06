@@ -9,8 +9,7 @@ public class PlayerAttack : MonoBehaviour
     private float _attackCoolTime;
     [SerializeField]
     public GameObject _arm;
-    [SerializeField]
-    public GameObject _bigSword;
+    
 
     private Transform _transform;
     public float _angle = 0;
@@ -28,6 +27,7 @@ public class PlayerAttack : MonoBehaviour
         _transform = GetComponent<Transform>();
         _collider = GetComponentInChildren<Collider2D>();
         _collider.enabled = false;
+        _angle = 90;
     }
 
     // Update is called once per frame
