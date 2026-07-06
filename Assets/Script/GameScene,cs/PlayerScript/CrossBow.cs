@@ -8,12 +8,14 @@ public class CrossBow : MonoBehaviour
     private GameObject _crossBow;
     [SerializeField, Header("ボルト")]
     private GameObject _bolt;
+    [SerializeField, Header("ノズル")]
+    private GameObject _nozzle;
     [SerializeField,Header("発射間隔")]
     private float _boltLate;
 
     private Vector3 _mousePos;
     private Player _player;
-    private float _angle;
+    public float _angle;
     public bool _isShot;
     private float _lateTimer;
     
@@ -28,7 +30,6 @@ public class CrossBow : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
         
     }
 
@@ -53,12 +54,18 @@ public class CrossBow : MonoBehaviour
 
             _angle = 0;
         }
-        Debug.Log(_angle);
+        
+    }
+    public void BoltReset()
+    {
+        _angle = 0;
+        transform.localRotation = Quaternion.Euler(0, 0, _angle);
     }
 
     private void BoltSpawn(GameObject prefab)
     {
-        Instantiate(prefab, new Vector3(gameObject.transform.position.x + 2, gameObject.transform.position.y, gameObject.transform.position.z), Quaternion.identity);
+        //Instantiate(prefab, new Vector3(transform.position.x, transform.position.y,transform.position.z), Quaternion.identity);
+        Instantiate(prefab, _nozzle.transform.position, _nozzle.transform.rotation);
 
     }
 
@@ -73,7 +80,11 @@ public class CrossBow : MonoBehaviour
 
     public void ReLoad()
     {
-        _lateTimer += Time.deltaTime;
+        if(!_isShot)
+        {
+            _lateTimer += Time.deltaTime;
+        }
+        
 
         if(_lateTimer >= _boltLate)
         {

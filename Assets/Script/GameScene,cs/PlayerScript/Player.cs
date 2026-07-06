@@ -139,7 +139,6 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Debug.Log();
 
         DebugKey();
 
@@ -319,11 +318,11 @@ public class Player : MonoBehaviour
         if(_isCrossDirection)
         {
             _crossBow.BoltDir();
-            if(_isCrossShooting)
+            _crossBow.ReLoad();
+            if (_isCrossShooting)
             {
-                _crossBow._isShot = true;
-                _crossBow.ReLoad();
                 _crossBow.SpawnBolt();
+               
             }
         }
 
@@ -659,7 +658,8 @@ public class Player : MonoBehaviour
         {
             if (context.started)
             {
-              _isCrossShooting = true;
+                
+                _isCrossShooting = true;
 
             }
             if (context.canceled)
@@ -668,10 +668,15 @@ public class Player : MonoBehaviour
 
             }
 
-            if (context.performed)
+            if (_crossBow._isShot == true)
             {
-                _isCrossShooting = true;
+                if (context.performed)
+                {
+                    
+                    _isCrossShooting = true;
+                }
             }
+            
         }
         
        
@@ -743,9 +748,10 @@ public class Player : MonoBehaviour
             {
                 _isCrossDirection = true;
             }
-            if (_isCrossDirection)
+            else
             {
                 _isCrossDirection = false;
+                _crossBow.BoltReset();
             }
             
         }

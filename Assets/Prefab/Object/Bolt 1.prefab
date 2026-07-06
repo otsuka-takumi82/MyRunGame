@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 8478594106818892286}
   m_Layer: 9
   m_Name: Bolt 1
-  m_TagString: Bolt
+  m_TagString: PlayerBolt
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -148,7 +148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47b8c5fe2368ada45991a0e248048508, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 10
+  _speed: 20
   _boltDamege: 10
   _boltType: 1
 --- !u!50 &8478594106818892286

@@ -9,11 +9,13 @@ public class Bolt : MonoBehaviour
     //private float _directionPile;
     [SerializeField]
     private float _boltDamege;
+    float angle;
     [SerializeField]
     private int _boltType;
     private Player _player;
     private Rigidbody2D _rigid;
     private Vector3 _mousePos;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -23,7 +25,7 @@ public class Bolt : MonoBehaviour
             _rigid = GetComponent<Rigidbody2D>();
             _player = FindAnyObjectByType<Player>();
             Vector2 direction = (_player.transform.position - transform.position).normalized;
-            float angle;
+            
             angle = Mathf.Atan2(direction.y * -1, direction.x * -1) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.Euler(0, 0, angle);
             Destroy(gameObject, 3f);
@@ -34,16 +36,25 @@ public class Bolt : MonoBehaviour
         }
         if( _boltType == 1)
         {
-            float angle;
+            gameObject.layer = LayerMask.NameToLayer("Bolt");
             _rigid = GetComponent<Rigidbody2D>();
+
             _mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Vector3 direction = (_mousePos - transform.position).normalized;
-            angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            angle = Mathf.Atan2(direction.y * -1, direction.x * -1) * Mathf.Rad2Deg;
+            if (angle > -90)
+            {
+
+                Destroy(gameObject);
+
+            }
+            else if (angle < -180)
+            {
+
+                Destroy(gameObject);
+            }
             transform.rotation = Quaternion.Euler(0, 0, angle);
             Destroy(gameObject, 3f);
-
-
-
             _rigid.linearVelocity = (direction * _speed);
         }
         

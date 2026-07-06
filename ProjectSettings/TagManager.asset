@@ -21,6 +21,7 @@ TagManager:
   - Arm
   - BigSword
   - Exprotion
+  - PlayerBolt
   layers:
   - Default
   - TransparentFX

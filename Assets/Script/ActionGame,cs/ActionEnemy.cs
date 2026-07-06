@@ -214,6 +214,42 @@ public class ActionEnemy : MonoBehaviour
             }
         }
 
+        if(collision.gameObject.tag == "PlayerBolt")
+        {
+            _enemyHP -= _player._armDamage;
+            if (_enemyHP >= 1)
+            {
+                if (_enemyHP < _UEnemyArmored.Length - 1 || _UEnemyArmored == null)
+                {
+                    _uEnemyRenderer.sprite = _UEnemyArmored[_enemyHP - 1];
+                    _isNock = false;
+                    _rigid.AddForce(Vector2.right * _uBuckSpeed, ForceMode2D.Impulse);
+
+                    StartUInvisible();
+
+                }
+                if (_enemyHP == 1)
+                {
+                    _enemyJump = 0;
+                    //_enemySpeed *= 2;
+                    //_speedPile *= -1;
+                }
+
+
+            }
+            else
+            {
+                {
+                    Destroy(gameObject);
+                    _player._uScore += _uAddScore;
+                    _player._uiManager.UScoreManage(_player._uScore);
+
+                }
+
+
+            }
+        }
+
         if (collision.gameObject.tag == "Floor")
         {
             _rigid.AddForce(Vector2.up * _enemyJump, ForceMode2D.Impulse);
