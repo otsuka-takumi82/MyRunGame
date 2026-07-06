@@ -74,6 +74,7 @@ public class CrossBow : MonoBehaviour
         if( _isShot )
         {
             BoltSpawn(_bolt);
+            _player.UseBolt();
             _isShot = false;
         }   
     }

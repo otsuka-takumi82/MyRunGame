@@ -44,6 +44,7 @@ public class ActionEnemy : MonoBehaviour
     private float _uInvincibleTimer;
     private bool _isNock = true;
     public float _speedPile = -1;
+
     public enum EnemyType
     {
         Solder,
@@ -151,6 +152,10 @@ public class ActionEnemy : MonoBehaviour
                     Destroy(gameObject);
                     _player._uScore += _uAddScore;
                     _player._uiManager.UScoreManage(_player._uScore);
+                    if(_enemyType == EnemyType.Archer)
+                    {
+                        _player.GetBolt();
+                    }
 
                 }
 
@@ -162,6 +167,10 @@ public class ActionEnemy : MonoBehaviour
             Destroy(gameObject,0.15f);
             _player._uScore += _uAddScore;
             _player._uiManager.UScoreManage(_player._uScore);
+            if (_enemyType == EnemyType.Archer)
+            {
+                _player.GetBolt();
+            }
         }
         if (collision.gameObject.tag == "Arm")
         {
@@ -193,6 +202,10 @@ public class ActionEnemy : MonoBehaviour
                     Destroy(gameObject);
                     _player._uScore += _uAddScore;
                     _player._uiManager.UScoreManage(_player._uScore);
+                    if (_enemyType == EnemyType.Archer)
+                    {
+                        _player.GetBolt();
+                    }
 
                 }
 
@@ -211,6 +224,10 @@ public class ActionEnemy : MonoBehaviour
                 Destroy(gameObject);
                 _player._uScore += _uAddScore;
                 _player._uiManager.UScoreManage(_player._uScore);
+                if (_enemyType == EnemyType.Archer)
+                {
+                    _player.GetBolt();
+                }
             }
         }
 
@@ -243,6 +260,10 @@ public class ActionEnemy : MonoBehaviour
                     Destroy(gameObject);
                     _player._uScore += _uAddScore;
                     _player._uiManager.UScoreManage(_player._uScore);
+                    if (_enemyType == EnemyType.Archer)
+                    {
+                        _player.GetBolt();
+                    }
 
                 }
 
@@ -287,6 +308,10 @@ public class ActionEnemy : MonoBehaviour
                     Destroy(gameObject);
                     _player._uScore += _uAddScore;
                     _player._uiManager.UScoreManage(_player._uScore);
+                    if (_enemyType == EnemyType.Archer)
+                    {
+                        _player.GetBolt();
+                    }
 
                 }
 

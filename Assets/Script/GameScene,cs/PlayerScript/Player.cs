@@ -81,6 +81,7 @@ public class Player : MonoBehaviour
     public float _canonTimer2;
     public float _hp;
     float _angle = 0;
+    public int _boltNum = 0;
     public SpriteRenderer _spriteRenderer;
     private Color _defaultColor;
     private CameraFollow _cameraFollow;
@@ -132,7 +133,13 @@ public class Player : MonoBehaviour
         _bStepCool = false;
         _uiManager.ScoreManage(_hp);
         _uiManager.HPManage(_hp, _maxHP);
+        if(_gameManager._boxStage > 10)
+        {
+            _uiManager.BoltText(_boltNum);
+
+        }
         
+
 
     }
 
@@ -321,8 +328,10 @@ public class Player : MonoBehaviour
             _crossBow.ReLoad();
             if (_isCrossShooting)
             {
-                _crossBow.SpawnBolt();
-               
+                if(_boltNum > 0)
+                {
+                    _crossBow.SpawnBolt();
+                } 
             }
         }
 
@@ -755,6 +764,17 @@ public class Player : MonoBehaviour
             }
             
         }
+    }
+
+    public void GetBolt()
+    {
+        _boltNum++;
+        _uiManager.BoltText( _boltNum );
+    }
+    public void UseBolt()
+    {
+        _boltNum--;
+        _uiManager.BoltText(_boltNum);
     }
 
     public void StartInvisible()

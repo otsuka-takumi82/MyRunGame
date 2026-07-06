@@ -16,6 +16,8 @@ public class UIManager : MonoBehaviour
     private TMP_Text _uScoreText;
     [SerializeField, Header("スピード表示")]
     private TMP_Text _speedText;
+    [SerializeField, Header("ボルト本数")]
+    private TMP_Text _boltText;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -63,5 +65,9 @@ public class UIManager : MonoBehaviour
     public void SpeedText(float speed)
     {
         _speedText.text = "Speed: " + speed.ToString("0.00");
+    }
+    public void BoltText(int bolt)
+    {
+        _boltText.text = "Bolt: " + bolt;
     }
 }

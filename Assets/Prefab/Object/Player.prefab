@@ -497,6 +497,7 @@ MonoBehaviour:
   _canonTimer1: 0
   _canonTimer2: 0
   _hp: 0
+  _boltNum: 0
   _spriteRenderer: {fileID: 0}
   _uiManager: {fileID: 0}
   _uScore: 0
@@ -811,7 +812,8 @@ MonoBehaviour:
   _crossBow: {fileID: 8082453087837715452}
   _bolt: {fileID: 3978077030480174564, guid: bdc8ed6d1436b2e4f86656a9614b8929, type: 3}
   _nozzle: {fileID: 9056413785337036461}
-  _boltLate: 1
+  _boltLate: 0.2
+  _angle: 0
   _isShot: 0
 --- !u!1 &8082453087837715452
 GameObject:
@@ -826,7 +828,7 @@ GameObject:
   - component: {fileID: 613757102843514965}
   m_Layer: 10
   m_Name: CrossBow,arm
-  m_TagString: Arm
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
