@@ -60,6 +60,7 @@ public class Player : MonoBehaviour
     private bool _bStepCool;
     private bool _hiJump = false;
     public bool _isInvincible = false;
+    private bool _isPlayerRen;
     private bool _bsnike = false;
     private bool _onFloor = false;
     private bool _isAttackButton;
@@ -354,12 +355,12 @@ public class Player : MonoBehaviour
         if (_isInvincible == true)
         {
             _invincibleTimer += Time.deltaTime;
-
+            _isPlayerRen = true;
             gameObject.layer = LayerMask.NameToLayer("Invisible");
             if (_invincibleTimer >= _superTime || _invincibleTimer == 0)
             {
                 
-                DefaultColor();
+                
                 _invincibleTimer = 0;
                 _isInvincible = false;
 
@@ -369,8 +370,14 @@ public class Player : MonoBehaviour
         }
         else
         {
-            gameObject.layer = LayerMask.NameToLayer("Player");
-            Debug.Log("a");
+            if(_isPlayerRen)
+            {
+                gameObject.layer = LayerMask.NameToLayer("Player");
+                DefaultColor();
+                _isPlayerRen = false;
+            }
+            
+            
         }
         if (_hp <= 0f)
         {
