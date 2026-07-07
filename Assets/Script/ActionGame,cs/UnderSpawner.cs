@@ -34,7 +34,7 @@ public class UnderSpawner : MonoBehaviour
     private void Uspawn(GameObject[] prefab)
     {
         if (_player == null) return;
-        for (var i  = 0; i < 7; i += 2)
+        for (var i  = 0; i < 21; i += 5)
         {
             Instantiate(prefab[Random.Range(0, prefab.Length)], new Vector3(_player.transform.position.x + _Spacing + i, _player.transform.position.y, _player.transform.position.z), Quaternion.identity);
         }

@@ -232,6 +232,7 @@ public class ActionEnemy : MonoBehaviour
             }
         }
 
+
         if(collision.gameObject.tag == "PlayerBolt")
         {
             _enemyHP -= _player._armDamage;
@@ -300,6 +301,7 @@ public class ActionEnemy : MonoBehaviour
                     _player._invincibleTimer = 0f;
                     StartUInvisible();
                     _player.StartInvisible();
+                    _player.NockBack();
                 }
 
             }

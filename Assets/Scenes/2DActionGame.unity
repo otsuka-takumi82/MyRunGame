@@ -603,7 +603,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Spacing: 30
-  _spacingTime: 4
+  _spacingTime: 8
   _Prefab:
   - {fileID: 8720732935875388219, guid: 7bea7b9f5f81f65468faa863c9a8a24d, type: 3}
   - {fileID: 9219823586448745401, guid: 4fb5d3aa126190d488b75ecf56bce121, type: 3}

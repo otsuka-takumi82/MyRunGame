@@ -147,6 +147,7 @@ public class Player : MonoBehaviour
     void Update()
     {
 
+        //Debug.Log(_invincibleTimer);
         DebugKey();
 
         _uiManager.SpeedText(_moveSpeed);
@@ -355,12 +356,21 @@ public class Player : MonoBehaviour
             _invincibleTimer += Time.deltaTime;
 
             gameObject.layer = LayerMask.NameToLayer("Invisible");
-            if (_invincibleTimer >= _superTime)
+            if (_invincibleTimer >= _superTime || _invincibleTimer == 0)
             {
-                gameObject.layer = LayerMask.NameToLayer("Player");
-                //_isInvincible = false;
-            }
+                
+                DefaultColor();
+                _invincibleTimer = 0;
+                _isInvincible = false;
 
+            }
+            
+
+        }
+        else
+        {
+            gameObject.layer = LayerMask.NameToLayer("Player");
+            Debug.Log("a");
         }
         if (_hp <= 0f)
         {
@@ -429,7 +439,6 @@ public class Player : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-
         //if (collision.gameObject)
         //{
         //    Debug.Log(collision.gameObject.name);
@@ -467,17 +476,11 @@ public class Player : MonoBehaviour
                 StartCoroutine(Invisible());
             }
 
-            //if(collision.gameObject.tag == "UEnemy")
-            //{
-            //        _isInvincible = true;
-            //        _invincibleTimer = 0f;
-            //        StartCoroutine(Invisible());
-
-
-            //}
+            
 
 
         }
+        
 
         if (collision.gameObject.tag == "Thief")
         {
@@ -531,6 +534,12 @@ public class Player : MonoBehaviour
         _spriteRenderer.color = color;
         _isInvincible = false;
         //Debug.Log("b");
+    }
+
+    public void DefaultColor()
+    {
+        Color color = _spriteRenderer.color;
+        _spriteRenderer.color = new Color(color.r, color.g, color.b);
     }
 
     public void OnJump(InputAction.CallbackContext context)
@@ -771,6 +780,11 @@ public class Player : MonoBehaviour
         _boltNum++;
         _uiManager.BoltText( _boltNum );
     }
+    public void NockBack()
+    {
+        _isKnockBacking = true;
+        _rigid.AddForce(Vector2.left * 10, ForceMode2D.Impulse);
+    }
     public void UseBolt()
     {
         _boltNum--;
@@ -781,6 +795,8 @@ public class Player : MonoBehaviour
     {
         StartCoroutine(Invisible());
     }
+
+   
 
     public void SAttack()
     {

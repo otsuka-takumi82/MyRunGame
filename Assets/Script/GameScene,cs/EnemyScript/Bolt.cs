@@ -73,6 +73,7 @@ public class Bolt : MonoBehaviour
         if (collision.gameObject.tag == "Arm")
         {
             gameObject.layer = LayerMask.NameToLayer("Bolt");
+            gameObject.tag = "PlayerBolt";
             Vector2 direction = (_player.transform.position - transform.position).normalized;
             float angle;
             angle = Mathf.Atan2(direction.y * 1, direction.x * 1) * Mathf.Rad2Deg;
