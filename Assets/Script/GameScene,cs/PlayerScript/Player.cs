@@ -148,7 +148,7 @@ public class Player : MonoBehaviour
     void Update()
     {
 
-        //Debug.Log(_invincibleTimer);
+        Debug.Log(_canonTimer2);
         DebugKey();
 
         _uiManager.SpeedText(_moveSpeed);
@@ -304,6 +304,12 @@ public class Player : MonoBehaviour
                 _isKnockBacking = true;
                 _rigid.AddForce(Vector2.left * 10, ForceMode2D.Impulse);
                 _canonTimer2 = 0;
+                _isBuck = false;
+                _isCanon = false;
+            }
+            else if(_isBuck && _exprotionScale == 0)
+            {
+                Time.timeScale = 1;
                 _isBuck = false;
                 _isCanon = false;
             }
@@ -726,6 +732,7 @@ public class Player : MonoBehaviour
         {
             if (context.started)
             {
+                
                 m_canon = true;
 
 
@@ -734,9 +741,10 @@ public class Player : MonoBehaviour
             {
                 _exprotionScale = 0;
                 m_canon = false;
-                _isCanon = true;
+                
                 if (_canonTimer1 >= 10)
                 {
+                    _isCanon = true;
                     _isBuck = true;
                     _canon.Exprotion(2);
                     _exprotionScale = 3;
