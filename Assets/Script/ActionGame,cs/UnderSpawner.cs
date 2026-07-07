@@ -31,10 +31,15 @@ public class UnderSpawner : MonoBehaviour
 
     }
 
-    private void Uspawn(GameObject prefab)
+    private void Uspawn(GameObject[] prefab)
     {
         if (_player == null) return;
-        Instantiate(prefab, new Vector3(_player.transform.position.x + Random.Range(_Spacing, 35f), _player.transform.position.y, _player.transform.position.z), Quaternion.identity);
+        for (var i  = 0; i < 5; i++)
+        {
+            Instantiate(prefab[Random.Range(0, prefab.Length)], new Vector3(_player.transform.position.x + _Spacing + i, _player.transform.position.y, _player.transform.position.z), Quaternion.identity);
+        }
+        
+
 
     }
 
@@ -47,7 +52,7 @@ public class UnderSpawner : MonoBehaviour
 
     private void SpawnUenemy()
     {
-        Uspawn(_Prefab[0]);
+        Uspawn(_Prefab);
 
     }
     //private void SpawnEnemy2()
