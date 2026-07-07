@@ -5203,26 +5203,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4176273307505243480, guid: 8255f2f0e9c39984a9cb127604bce65b, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.5360171
-      objectReference: {fileID: 0}
-    - target: {fileID: 4176273307505243480, guid: 8255f2f0e9c39984a9cb127604bce65b, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.5814731
-      objectReference: {fileID: 0}
-    - target: {fileID: 4176273307505243480, guid: 8255f2f0e9c39984a9cb127604bce65b, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.8223104
-      objectReference: {fileID: 0}
-    - target: {fileID: 4176273307505243480, guid: 8255f2f0e9c39984a9cb127604bce65b, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.053
-      objectReference: {fileID: 0}
-    - target: {fileID: 4176273307505243480, guid: 8255f2f0e9c39984a9cb127604bce65b, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.324
-      objectReference: {fileID: 0}
     - target: {fileID: 8854064345397547759, guid: 8255f2f0e9c39984a9cb127604bce65b, type: 3}
       propertyPath: m_Name
       value: Hose

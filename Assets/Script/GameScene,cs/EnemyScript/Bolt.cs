@@ -20,7 +20,7 @@ public class Bolt : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        if(_boltType == 0)
+        if (_boltType == 0)
         {
             _rigid = GetComponent<Rigidbody2D>();
             _player = FindAnyObjectByType<Player>();
@@ -69,6 +69,7 @@ public class Bolt : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+
         if (collision.gameObject.tag == "Arm")
         {
             gameObject.layer = LayerMask.NameToLayer("Bolt");

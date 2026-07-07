@@ -78,6 +78,7 @@ public class ActionEnemy : MonoBehaviour
 
         if (_enemyType == EnemyType.Archer)
         {
+            if (_player == null) return;
             float distans = transform.position.x - _player.transform.position.x;
             if (Mathf.Abs(distans) <= _boltDistans)
             {

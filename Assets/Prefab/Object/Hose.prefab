@@ -29,7 +29,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8854064345397547759}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 10.28, y: -3, z: 0}
   m_LocalScale: {x: 5.6290402, y: 5.188997, z: 3.6692493}
   m_ConstrainProportionsScale: 0
@@ -220,25 +220,29 @@ PrefabInstance:
       propertyPath: m_Name
       value: Knight (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 5868599943039204223, guid: 570da472a03ab6f4c9092fe1cfce898e, type: 3}
+      propertyPath: m_Layer
+      value: 14
+      objectReference: {fileID: 0}
     - target: {fileID: 7517351552570596729, guid: 570da472a03ab6f4c9092fe1cfce898e, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.40663573
+      value: 0.5360171
       objectReference: {fileID: 0}
     - target: {fileID: 7517351552570596729, guid: 570da472a03ab6f4c9092fe1cfce898e, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.44111976
+      value: 0.5814731
       objectReference: {fileID: 0}
     - target: {fileID: 7517351552570596729, guid: 570da472a03ab6f4c9092fe1cfce898e, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.62382483
+      value: 0.8223104
       objectReference: {fileID: 0}
     - target: {fileID: 7517351552570596729, guid: 570da472a03ab6f4c9092fe1cfce898e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.012435628
+      value: -0.053
       objectReference: {fileID: 0}
     - target: {fileID: 7517351552570596729, guid: 570da472a03ab6f4c9092fe1cfce898e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.30834478
+      value: 0.324
       objectReference: {fileID: 0}
     - target: {fileID: 7517351552570596729, guid: 570da472a03ab6f4c9092fe1cfce898e, type: 3}
       propertyPath: m_LocalPosition.z
