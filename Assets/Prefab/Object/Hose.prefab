@@ -131,6 +131,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9851fd7f3a60ac64e937aef44c8ad941, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _floor: 0
 --- !u!114 &4865604977686929471
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -144,7 +145,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _enemyHP: 1
-  _enemySpeed: 3
+  _enemySpeed: 5
   _enemyJump: 0
   _uBuckSpeed: 20
   _uSuperTime: 0.3
@@ -214,7 +215,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 25053362196481403, guid: 570da472a03ab6f4c9092fe1cfce898e, type: 3}
       propertyPath: _enemySpeed
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5868599943039204223, guid: 570da472a03ab6f4c9092fe1cfce898e, type: 3}
       propertyPath: m_Name
