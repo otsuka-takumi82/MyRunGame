@@ -163,13 +163,15 @@ public class ActionEnemy : MonoBehaviour
         }
         if(collision.gameObject.tag == "BigSword")
         {
-            Destroy(gameObject,0.15f);
+            
             _player._uScore += _uAddScore;
             _player._uiManager.UScoreManage(_player._uScore);
+            
             if (_enemyType == EnemyType.Archer)
             {
                 _player.GetBolt();
             }
+            Destroy(gameObject, 0.15f);
         }
         if (collision.gameObject.tag == "Arm")
         {
