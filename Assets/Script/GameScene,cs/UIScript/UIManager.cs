@@ -8,18 +8,22 @@ public class UIManager : MonoBehaviour
     private Image _imageHP;
     [SerializeField, Header("SniceImage")]
     private Image _sniceImage;
+    [SerializeField, Header("UScoreImage")]
+    private Image _imageUScore;
     [SerializeField, Header("CanonImage")]
     private Image[] _canonImage;
     [SerializeField, Header("スコア表示")]
     private TMP_Text _scoreText;
     [SerializeField, Header("Underスコア表示")]
     private TMP_Text _uScoreText;
+    [SerializeField, Header("Uスコアボタン")]
+    private GameObject _kingButton;
     [SerializeField, Header("スピード表示")]
     private TMP_Text _speedText;
     [SerializeField, Header("ボルト本数")]
     private TMP_Text _boltText;
 
-
+    private bool _isActive = true;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -36,6 +40,8 @@ public class UIManager : MonoBehaviour
     { 
         _imageHP.fillAmount = (float)HP / MaxHP;
     }
+
+    
 
     public void SniceManage(float Snice, float MaxSnice)
     {
@@ -56,6 +62,19 @@ public class UIManager : MonoBehaviour
     public void UScoreManage(float HP)
     {
         _uScoreText.text = "UScore:" + HP;
+    }
+    public void UScoreGage(float Gage, float MaxGage)
+    {
+        _imageUScore.fillAmount = (float)Gage / MaxGage;
+        
+        if(Gage >= MaxGage)
+        {
+            if(_isActive)
+            {
+                _kingButton.SetActive(true);
+                _isActive = false;
+            }
+        }
     }
     public void ScoreColor(Color color)
     {

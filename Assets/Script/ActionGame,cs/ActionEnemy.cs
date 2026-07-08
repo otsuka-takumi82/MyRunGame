@@ -52,9 +52,7 @@ public class ActionEnemy : MonoBehaviour
         HeviKnight,
         Archer
     }
-    //private int _armoredIndex = 0;
     
-    //private UIManager _uUIManager;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {

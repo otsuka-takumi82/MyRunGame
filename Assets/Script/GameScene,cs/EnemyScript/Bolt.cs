@@ -63,7 +63,6 @@ public class Bolt : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
        
     }
 

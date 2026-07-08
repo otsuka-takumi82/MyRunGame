@@ -39,6 +39,8 @@ public class Player : MonoBehaviour
     public float _maxSnike;
     [SerializeField, Header("最大HP")]
     public float _maxHP = 100;
+    [SerializeField,Header("王萎え")]
+    private float _uMaxScore = 100;
     [SerializeField, Header("人ダメージ")]
     private float _damagePeople = 10;
     [SerializeField, Header("鳥ダメージ")]
@@ -148,7 +150,7 @@ public class Player : MonoBehaviour
     void Update()
     {
 
-        Debug.Log(_canonTimer2);
+        //Debug.Log(_canonTimer2);
         DebugKey();
 
         _uiManager.SpeedText(_moveSpeed);
@@ -166,6 +168,11 @@ public class Player : MonoBehaviour
             _uiManager.CanonImage(0, 0, 2);
             _uiManager.CanonImage(1, 0, 6);
             _uiManager.CanonImage(2, 0, 10 );
+        }
+
+        if(_gameManager._boxStage > 10)
+        {
+            _uiManager.UScoreGage(_uScore, _uMaxScore);
         }
         
         
@@ -764,7 +771,7 @@ public class Player : MonoBehaviour
                     _isBuck = true;
                     _canon.Exprotion(0);
                     _exprotionScale = 1;
-                    _canonDamage = 0;
+                    _canonDamage = 1;
                     _canonTimer1 = 0;
                 }
                 _canonTimer1 = 0;

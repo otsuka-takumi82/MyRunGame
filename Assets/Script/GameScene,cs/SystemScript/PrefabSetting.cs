@@ -4,6 +4,8 @@ using static UnityEditor.Experimental.GraphView.GraphView;
 public class PrefabSetting : MonoBehaviour
 {
     private GameObject _player;
+    [SerializeField, Header("床")]
+    private bool _floor = false;
 
     private void Awake()
     {
@@ -24,10 +26,25 @@ public class PrefabSetting : MonoBehaviour
         }
         if (!_player) return;
         
-        if (transform.position.x < _player.transform.position.x - 10f)
+        if(!_floor)
         {
-            Destroy(gameObject);
+            if (transform.position.x < _player.transform.position.x - 10f)
+            {
+                Destroy(gameObject);
+            }
+        }
+        
+
+        if(_floor)
+        {
+            if (transform.position.x < _player.transform.position.x - 200f)
+            {
+                Destroy(gameObject);
+            }
+            
         }
 
     }
+
+   
 }

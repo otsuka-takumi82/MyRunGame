@@ -626,6 +626,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _boxScore: 100
   _boxSpeed: 5
+  _boxStage: 1
 --- !u!1 &726012910
 GameObject:
   m_ObjectHideFlags: 0
