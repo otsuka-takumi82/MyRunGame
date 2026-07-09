@@ -130,6 +130,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9851fd7f3a60ac64e937aef44c8ad941, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _floor: 0
 --- !u!114 &25053362196481403
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -145,7 +146,8 @@ MonoBehaviour:
   _enemyHP: 2
   _enemySpeed: 3
   _enemyJump: 3
-  _uBuckSpeed: 10
+  _uBuckSpeed: 20
+  _lineForWall: {x: -1, y: 0}
   _uSuperTime: 0.3
   _uFlashTime: 0.3
   _enemyDamege: 10

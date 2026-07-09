@@ -12,7 +12,8 @@ public class ActionEnemy : MonoBehaviour
     public float _enemyJump;
     [SerializeField]
     public float _uBuckSpeed;
-   
+    [SerializeField]
+    private Vector2 _lineForWall = Vector2.left;
     [SerializeField]
     public float _uSuperTime;
     [SerializeField]
@@ -73,7 +74,6 @@ public class ActionEnemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         if (_enemyType == EnemyType.Archer)
         {
             if (_player == null) return;
@@ -98,9 +98,14 @@ public class ActionEnemy : MonoBehaviour
         }
         else
         {
-            if(_isNock)
+            float distance = transform.position.x - _player.transform.position.x;
+            if (distance <= Mathf.Abs(30))
             {
-                _rigid.linearVelocity = new Vector2(_enemySpeed * _speedPile, _rigid.linearVelocity.y);
+                if (_isNock)
+                {
+                    _rigid.linearVelocity = new Vector2(_enemySpeed * _speedPile, _rigid.linearVelocity.y);
+                    
+                }
             }
             
         }
@@ -364,6 +369,15 @@ public class ActionEnemy : MonoBehaviour
         _uInvincibleTimer = 0f;
         //StartCoroutine(UInvisible());
     }
+
+    //public void HitWall()
+    //{
+    //    Vector2 starts = transform.position;
+    //    Debug.DrawLine(starts, starts + _lineForWall);
+    //    RaycastHit2D hit = Physics2D.Linecast(starts, _lineForWall);
+
+    //}
+
 
 
 }

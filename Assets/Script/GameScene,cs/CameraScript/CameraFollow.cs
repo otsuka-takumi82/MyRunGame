@@ -11,8 +11,10 @@ public class CameraFollow : MonoBehaviour
     public float _cameraScale;
 
 
-    private GameObject _player;
-
+    private Player _player;
+    private float _distanse;
+    private float num;
+    private bool _start = true;
     private void Awake()
     {
         
@@ -20,14 +22,22 @@ public class CameraFollow : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        _player = GameObject.FindWithTag("Player");
+        _player = FindFirstObjectByType<Player>();
+       
     }
 
     // Update is called once per frame
     void Update()
     {
+        
         if (_player == null) return;
-        transform.position = new Vector3(_player.transform.position.x + _cameraScale, transform.position.y,transform.position.z);
+       if(_player._onFloor && _start)
+        {
+            num = _player.transform.position.y;
+            _start = false;
+        }
+            _distanse = num + 4;
+                transform.position = new Vector3(_player.transform.position.x + _cameraScale, _distanse,transform.position.z);
     }
 
     public void SetScope(float Scale,float TimeScale)

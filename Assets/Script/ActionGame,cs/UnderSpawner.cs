@@ -6,8 +6,8 @@ public class UnderSpawner : MonoBehaviour
     private float _Spacing;
     [SerializeField, Header("発生時間隔")]
     private float _spacingTime;
-    [SerializeField, Header("生成物")]
-    private GameObject[] _Prefab;
+    [SerializeField, Header("ステージ13の生成物")]
+    private GameObject[] _uSponer1;
     //[SerializeField, Header("第二生成物")]
     //private GameObject _Prefab2;
     [SerializeField, Header("ストッパー")]
@@ -20,7 +20,11 @@ public class UnderSpawner : MonoBehaviour
     {
         _gameManager = FindFirstObjectByType<GameManager>();
         _player = GameObject.FindWithTag("Player");
-        InvokeRepeating(nameof(SpawnUenemy), 0.5f, _spacingTime);
+        if(_gameManager._boxStage == 13)
+        {
+            InvokeRepeating(nameof(SpawnUenemy), 0.5f, _spacingTime);
+        }
+        
         //InvokeRepeating(nameof(SpawnEnemy2), 1f, 4f);
         //if (_gameManager._boxStage >= 2 && _gameManager._boxStage < 10) return;
     }
@@ -52,8 +56,7 @@ public class UnderSpawner : MonoBehaviour
 
     private void SpawnUenemy()
     {
-        Uspawn(_Prefab);
-
+         Uspawn(_uSponer1);
     }
     //private void SpawnEnemy2()
     //{

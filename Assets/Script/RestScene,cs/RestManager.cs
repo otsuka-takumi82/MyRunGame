@@ -22,7 +22,14 @@ public class RestManager : MonoBehaviour
 
     public void GoStage()
     {
-        SceneManager.LoadScene("2DRunGame");
         _gameManager._boxStage += 1;
+        if (_gameManager._boxStage < 10)
+        {
+            SceneManager.LoadScene("2DRunGame");
+        }
+        else
+        {
+            SceneManager.LoadScene("2DActionGame");
+        }
     }
 }

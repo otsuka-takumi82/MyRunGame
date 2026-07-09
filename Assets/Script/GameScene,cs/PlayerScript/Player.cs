@@ -64,7 +64,7 @@ public class Player : MonoBehaviour
     public bool _isInvincible = false;
     private bool _isPlayerRen;
     private bool _bsnike = false;
-    private bool _onFloor = false;
+    public bool _onFloor = false;
     private bool _isAttackButton;
     private bool _isMax = true;
     private bool _isSAttack = false;
@@ -76,6 +76,7 @@ public class Player : MonoBehaviour
     private bool _isKnockBacking;
     private bool _isCrossDirection;
     private bool _isCrossShooting;
+    public bool _isSceneChanging = false;
     private float _knockBackTimer = 1f;
     public float _invincibleTimer;
     public float _snikeTimer;
@@ -131,14 +132,19 @@ public class Player : MonoBehaviour
     {
         _hp = _gameManager._boxScore;
         _moveSpeed = _gameManager._boxSpeed;
+        _uScore = _gameManager._boxUScore;
+        _boltNum = _gameManager._boxBolt;
+        //Debug.Log(_uScore);
         _bJump = false;
         _bStep = false;
         _bStepCool = false;
         _uiManager.ScoreManage(_hp);
         _uiManager.HPManage(_hp, _maxHP);
-        if(_gameManager._boxStage > 10)
+        
+        if (_gameManager._boxStage >= 10)
         {
             _uiManager.BoltText(_boltNum);
+            _uiManager.UScoreManage(_uScore);
 
         }
         
@@ -444,8 +450,11 @@ public class Player : MonoBehaviour
         }
         if (collision.CompareTag("Rest"))
         {
+            _isSceneChanging = true;
             _gameManager._boxScore = _hp;
             _gameManager._boxSpeed = _moveSpeed;
+            _gameManager._boxUScore = _uScore;
+            _gameManager._boxBolt = _boltNum;
             SceneManager.LoadScene("RestScene");
             Destroy(collision.gameObject);
         }
@@ -744,6 +753,7 @@ public class Player : MonoBehaviour
 
 
             }
+            if (_isSceneChanging) return;
             if (context.canceled)
             {
                 _exprotionScale = 0;
