@@ -167,7 +167,7 @@ public class Player : MonoBehaviour
         {
             _uiManager.CanonImage(0, _canonTimer1, 2);
             _uiManager.CanonImage(1, _canonTimer1 - 2, 6 - 2);
-            _uiManager.CanonImage(2, _canonTimer1 - 6, 10 - 6);
+            _uiManager.CanonImage(2, _canonTimer1 - 6, 20 - 6);
         }
         else if(_gameManager._boxStage > 10 && !m_canon)
         {
@@ -759,8 +759,9 @@ public class Player : MonoBehaviour
                 _exprotionScale = 0;
                 m_canon = false;
                 
-                if (_canonTimer1 >= 10)
+                if (_canonTimer1 >= 20)
                 {
+                    _moveSpeed = 5;
                     _isCanon = true;
                     _isBuck = true;
                     _canon.Exprotion(2);

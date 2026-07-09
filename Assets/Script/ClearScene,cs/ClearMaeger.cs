@@ -8,12 +8,24 @@ public class ClearMaeger : MonoBehaviour
     private TMP_Text _rankTaxt;
     [SerializeField, Header("テキスト")]
     private TMP_Text _scoreText;
+    [SerializeField, Header("ランゲーム")]
+    private GameObject _2DRun;
+    [SerializeField, Header("アクションゲーム")]
+    private GameObject _2DAction;
 
     private GameManager _gameManager;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         _gameManager = FindFirstObjectByType<GameManager>();
+        if(_gameManager._boxStage < 10)
+        {
+            _2DRun.SetActive(true);
+        }
+        else
+        {
+            _2DAction.SetActive(true);
+        }
     }
 
     // Update is called once per frame
