@@ -27,6 +27,8 @@ public class SceneLoad : MonoBehaviour
 
     public void TitleLoad()
     {
+        _gameManager._boxBolt = 0;
+        _gameManager._boxUScore = 0;
         _gameManager._boxSpeed = 5;
         _gameManager._boxScore = 100;
         _gameManager._boxStage = 1;
