@@ -34,4 +34,13 @@ public class SceneLoad : MonoBehaviour
         _gameManager._boxStage = 1;
         SceneManager.LoadScene("Title");
     }
+
+    public void ActionLoad()
+    {
+        _gameManager._boxScore = 100;
+        _gameManager._boxSpeed = 5;
+        _gameManager._boxStage = 11;
+        SceneManager.LoadScene("2DActionGame");
+    }
+
 }

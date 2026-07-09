@@ -400,6 +400,8 @@ public class Player : MonoBehaviour
         }
         if (_hp <= 0f)
         {
+            
+            SceneManager.LoadScene("GameOver");
             Destroy(gameObject);
             Destroy(_allStage);
 
