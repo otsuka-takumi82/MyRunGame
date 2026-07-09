@@ -6,12 +6,24 @@ public class RestManager : MonoBehaviour
 {
     [SerializeField]
     public Button _goStageButton;
+    [SerializeField]
+    public GameObject _runRest;
+    [SerializeField]
+    public GameObject _actionRest;
 
     private GameManager _gameManager;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         _gameManager = FindFirstObjectByType<GameManager>();
+        if (_gameManager._boxStage < 10)
+        {
+            _runRest.SetActive(true);
+        }
+        else
+        {
+            _actionRest.SetActive(true);
+        }
     }
 
     // Update is called once per frame

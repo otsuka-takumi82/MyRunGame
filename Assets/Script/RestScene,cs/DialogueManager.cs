@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class DialogueManager : MonoBehaviour
 {
-    [SerializeField, Header("NPC")]
+    [SerializeField, Header("ランゲームNPC")]
     private GameObject[] _npc;
     [SerializeField, Header("テキストボックス")]
     private Text _textBox;

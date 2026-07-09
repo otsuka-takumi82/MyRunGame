@@ -98,6 +98,7 @@ public class ActionEnemy : MonoBehaviour
         }
         else
         {
+            if (_player == null) return;
             float distance = transform.position.x - _player.transform.position.x;
             if (distance <= Mathf.Abs(30))
             {

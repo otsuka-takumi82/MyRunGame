@@ -762,6 +762,7 @@ public class Player : MonoBehaviour
                 if (_canonTimer1 >= 20)
                 {
                     _moveSpeed = 5;
+                    _playerDamage = 1;
                     _isCanon = true;
                     _isBuck = true;
                     _canon.Exprotion(2);
