@@ -363,4 +363,8 @@ public class DialogueManager : MonoBehaviour
         _npc[_gameManager._boxStage - 1].SetActive(false);
 
     }
+
+
+
+
 }

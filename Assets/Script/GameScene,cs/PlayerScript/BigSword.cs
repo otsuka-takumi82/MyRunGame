@@ -92,7 +92,7 @@ public class BigSword : MonoBehaviour
                 Time.timeScale = 0.1f;
 
             }
-            if (_attackTime >= 0.1f)
+            if (_attackTime >= 0.03f)
             {
                 Time.timeScale = 1;
                 _bigDir = true;

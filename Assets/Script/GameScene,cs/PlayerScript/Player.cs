@@ -47,15 +47,21 @@ public class Player : MonoBehaviour
     private float _damageBird = 3;
     [SerializeField, Header("盗賊回復")]
     private float _helthThief = 5;
+    
+    
 
     [SerializeField, Header("無敵時間")]
     public float _superTime;
     [SerializeField, Header("点滅時間")]
     public float _flashTime;
+    [SerializeField]
+    private Vector2 _lineForWall = Vector2.right ;
+    [SerializeField] LayerMask _wallLayer = 0;
 
 
 
     private Vector2 _inputDirection;
+
     private Rigidbody2D _rigid;
     private bool _bJump;
     private bool _bStep;
@@ -77,6 +83,7 @@ public class Player : MonoBehaviour
     private bool _isCrossDirection;
     private bool _isCrossShooting;
     public bool _isSceneChanging = false;
+    public bool _isDialog;
     private float _knockBackTimer = 1f;
     public float _invincibleTimer;
     public float _snikeTimer;
@@ -94,6 +101,7 @@ public class Player : MonoBehaviour
     private GameObject _allStage;
     private GameManager _gameManager;
     private ActionEnemy _actionEnemy;
+    private RedyDialog _redyDialog;
     public float _uScore = 0;
     private PlayerAttack _arm;
     private BigSword _bigSword;
@@ -109,6 +117,7 @@ public class Player : MonoBehaviour
         _renderers = GetComponentsInChildren<SpriteRenderer>();
         _actionEnemy = FindFirstObjectByType<ActionEnemy>();
         _gameManager = FindFirstObjectByType<GameManager>();
+        _redyDialog = FindFirstObjectByType<RedyDialog>();
         _arm = FindFirstObjectByType<PlayerAttack>();
         _bigSword = FindFirstObjectByType<BigSword>();
         _canon = FindFirstObjectByType<Canon>();
@@ -130,6 +139,7 @@ public class Player : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        Time.timeScale = 1f;
         _hp = _gameManager._boxScore;
         _moveSpeed = _gameManager._boxSpeed;
         _uScore = _gameManager._boxUScore;
@@ -148,7 +158,12 @@ public class Player : MonoBehaviour
 
         }
         
+        if(_gameManager._boxStage >= 1 &&_gameManager._boxStage < 10)
+        {
+            _redyDialog.Dialog(_gameManager._boxStage - 1);
+        }
 
+        _isDialog = true;
 
     }
 
@@ -179,6 +194,11 @@ public class Player : MonoBehaviour
         if(_gameManager._boxStage > 10)
         {
             _uiManager.UScoreGage(_uScore, _uMaxScore);
+        }
+
+        if (_gameManager._boxStage >= 1 && _gameManager._boxStage < 10)
+        {
+            RedyColDia(_gameManager._boxStage - 1);
         }
         
         
@@ -447,7 +467,7 @@ public class Player : MonoBehaviour
 
         if (collision.CompareTag("CameraStart"))
         {
-            _cameraFollow.enabled = true;
+            //_cameraFollow.enabled = true;
             Destroy(collision.gameObject);
         }
         if (collision.CompareTag("Rest"))
@@ -457,8 +477,8 @@ public class Player : MonoBehaviour
             _gameManager._boxSpeed = _moveSpeed;
             _gameManager._boxUScore = _uScore;
             _gameManager._boxBolt = _boltNum;
-            SceneManager.LoadScene("RestScene");
-            Destroy(collision.gameObject);
+            
+            //Destroy(collision.gameObject);
         }
         if (collision.CompareTag("Clear"))
         {
@@ -566,6 +586,8 @@ public class Player : MonoBehaviour
         _isInvincible = false;
         //Debug.Log("b");
     }
+
+    
 
     public void DefaultColor()
     {
@@ -832,7 +854,19 @@ public class Player : MonoBehaviour
         StartCoroutine(Invisible());
     }
 
-   
+   public void RedyColDia(int num)
+    {
+        Vector2 start = transform.position;
+        Debug.DrawLine(start, start + _lineForWall);
+        RaycastHit2D hit = Physics2D.Linecast(start,start + _lineForWall,_wallLayer);
+        if(hit.collider)
+        {
+            if(_isDialog)
+            _redyDialog.DiaCollisionlog(num);
+            _isDialog = false;
+        }
+
+    }
 
     public void SAttack()
     {

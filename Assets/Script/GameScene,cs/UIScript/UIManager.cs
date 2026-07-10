@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Collections;
 
 public class UIManager : MonoBehaviour
 {
@@ -22,7 +23,11 @@ public class UIManager : MonoBehaviour
     private TMP_Text _speedText;
     [SerializeField, Header("ボルト本数")]
     private TMP_Text _boltText;
+    
 
+
+
+    private float _time;
     private bool _isActive = true;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -89,4 +94,11 @@ public class UIManager : MonoBehaviour
     {
         _boltText.text = "Bolt: " + bolt;
     }
+
+    //public Color BrackFade()
+    //{
+    //    Color color;
+    //   return  color = _fadeImage.color;
+    //}
+    
 }

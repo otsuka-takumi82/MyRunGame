@@ -483,15 +483,23 @@ MonoBehaviour:
   _canonDamage: 278447232
   _maxSnike: 1
   _maxHP: 100
+  _uMaxScore: 100
   _damagePeople: 10
   _damageBird: 3
   _helthThief: 5
   _superTime: 2
   _flashTime: 0.5
+  _lineForWall: {x: 10.04, y: 0}
+  _wallLayer:
+    serializedVersion: 2
+    m_Bits: 32768
   _isInvincible: 0
+  _onFloor: 0
   _isBigSword: 0
   _isBA: 0
   _isCanon: 0
+  _isSceneChanging: 0
+  _isDialog: 0
   _invincibleTimer: 0
   _snikeTimer: 0
   _canonTimer1: 0
@@ -758,7 +766,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _attackSpeed: 300
-  _attackCoolTime: 0.5
+  _attackCoolTime: 0.2
   _arm: {fileID: 364726533617375172}
   _bigSword: {fileID: 6801487336400486104}
   _angle: 0
