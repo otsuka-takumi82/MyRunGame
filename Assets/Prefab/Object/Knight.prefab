@@ -151,7 +151,7 @@ MonoBehaviour:
   _uSuperTime: 0.3
   _uFlashTime: 0.3
   _enemyDamege: 10
-  _uAddScore: 1
+  _uAddScore: 3
   _UEnemyArmored:
   - {fileID: 21300000, guid: 61e176715af0b6243ae0a488763575c5, type: 3}
   - {fileID: 0}
