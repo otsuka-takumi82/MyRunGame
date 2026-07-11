@@ -6,6 +6,7 @@ public class CrossBow : MonoBehaviour
 {
     [SerializeField, Header("クロスボウ")]
     private GameObject _crossBow;
+    
     [SerializeField, Header("ボルト")]
     private GameObject _bolt;
     [SerializeField, Header("ノズル")]
@@ -45,7 +46,7 @@ public class CrossBow : MonoBehaviour
         }
         if (_angle > 90)
         {
-
+            
             _angle = 90;
 
         }

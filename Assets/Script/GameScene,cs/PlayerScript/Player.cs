@@ -1,13 +1,14 @@
-using Unity.VisualScripting;
-using UnityEngine;
-using UnityEngine.InputSystem;
-using static UnityEditor.Experimental.GraphView.GraphView;
-using UnityEngine.UI;
 using System.Collections;
+using System.Collections.Generic;
 using TMPro;
-using UnityEngine.SceneManagement;
+using Unity.VisualScripting;
 using UnityEditor.Experimental.GraphView;
 using UnityEditor.Rendering;
+using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class Player : MonoBehaviour
 {
@@ -47,8 +48,10 @@ public class Player : MonoBehaviour
     private float _damageBird = 3;
     [SerializeField, Header("盗賊回復")]
     private float _helthThief = 5;
-    
-    
+    [SerializeField, Header("発射範囲")]
+    private GameObject _crossScale;
+
+
 
     [SerializeField, Header("無敵時間")]
     public float _superTime;
@@ -57,6 +60,8 @@ public class Player : MonoBehaviour
     [SerializeField]
     private Vector2 _lineForWall = Vector2.right ;
     [SerializeField] LayerMask _wallLayer = 0;
+
+    List<ItemBase> _itemList = new List<ItemBase>();
 
 
 
@@ -535,9 +540,7 @@ public class Player : MonoBehaviour
 
         if (collision.gameObject.tag == "Thief")
         {
-            _hp += _helthThief;
-            _uiManager.HPManage(_hp, _maxHP);
-            _uiManager.ScoreManage(_hp);
+            GetHp(_helthThief);
         }
 
         if (collision.gameObject.tag == "People" || collision.gameObject.tag == "Thief" || collision.gameObject.tag == "Bird") //|| collision.gameObject.tag == "UEnemy")
@@ -823,9 +826,11 @@ public class Player : MonoBehaviour
             if (!_isCrossDirection)
             {
                 _isCrossDirection = true;
+                _crossScale.SetActive(true);
             }
             else
             {
+                _crossScale.SetActive(false);
                 _isCrossDirection = false;
                 _crossBow.BoltReset();
             }
@@ -866,6 +871,18 @@ public class Player : MonoBehaviour
             _isDialog = false;
         }
 
+    }
+
+    public void GetItem(ItemBase item)
+    {
+        _itemList.Add(item);
+    }
+
+    public void GetHp(float health)
+    {
+        _hp += health;
+        _uiManager.HPManage(_hp, _maxHP);
+        _uiManager.ScoreManage(_hp);
     }
 
     public void SAttack()
