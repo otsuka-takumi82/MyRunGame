@@ -15,7 +15,9 @@ public class BigSword : MonoBehaviour
     public float _angle = 0;
     public bool _isBigAttacking;
     bool _bigDir = true;
-    private float _attackTime;
+    public float _attackTime;
+    public float _attackMaxTime = 0.03f;
+    
     //public Collider2D _collider;
 
 
@@ -36,9 +38,11 @@ public class BigSword : MonoBehaviour
 
     public void BigSwordAttack()
     {
-
+        
         if (_isBigAttacking)
         {
+            
+            
             if (_angle == 90)
             {
                 _angle = 0;
@@ -92,7 +96,7 @@ public class BigSword : MonoBehaviour
                 Time.timeScale = 0.1f;
 
             }
-            if (_attackTime >= 0.03f)
+            if (_attackTime >= _attackMaxTime)
             {
                 Time.timeScale = 1;
                 _bigDir = true;
@@ -105,4 +109,6 @@ public class BigSword : MonoBehaviour
         }
 
     }
+
+    
 }

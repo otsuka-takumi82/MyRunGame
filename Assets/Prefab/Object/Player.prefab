@@ -513,6 +513,8 @@ MonoBehaviour:
   _uScore: 0
   _renderers: []
   _exprotionScale: 0
+  _coolTime: 0
+  _coolMaxTime: 5
 --- !u!58 &6214720032502374954
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -860,6 +862,8 @@ MonoBehaviour:
   _bigSword: {fileID: 6801487336400486104}
   _angle: 0
   _isBigAttacking: 0
+  _attackTime: 0
+  _attackMaxTime: 0.03
 --- !u!1 &7942608306415492590
 GameObject:
   m_ObjectHideFlags: 0

@@ -114,6 +114,8 @@ public class Player : MonoBehaviour
     private CrossBow _crossBow;
     public SpriteRenderer[] _renderers;
     public int _exprotionScale = 0;
+    public float _coolTime;
+    public float _coolMaxTime;
 
 
 
@@ -196,7 +198,16 @@ public class Player : MonoBehaviour
             _uiManager.CanonImage(2, 0, 10 );
         }
 
-        if(_gameManager._boxStage > 10)
+        if (_gameManager._boxStage > 10)
+        {
+            _uiManager.KeyNum();
+            _uiManager.KeyNum1();
+            _uiManager.KeyNum2();
+
+            _uiManager.BigSwordImage(_coolTime, _coolMaxTime);
+        }
+
+        if (_gameManager._boxStage > 10)
         {
             _uiManager.UScoreGage(_uScore, _uMaxScore);
         }
@@ -296,13 +307,17 @@ public class Player : MonoBehaviour
         }
         else if (!_bigSword._isBigAttacking)
         {
-            if(_isBA)
+            _coolTime += Time.deltaTime;
+            if (_isBA)
             {
                 _bigSword._bigSword.SetActive(false);
+                _coolTime = 0;
                 _isBA = false;
             }
             
         }
+
+        
 
         if(m_canon)
         {
@@ -734,11 +749,13 @@ public class Player : MonoBehaviour
             {
                 
                 _isCrossShooting = true;
+                _crossScale.SetActive(false);
 
             }
             if (context.canceled)
             {
                 _isCrossShooting = false;
+                _crossScale.SetActive(true);
 
             }
 
@@ -746,7 +763,7 @@ public class Player : MonoBehaviour
             {
                 if (context.performed)
                 {
-                    
+                    _crossScale.SetActive(false);
                     _isCrossShooting = true;
                 }
             }
@@ -758,15 +775,25 @@ public class Player : MonoBehaviour
 
     public void OnBigSword(InputAction.CallbackContext context)
     {
-        
-        if (context.performed)
+
+        if (BigTimer())
         {
-            if (_isAttackButton == true) return;
-            _bigSword._isBigAttacking = true;
+            if (context.performed)
+            {
+                if (_isAttackButton == true) return;
+                _bigSword._isBigAttacking = true;
 
 
+            }
         }
         
+        
+    }
+
+    public bool BigTimer()
+    {
+        return _coolTime >= _coolMaxTime;
+
     }
 
     public void OnCanon(InputAction.CallbackContext context)
