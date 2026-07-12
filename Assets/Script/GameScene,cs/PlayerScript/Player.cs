@@ -207,17 +207,21 @@ public class Player : MonoBehaviour
             }
         }
 
-        if(_uScore == 60 && _gameManager._boxStage == 13 && _isCave)
+        if(_gameManager._boxStage == 13)
         {
-            _underSpawner._isCave = true;
-            _isCave = false;
-        }
+            if (_uScore == 60 && _isCave)
+            {
+                _underSpawner._isCave = true;
+                _isCave = false;
+            }
 
-        if(_underSpawner._isCave)
-        {
-            _underSpawner.Cave();
-            _underSpawner._isCave = false;
+            if (_underSpawner._isCave)
+            {
+                _underSpawner.Cave();
+                _underSpawner._isCave = false;
+            }
         }
+       
         
 
         if (_gameManager._boxStage > 10)
