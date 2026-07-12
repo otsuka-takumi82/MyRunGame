@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class UnderSpawner : MonoBehaviour
@@ -8,6 +9,8 @@ public class UnderSpawner : MonoBehaviour
     private float _spacingTime;
     [SerializeField, Header("ステージ13の生成物")]
     private GameObject[] _uSponer1;
+    [SerializeField, Header("洞窟")]
+    private GameObject _Cave;
     //[SerializeField, Header("第二生成物")]
     //private GameObject _Prefab2;
     [SerializeField, Header("ストッパー")]
@@ -15,6 +18,7 @@ public class UnderSpawner : MonoBehaviour
 
     private GameObject _player;
     private GameManager _gameManager;
+    public bool _isCave;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -47,6 +51,20 @@ public class UnderSpawner : MonoBehaviour
 
     }
 
+    private void CaveSpawn(GameObject prefab)
+    {
+        if (_player == null) return;
+        
+            Instantiate(prefab, new Vector3(_player.transform.position.x + _Spacing, _player.transform.position.y, _player.transform.position.z), Quaternion.identity);
+            _isCave = false;
+        
+            
+        
+
+
+
+    }
+
     //private void Spawn2(GameObject prefab)
     //{
     //    if (_player == null || _stopper == null) return;
@@ -62,5 +80,8 @@ public class UnderSpawner : MonoBehaviour
     //{
     //    Spawn2(_Prefab2);
     //}
-
+    public void Cave()
+    {
+        CaveSpawn(_Cave);
+    }
 }

@@ -113,10 +113,12 @@ public class Player : MonoBehaviour
     private Canon _canon;
     private CrossBow _crossBow;
     private NpcManager _npcManager;
+    private UnderSpawner _underSpawner;
     public SpriteRenderer[] _renderers;
     public int _exprotionScale = 0;
     public float _coolTime;
     public float _coolMaxTime;
+    public bool _isCave;
 
 
 
@@ -132,6 +134,7 @@ public class Player : MonoBehaviour
         _crossBow = FindFirstObjectByType<CrossBow>();
         _npcManager = FindFirstObjectByType<NpcManager>();
         _uiManager = FindFirstObjectByType<UIManager>();
+        _underSpawner = FindFirstObjectByType<UnderSpawner>();
         if (_gameManager._boxStage < 10)
         {
             _spawner = FindFirstObjectByType<Spawner>().gameObject;
@@ -202,6 +205,18 @@ public class Player : MonoBehaviour
                 _uiManager.CanonImage(1, 0, 6);
                 _uiManager.CanonImage(2, 0, 10);
             }
+        }
+
+        if(_uScore == 60 && _gameManager._boxStage == 13 && _isCave)
+        {
+            _underSpawner._isCave = true;
+            _isCave = false;
+        }
+
+        if(_underSpawner._isCave)
+        {
+            _underSpawner.Cave();
+            _underSpawner._isCave = false;
         }
         
 
