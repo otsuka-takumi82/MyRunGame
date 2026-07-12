@@ -44,7 +44,7 @@ public class UnderSpawner : MonoBehaviour
         if (_player == null) return;
         for (var i  = 0; i < 21; i += 5)
         {
-            Instantiate(prefab[Random.Range(0, prefab.Length)], new Vector3(_player.transform.position.x + _Spacing + i, _player.transform.position.y, _player.transform.position.z), Quaternion.identity);
+            Instantiate(prefab[Random.Range(0, prefab.Length)], new Vector3(_player.transform.position.x + _Spacing + i, _player.transform.position.y - 1, _player.transform.position.z), Quaternion.identity);
         }
         
 
@@ -56,8 +56,8 @@ public class UnderSpawner : MonoBehaviour
         if (_player == null) return;
         
             Instantiate(prefab, new Vector3(_player.transform.position.x + _Spacing, _player.transform.position.y, _player.transform.position.z), Quaternion.identity);
-            _isCave = false;
         
+            
             
         
 
@@ -83,5 +83,6 @@ public class UnderSpawner : MonoBehaviour
     public void Cave()
     {
         CaveSpawn(_Cave);
+        
     }
 }

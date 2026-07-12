@@ -18,6 +18,8 @@ public class NpcManager : MonoBehaviour
     private GameObject _textBox;
     [SerializeField, Header("説明ボックス")]
     private GameObject[] _planBox;
+    [SerializeField, Header("NPC画像")]
+    private GameObject[] _npcImage;
 
     public int _indexNum;
     private GameManager _gameManager;
@@ -59,14 +61,17 @@ public class NpcManager : MonoBehaviour
         if(GameManagerNum(11))
         {
             NPCDialog(_dialog, 0);
+            _npcImage[0].SetActive(true);
         }
         else if (GameManagerNum(12))
         {
             NPCDialog(_dialog1, 1);
+            _npcImage[1].SetActive(true);
         }
         else if (GameManagerNum(13))
         {
             NPCDialog(_dialog2, 2);
+            _npcImage[2].SetActive(true);
         }
 
 
@@ -143,6 +148,7 @@ public class NpcManager : MonoBehaviour
     {
         OnOk(2);
         _bigSword = true;
+        _gameManager._caveOnOff = false;
         _gameManager._isBigSword = _bigSword;
     }
 

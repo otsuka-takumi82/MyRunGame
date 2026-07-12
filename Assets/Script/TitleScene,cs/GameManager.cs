@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     public bool _isBigSword;
     public bool _isCrossBow;
     public bool _isCanon;
+    public bool _caveOnOff = true;
 
 
     private void Awake()

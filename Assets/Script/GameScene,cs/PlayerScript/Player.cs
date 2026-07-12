@@ -118,7 +118,7 @@ public class Player : MonoBehaviour
     public int _exprotionScale = 0;
     public float _coolTime;
     public float _coolMaxTime;
-    public bool _isCave;
+    public bool _isCave = true;
 
 
 
@@ -160,6 +160,7 @@ public class Player : MonoBehaviour
         _bJump = false;
         _bStep = false;
         _bStepCool = false;
+        _isCave = true;
         _uiManager.ScoreManage(_hp);
         _uiManager.HPManage(_hp, _maxHP);
         
@@ -182,8 +183,8 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Debug.Log(_isCave);
 
-        //Debug.Log(_canonTimer2);
         DebugKey();
 
         _uiManager.SpeedText(_moveSpeed);
@@ -209,17 +210,22 @@ public class Player : MonoBehaviour
 
         if(_gameManager._boxStage == 13)
         {
-            if (_uScore == 60 && _isCave)
+            if (_gameManager._caveOnOff)
             {
-                _underSpawner._isCave = true;
-                _isCave = false;
-            }
+                if (_uScore >= 60 && _isCave)
+                {
+                    _underSpawner._isCave = true;
+                    Debug.Log("a");
+                    _isCave = false;
+                }
 
-            if (_underSpawner._isCave)
-            {
-                _underSpawner.Cave();
-                _underSpawner._isCave = false;
+                if (_underSpawner._isCave)
+                {
+                    _underSpawner.Cave();
+                    _underSpawner._isCave = false;
+                }
             }
+            
         }
        
         

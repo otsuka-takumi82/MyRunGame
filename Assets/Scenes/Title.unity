@@ -627,6 +627,12 @@ MonoBehaviour:
   _boxScore: 100
   _boxSpeed: 5
   _boxStage: 1
+  _boxUScore: 0
+  _boxBolt: 0
+  _isBigSword: 0
+  _isCrossBow: 0
+  _isCanon: 0
+  _caveOnOff: 1
 --- !u!1 &726012910
 GameObject:
   m_ObjectHideFlags: 0
