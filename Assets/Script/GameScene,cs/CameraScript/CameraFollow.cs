@@ -37,7 +37,7 @@ public class CameraFollow : MonoBehaviour
             _start = false;
         }
             _distanse = num + 4;
-                transform.position = new Vector3(_player.transform.position.x + _cameraScale, _distanse,transform.position.z);
+                transform.position = new Vector3(_player.transform.position.x + _cameraScale, _distanse + 0.2f,transform.position.z);
     }
 
     public void SetScope(float Scale,float TimeScale)

@@ -23268,7 +23268,8 @@ PrefabInstance:
       propertyPath: _fadeImage
       value: 
       objectReference: {fileID: 1543104678}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7755954359503101836, guid: 4a17ef9b32f3e94468e5b52082171121, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

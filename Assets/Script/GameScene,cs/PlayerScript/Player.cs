@@ -50,6 +50,7 @@ public class Player : MonoBehaviour
     private float _helthThief = 5;
     [SerializeField, Header("発射範囲")]
     private GameObject _crossScale;
+    
 
 
 
@@ -62,7 +63,7 @@ public class Player : MonoBehaviour
     [SerializeField] LayerMask _wallLayer = 0;
 
     List<ItemBase> _itemList = new List<ItemBase>();
-
+    private Animator _anim;
 
 
     private Vector2 _inputDirection;
@@ -135,6 +136,7 @@ public class Player : MonoBehaviour
         _npcManager = FindFirstObjectByType<NpcManager>();
         _uiManager = FindFirstObjectByType<UIManager>();
         _underSpawner = FindFirstObjectByType<UnderSpawner>();
+        _anim = GetComponent<Animator>();
         if (_gameManager._boxStage < 10)
         {
             _spawner = FindFirstObjectByType<Spawner>().gameObject;
@@ -183,7 +185,10 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Debug.Log(_isCave);
+
+        _anim.SetBool("Jump", !_onFloor);
+        
+        Debug.Log(_onFloor);
 
         DebugKey();
 
@@ -656,10 +661,10 @@ public class Player : MonoBehaviour
     public void OnJump(InputAction.CallbackContext context)
 
     {
-
+        
         if (context.performed && !_bJump && !_hiJump)
         {
-
+            
             _rigid.AddForce(Vector2.up * _jumpSpeed, ForceMode2D.Impulse);
             _bJump = true;
 
@@ -669,6 +674,7 @@ public class Player : MonoBehaviour
 
         if (context.performed && !_bJump && _hiJump)
         {
+           
             _rigid.AddForce(Vector2.up * _jumpSpeed * _jumpPiler, ForceMode2D.Impulse);
             _bJump = true;
             _onFloor = false;
