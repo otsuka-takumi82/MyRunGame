@@ -20449,7 +20449,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1485378490
 RectTransform:
   m_ObjectHideFlags: 0
@@ -22128,7 +22128,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2014883343
 RectTransform:
   m_ObjectHideFlags: 0
@@ -22869,6 +22869,10 @@ PrefabInstance:
       propertyPath: _imageUScore
       value: 
       objectReference: {fileID: 1551685138}
+    - target: {fileID: 4954617689285215980, guid: b83d4bb3f25c2a745b18dcdf471ec56f, type: 3}
+      propertyPath: _crossBowImage
+      value: 
+      objectReference: {fileID: 1485378491}
     - target: {fileID: 4954617689285215980, guid: b83d4bb3f25c2a745b18dcdf471ec56f, type: 3}
       propertyPath: _keyNum.Array.size
       value: 3

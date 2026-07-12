@@ -21,9 +21,9 @@ public class NpcManager : MonoBehaviour
 
     public int _indexNum;
     private GameManager _gameManager;
-    private bool _crossBow;
-    private bool _bigSword;
-    private bool _canon;
+    public bool _crossBow;
+    public bool _bigSword;
+    public bool _canon;
     private bool _isPlanIng;
     private bool _isTolking;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -37,7 +37,7 @@ public class NpcManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(_indexNum);
+        //Debug.Log(_canon);
 
         if((Input.GetKeyDown(KeyCode.Space) && _tolk.gameObject.activeSelf))
         {
@@ -120,24 +120,30 @@ public class NpcManager : MonoBehaviour
         return _gameManager._boxStage == num;
     }
 
-    public void OnOk(int index, bool wepon)
+    public void OnOk(int index)
     {
         _isPlanIng = false;
-        wepon = true;
         _planBox[index].SetActive(false );
+
     }
 
     public void OnOK0()
     {
-        OnOk(0, _canon);
+        OnOk(0);
+        _canon = true;
+        _gameManager._isCanon = _canon;
     }
     public void OnOK1()
     {
-        OnOk(1, _crossBow);
+        OnOk(1);
+        _crossBow = true;
+        _gameManager._isCrossBow = _crossBow;
     }
     public void OnOK2()
     {
-        OnOk(2, _bigSword);
+        OnOk(2);
+        _bigSword = true;
+        _gameManager._isBigSword = _bigSword;
     }
 
 

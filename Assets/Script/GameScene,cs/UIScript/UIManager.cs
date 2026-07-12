@@ -16,6 +16,8 @@ public class UIManager : MonoBehaviour
     private Image[] _canonImage;
     [SerializeField, Header("大剣Image")]
     private Image _bigImage;
+    [SerializeField, Header("クロスボウImage")]
+    private Image _crossBowImage;
     [SerializeField, Header("スコア表示")]
     private TMP_Text _scoreText;
     [SerializeField, Header("Underスコア表示")]
@@ -120,7 +122,12 @@ public class UIManager : MonoBehaviour
 
     public void BigSwordImage(float cool, float maxCool)
     {
+        _bigImage.gameObject.SetActive(true);
         _bigImage.fillAmount = Mathf.Clamp01(cool / maxCool);
+    }
+    public void CrossBowImage()
+    {
+        _crossBowImage.gameObject.SetActive(true);
     }
 
     public void ScoreManage(float HP)

@@ -112,6 +112,7 @@ public class Player : MonoBehaviour
     private BigSword _bigSword;
     private Canon _canon;
     private CrossBow _crossBow;
+    private NpcManager _npcManager;
     public SpriteRenderer[] _renderers;
     public int _exprotionScale = 0;
     public float _coolTime;
@@ -129,6 +130,7 @@ public class Player : MonoBehaviour
         _bigSword = FindFirstObjectByType<BigSword>();
         _canon = FindFirstObjectByType<Canon>();
         _crossBow = FindFirstObjectByType<CrossBow>();
+        _npcManager = FindFirstObjectByType<NpcManager>();
         _uiManager = FindFirstObjectByType<UIManager>();
         if (_gameManager._boxStage < 10)
         {
@@ -185,26 +187,39 @@ public class Player : MonoBehaviour
 
         _uiManager.SniceManage(_snikeTimer, _maxSnike);
 
-        if(_gameManager._boxStage > 10 && m_canon)
+        if(_gameManager._boxStage > 10 && _gameManager._isCanon)
+            //
         {
-            _uiManager.CanonImage(0, _canonTimer1, 2);
-            _uiManager.CanonImage(1, _canonTimer1 - 2, 6 - 2);
-            _uiManager.CanonImage(2, _canonTimer1 - 6, 20 - 6);
+            if (_gameManager._boxStage > 10 && m_canon)
+            {
+                _uiManager.CanonImage(0, _canonTimer1, 2);
+                _uiManager.CanonImage(1, _canonTimer1 - 2, 6 - 2);
+                _uiManager.CanonImage(2, _canonTimer1 - 6, 20 - 6);
+            }
+            else if (_gameManager._boxStage > 10 && !m_canon)
+            {
+                _uiManager.CanonImage(0, 0, 2);
+                _uiManager.CanonImage(1, 0, 6);
+                _uiManager.CanonImage(2, 0, 10);
+            }
         }
-        else if(_gameManager._boxStage > 10 && !m_canon)
-        {
-            _uiManager.CanonImage(0, 0, 2);
-            _uiManager.CanonImage(1, 0, 6);
-            _uiManager.CanonImage(2, 0, 10 );
-        }
+        
 
         if (_gameManager._boxStage > 10)
         {
             _uiManager.KeyNum();
             _uiManager.KeyNum1();
             _uiManager.KeyNum2();
+            if(_gameManager._isBigSword)
+            {
+                _uiManager.BigSwordImage(_coolTime, _coolMaxTime);
+            }
+            
+        }
 
-            _uiManager.BigSwordImage(_coolTime, _coolMaxTime);
+        if(_gameManager._boxStage > 10 && _gameManager._isCrossBow)
+        {
+            _uiManager.CrossBowImage();
         }
 
         if (_gameManager._boxStage > 10)
@@ -775,7 +790,7 @@ public class Player : MonoBehaviour
 
     public void OnBigSword(InputAction.CallbackContext context)
     {
-
+        if (!_gameManager._isBigSword) return;
         if (BigTimer())
         {
             if (context.performed)
@@ -798,7 +813,7 @@ public class Player : MonoBehaviour
 
     public void OnCanon(InputAction.CallbackContext context)
     {
-        if(_gameManager._boxStage > 10)
+        if(_gameManager._boxStage > 10 && _gameManager._isCanon)
         {
             if (context.started)
             {
@@ -848,6 +863,7 @@ public class Player : MonoBehaviour
 
     public void OnCrossBow(InputAction.CallbackContext context)
     {
+        if (!_gameManager._isCrossBow) return;
         if(context.performed)
         {
             if (!_isCrossDirection)

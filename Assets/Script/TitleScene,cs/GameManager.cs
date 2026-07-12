@@ -9,6 +9,9 @@ public class GameManager : MonoBehaviour
     public int _boxStage = 1;
     public float _boxUScore;
     public int _boxBolt;
+    public bool _isBigSword;
+    public bool _isCrossBow;
+    public bool _isCanon;
 
 
     private void Awake()
@@ -30,7 +33,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Debug.Log(_boxUScore);
+        //Debug.Log(_isCrossBow);
     }
 
     

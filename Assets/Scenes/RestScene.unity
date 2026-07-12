@@ -1167,6 +1167,9 @@ MonoBehaviour:
   - {fileID: 1184943426}
   - {fileID: 572724218}
   _indexNum: 0
+  _crossBow: 0
+  _bigSword: 0
+  _canon: 0
 --- !u!4 &451713845
 Transform:
   m_ObjectHideFlags: 0
