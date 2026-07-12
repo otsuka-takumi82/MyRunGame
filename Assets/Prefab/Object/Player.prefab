@@ -485,7 +485,7 @@ MonoBehaviour:
   _maxSnike: 1
   _maxHP: 100
   _uMaxScore: 100
-  _damagePeople: 10
+  _damagePeople: 30
   _damageBird: 3
   _helthThief: 5
   _crossScale: {fileID: 3145572755672114812}
@@ -515,6 +515,7 @@ MonoBehaviour:
   _exprotionScale: 0
   _coolTime: 0
   _coolMaxTime: 5
+  _isCave: 0
 --- !u!58 &6214720032502374954
 CircleCollider2D:
   m_ObjectHideFlags: 0
