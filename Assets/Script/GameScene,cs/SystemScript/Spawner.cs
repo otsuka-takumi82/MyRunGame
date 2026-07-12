@@ -20,7 +20,7 @@ public class Spawner : MonoBehaviour
         _gameManager = FindFirstObjectByType<GameManager>();
         if (_gameManager._boxStage >= 2) return;
         _player = GameObject.FindWithTag("Player");
-        InvokeRepeating(nameof(SpawnEnemy), 1f, 4f);
+        //InvokeRepeating(nameof(SpawnEnemy), 1f, 4f);
         InvokeRepeating(nameof(SpawnEnemy2), 1f, 4f);
     }
 
