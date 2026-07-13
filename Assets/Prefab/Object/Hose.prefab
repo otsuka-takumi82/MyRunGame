@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3651438133691074407}
   - component: {fileID: 4865604977686929471}
   - component: {fileID: 7962879824046453834}
+  - component: {fileID: 9150542375841744680}
   m_Layer: 14
   m_Name: Hose
   m_TagString: UEnemy
@@ -81,7 +82,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 21a9c8d5680a1ce4fbd1f590d4d67848, type: 3}
+  m_Sprite: {fileID: 190587898, guid: 4b99343336e1bdb43a12da1532d40fb7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -148,6 +149,7 @@ MonoBehaviour:
   _enemySpeed: 5
   _enemyJump: 0
   _uBuckSpeed: 20
+  _lineForWall: {x: -1, y: 0}
   _uSuperTime: 0.3
   _uFlashTime: 0
   _enemyDamege: 20
@@ -159,7 +161,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   _bolt: {fileID: 0}
-  _enemyType: 0
+  _enemyType: 4
   _boltLate: 0
   _boltDistans: 0
   _playerRenderer: {fileID: 0}
@@ -201,6 +203,28 @@ CapsuleCollider2D:
   m_Offset: {x: -0.038125955, y: -0.020260993}
   m_Size: {x: 0.86147517, y: 0.4905263}
   m_Direction: 1
+--- !u!95 &9150542375841744680
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8854064345397547759}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2dfbb73f731fc224bba7d26ee353731b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &5883923341445179425
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -214,24 +238,32 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 25053362196481403, guid: 570da472a03ab6f4c9092fe1cfce898e, type: 3}
+      propertyPath: _enemyType
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 25053362196481403, guid: 570da472a03ab6f4c9092fe1cfce898e, type: 3}
       propertyPath: _enemySpeed
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5868599943039204223, guid: 570da472a03ab6f4c9092fe1cfce898e, type: 3}
       propertyPath: m_Name
-      value: Knight (1)
+      value: HoseKnight
       objectReference: {fileID: 0}
     - target: {fileID: 5868599943039204223, guid: 570da472a03ab6f4c9092fe1cfce898e, type: 3}
       propertyPath: m_Layer
       value: 14
       objectReference: {fileID: 0}
+    - target: {fileID: 6105857610787681678, guid: 570da472a03ab6f4c9092fe1cfce898e, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -1976446756, guid: f258882e92c4c2b4f806a02402c1d401, type: 3}
     - target: {fileID: 7517351552570596729, guid: 570da472a03ab6f4c9092fe1cfce898e, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.5360171
+      value: 1.07
       objectReference: {fileID: 0}
     - target: {fileID: 7517351552570596729, guid: 570da472a03ab6f4c9092fe1cfce898e, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.5814731
+      value: 0.93
       objectReference: {fileID: 0}
     - target: {fileID: 7517351552570596729, guid: 570da472a03ab6f4c9092fe1cfce898e, type: 3}
       propertyPath: m_LocalScale.z
@@ -239,11 +271,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7517351552570596729, guid: 570da472a03ab6f4c9092fe1cfce898e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.053
+      value: -0.232
       objectReference: {fileID: 0}
     - target: {fileID: 7517351552570596729, guid: 570da472a03ab6f4c9092fe1cfce898e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.324
+      value: 0.315
       objectReference: {fileID: 0}
     - target: {fileID: 7517351552570596729, guid: 570da472a03ab6f4c9092fe1cfce898e, type: 3}
       propertyPath: m_LocalPosition.z
@@ -289,6 +321,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5868599943039204223, guid: 570da472a03ab6f4c9092fe1cfce898e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 890655222650444430}
+    - targetCorrespondingSourceObject: {fileID: 5868599943039204223, guid: 570da472a03ab6f4c9092fe1cfce898e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2612264300306805170}
   m_SourcePrefab: {fileID: 100100000, guid: 570da472a03ab6f4c9092fe1cfce898e, type: 3}
 --- !u!1 &60395713510675294 stripped
 GameObject:
@@ -329,9 +364,31 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.05999999, y: 0.13981028}
-  m_Size: {x: 0.6900001, y: 0.7703795}
-  m_Direction: 0
+  m_Offset: {x: 0.05, y: -0.1}
+  m_Size: {x: 1.07, y: 0.08}
+  m_Direction: 1
+--- !u!95 &2612264300306805170
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 60395713510675294}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3b2d882b2d865e4428c28b32f9ffef95, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!4 &4176273307505243480 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7517351552570596729, guid: 570da472a03ab6f4c9092fe1cfce898e, type: 3}

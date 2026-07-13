@@ -52,7 +52,9 @@ public class ActionEnemy : MonoBehaviour
         Solder,
         Knight,
         HeviKnight,
-        Archer
+        Archer,
+        Hose,
+        HoseKnght
     }
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -81,6 +83,11 @@ public class ActionEnemy : MonoBehaviour
         {
             _anim.SetBool("Armord", _enemyHP == 2);
             _anim.SetBool("Damage",_enemyHP == 1);
+        }
+        else if (_enemyType == EnemyType.Knight)
+        {
+            _anim.SetBool("Knight", _enemyHP == 2);
+            _anim.SetBool("Knight0", _enemyHP == 1);
         }
 
 
