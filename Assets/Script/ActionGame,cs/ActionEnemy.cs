@@ -46,6 +46,7 @@ public class ActionEnemy : MonoBehaviour
     private bool _isNock = true;
     public float _speedPile = -1;
     private Animator _anim;
+    private AudioManagar _audioManagar;
 
 
     public enum EnemyType
@@ -63,6 +64,7 @@ public class ActionEnemy : MonoBehaviour
     {
 
         _playerRenderer = GameObject.FindWithTag("Player");
+        _audioManagar = FindFirstObjectByType<AudioManagar>();
         _rigid = GetComponent<Rigidbody2D>();
         _collider = GetComponent<Collider2D>();
         _uEnemyRenderer = GetComponent<SpriteRenderer>();
@@ -109,7 +111,7 @@ public class ActionEnemy : MonoBehaviour
                 
                 if (_isBolt)
                 {
-                    
+                    _audioManagar.Arow();
                     InvokeRepeating(nameof(SpawnBolt), 0.5f, _boltLate);
                     _isBolt = false;
                 }
@@ -163,6 +165,7 @@ public class ActionEnemy : MonoBehaviour
             {
                 if (_enemyHP < _UEnemyArmored.Length - 1 || _UEnemyArmored == null)
                 {
+                    _audioManagar.Damage();
                     _uEnemyRenderer.sprite = _UEnemyArmored[_enemyHP - 1];
                     _isNock = false;
                     _rigid.AddForce(Vector2.right * _uBuckSpeed, ForceMode2D.Impulse);
@@ -200,7 +203,8 @@ public class ActionEnemy : MonoBehaviour
             
             _player._uScore += _uAddScore;
             _player._uiManager.UScoreManage(_player._uScore);
-            
+            _audioManagar.Damage();
+
             if (_enemyType == EnemyType.Archer)
             {
                 _player.GetBolt();
@@ -215,6 +219,7 @@ public class ActionEnemy : MonoBehaviour
             {
                 if (_enemyHP < _UEnemyArmored.Length - 1 || _UEnemyArmored == null)
                 {
+                    _audioManagar.Damage();
                     _uEnemyRenderer.sprite = _UEnemyArmored[_enemyHP - 1];
                     _isNock = false;
                     _rigid.AddForce(Vector2.right * _uBuckSpeed, ForceMode2D.Impulse);
@@ -274,6 +279,7 @@ public class ActionEnemy : MonoBehaviour
             {
                 if (_enemyHP < _UEnemyArmored.Length - 1 || _UEnemyArmored == null)
                 {
+                    _audioManagar.Damage();
                     _uEnemyRenderer.sprite = _UEnemyArmored[_enemyHP - 1];
                     _isNock = false;
                     _rigid.AddForce(Vector2.right * _uBuckSpeed, ForceMode2D.Impulse);
@@ -326,6 +332,7 @@ public class ActionEnemy : MonoBehaviour
                 
                 if (collision.gameObject.tag == "Player")
                 {
+                    _audioManagar.Damage();
                     _isNock = false;
                     _rigid.AddForce(Vector2.right * _uBuckSpeed, ForceMode2D.Impulse);
                     _player._hp -= _enemyDamege;

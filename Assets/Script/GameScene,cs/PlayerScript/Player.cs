@@ -50,6 +50,9 @@ public class Player : MonoBehaviour
     private float _helthThief = 5;
     [SerializeField, Header("発射範囲")]
     private GameObject _crossScale;
+
+    private AudioManagar _au;
+
     
 
 
@@ -131,6 +134,7 @@ public class Player : MonoBehaviour
         _redyDialog = FindFirstObjectByType<RedyDialog>();
         _arm = FindFirstObjectByType<PlayerAttack>();
         _bigSword = FindFirstObjectByType<BigSword>();
+        _au = FindFirstObjectByType<AudioManagar>();
         _canon = FindFirstObjectByType<Canon>();
         _crossBow = FindFirstObjectByType<CrossBow>();
         _npcManager = FindFirstObjectByType<NpcManager>();
@@ -878,7 +882,7 @@ public class Player : MonoBehaviour
             {
                 _exprotionScale = 0;
                 m_canon = false;
-                
+                _au.Bomb();
                 if (_canonTimer1 >= 20)
                 {
                     _moveSpeed = 5;
