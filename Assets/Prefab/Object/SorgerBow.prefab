@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3513840721605812036}
   - component: {fileID: 8409417253843281343}
   - component: {fileID: 6515775567819521197}
+  - component: {fileID: 1474005292323698694}
   m_Layer: 9
   m_Name: SorgerBow
   m_TagString: UEnemy
@@ -80,7 +81,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 5105b4bc16dbf184e9337c33a36f3ee3, type: 3}
+  m_Sprite: {fileID: 1982590158, guid: ecd21108ade6b524da36f0ad9a579a66, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -130,6 +131,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9851fd7f3a60ac64e937aef44c8ad941, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _floor: 0
 --- !u!114 &8409417253843281343
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -145,14 +147,19 @@ MonoBehaviour:
   _enemyHP: 1
   _enemySpeed: 0
   _enemyJump: 0
+  _uBuckSpeed: 0
+  _lineForWall: {x: -1, y: 0}
+  _uSuperTime: 0
+  _uFlashTime: 0
   _enemyDamege: 0
   _uAddScore: 1
   _UEnemyArmored: []
   _bolt: {fileID: 3978077030480174564, guid: 4806d93533dfecd428bee7735c997cad, type: 3}
   _enemyType: 3
-  _boltLate: 3
+  _boltLate: 2
   _boltDistans: 20
   _playerRenderer: {fileID: 0}
+  _speedPile: -1
 --- !u!58 &6515775567819521197
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -189,3 +196,25 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0.06, y: -0.01}
   m_Radius: 0.49999997
+--- !u!95 &1474005292323698694
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 34184249942324496}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e31b806f41f264d4387e91750f942de1, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

@@ -47,6 +47,7 @@ public class ActionEnemy : MonoBehaviour
     public float _speedPile = -1;
     private Animator _anim;
 
+
     public enum EnemyType
     {
         Solder,
@@ -79,29 +80,36 @@ public class ActionEnemy : MonoBehaviour
     void Update()
     {
 
-        if(_enemyType == EnemyType.HeviKnight)
+        if (_enemyType == EnemyType.HeviKnight)
         {
             _anim.SetBool("Armord", _enemyHP == 2);
-            _anim.SetBool("Damage",_enemyHP == 1);
+            _anim.SetBool("Damage", _enemyHP == 1);
         }
         else if (_enemyType == EnemyType.Knight)
         {
             _anim.SetBool("Knight", _enemyHP == 2);
             _anim.SetBool("Knight0", _enemyHP == 1);
         }
+        else if (_enemyType == EnemyType.Archer)
+        {
+            _anim.SetBool("ReLoad", _isBolt);
+        }
 
 
 
 
 
-        if (_enemyType == EnemyType.Archer)
+
+            if (_enemyType == EnemyType.Archer)
         {
             if (_player == null) return;
             float distans = transform.position.x - _player.transform.position.x;
             if (Mathf.Abs(distans) <= _boltDistans)
             {
+                
                 if (_isBolt)
                 {
+                    
                     InvokeRepeating(nameof(SpawnBolt), 0.5f, _boltLate);
                     _isBolt = false;
                 }
