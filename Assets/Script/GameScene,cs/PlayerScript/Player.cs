@@ -86,7 +86,7 @@ public class Player : MonoBehaviour
     private bool _isBuck;
     private bool m_canon = false;
     private bool _isKnockBacking;
-    private bool _isCrossDirection;
+    public bool _isCrossDirection;
     private bool _isCrossShooting;
     public bool _isSceneChanging = false;
     public bool _isDialog;
@@ -187,8 +187,18 @@ public class Player : MonoBehaviour
     {
 
         _anim.SetBool("Jump", !_onFloor);
+        _anim.SetBool("BigSword", _bigSword._isBigAttacking);
         
-        Debug.Log(_onFloor);
+        if (_gameManager._isCanon)
+        {
+            _anim.SetBool("Canon1", _canonTimer1 >= 0.1 && _canonTimer1 <= 6 && !_bigSword._isBigAttacking);
+            _anim.SetBool("Canon2", _canonTimer1 >= 6 && _canonTimer1 <= 20 && !_bigSword._isBigAttacking);
+            _anim.SetBool("Canon3", _canonTimer1 >= 20 && !_bigSword._isBigAttacking);
+        }
+        
+        //_anim.SetBool("Canon3", _canonTimer1 >= 20);
+
+        Debug.Log(_bigSword._isBigAttacking);
 
         DebugKey();
 

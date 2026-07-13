@@ -501,6 +501,7 @@ MonoBehaviour:
   _isBigSword: 0
   _isBA: 0
   _isCanon: 0
+  _isCrossDirection: 0
   _isSceneChanging: 0
   _isDialog: 0
   _invincibleTimer: 0
@@ -974,6 +975,8 @@ GameObject:
   - component: {fileID: 1212615611037760588}
   - component: {fileID: 2148788378407736184}
   - component: {fileID: 613757102843514965}
+  - component: {fileID: 1376037249847572599}
+  - component: {fileID: 5090308339229421501}
   m_Layer: 10
   m_Name: CrossBow,arm
   m_TagString: Untagged
@@ -990,7 +993,7 @@ Transform:
   m_GameObject: {fileID: 8082453087837715452}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0.2389844, w: 0.97102344}
-  m_LocalPosition: {x: -0.179, y: 0.096, z: 0}
+  m_LocalPosition: {x: 0.42, y: -0.18, z: 0}
   m_LocalScale: {x: 1.2782049, y: 1.2782049, z: 3.8346145}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1040,7 +1043,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -1
-  m_Sprite: {fileID: 21300000, guid: 64a68e5bc7b7c3041a621b2ba9a020f0, type: 3}
+  m_Sprite: {fileID: -92536251, guid: 7a7b23d4eba01574bb64f495f8616a4e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1085,9 +1088,43 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.5, y: -0.0000019073486}
+  m_Offset: {x: -0.04, y: -0.0000019073486}
   m_Size: {x: 0.94, y: 0.32}
   m_Direction: 1
+--- !u!95 &1376037249847572599
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8082453087837715452}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b8151873a75408b4db4e4aadb6ed9df9, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &5090308339229421501
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8082453087837715452}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4786791570db1b4489ed3f159a7af619, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8175718777185943927
 GameObject:
   m_ObjectHideFlags: 0
