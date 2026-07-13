@@ -172,8 +172,18 @@ public class Player : MonoBehaviour
             _uiManager.UScoreManage(_uScore);
 
         }
-        
-        if(_gameManager._boxStage >= 1 &&_gameManager._boxStage < 10)
+
+        if( _gameManager._boxStage == 11)
+        {
+            _uiManager.Chuat();
+        }
+
+        if (_gameManager._boxStage == 1)
+        {
+            _uiManager.ChuatRun();
+        }
+
+        if (_gameManager._boxStage >= 1 &&_gameManager._boxStage < 10)
         {
             _redyDialog.Dialog(_gameManager._boxStage - 1);
         }
@@ -198,7 +208,7 @@ public class Player : MonoBehaviour
         
         //_anim.SetBool("Canon3", _canonTimer1 >= 20);
 
-        Debug.Log(_bigSword._isBigAttacking);
+       
 
         DebugKey();
 

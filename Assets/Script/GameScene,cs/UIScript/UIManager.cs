@@ -30,6 +30,10 @@ public class UIManager : MonoBehaviour
     private TMP_Text _boltText;
     [SerializeField, Header("キー")]
     private TMP_Text[] _keyNum;
+    [SerializeField]
+    private GameObject _chuat;
+    [SerializeField]
+    private GameObject _chuatRun;
 
 
 
@@ -171,5 +175,27 @@ public class UIManager : MonoBehaviour
     //    Color color;
     //   return  color = _fadeImage.color;
     //}
-    
+
+    public void Chuat()
+    {
+        _chuat.gameObject.SetActive(true);
+        Time.timeScale = 0f;
+    }
+    public void ChuatButton()
+    {
+        _chuat.gameObject.SetActive(false);
+        Time.timeScale = 1.0f;
+    }
+
+    public void ChuatRun()
+    {
+        _chuatRun.gameObject.SetActive(true);
+        Time.timeScale = 0f;
+    }
+    public void ChuatRunButton()
+    {
+        _chuatRun.gameObject.SetActive(false);
+        Time.timeScale = 1.0f;
+    }
+
 }
