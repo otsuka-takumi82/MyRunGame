@@ -45,6 +45,7 @@ public class ActionEnemy : MonoBehaviour
     private float _uInvincibleTimer;
     private bool _isNock = true;
     public float _speedPile = -1;
+    private Animator _anim;
 
     public enum EnemyType
     {
@@ -63,17 +64,29 @@ public class ActionEnemy : MonoBehaviour
         _collider = GetComponent<Collider2D>();
         _uEnemyRenderer = GetComponent<SpriteRenderer>();
         _player = FindFirstObjectByType<Player>();
-        //if (_enemyType == EnemyType.Archer)
-        //{
-        //    InvokeRepeating(nameof(SpawnBolt), 0.5f, _boltLate);
-        //}
-        //_uUIManager = FindFirstObjectByType<UIManager>();
+        _anim = GetComponent<Animator>();
+    //if (_enemyType == EnemyType.Archer)
+    //{
+    //    InvokeRepeating(nameof(SpawnBolt), 0.5f, _boltLate);
+    //}
+    //_uUIManager = FindFirstObjectByType<UIManager>();
 
-    }
+}
 
     // Update is called once per frame
     void Update()
     {
+
+        if(_enemyType == EnemyType.HeviKnight)
+        {
+            _anim.SetBool("Armord", _enemyHP == 2);
+            _anim.SetBool("Damage",_enemyHP == 1);
+        }
+
+
+
+
+
         if (_enemyType == EnemyType.Archer)
         {
             if (_player == null) return;
